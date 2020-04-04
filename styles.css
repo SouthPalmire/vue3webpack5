@@ -8,4 +8,9 @@ p,ul {
     color: orange;
     font-weight: bold;
   }
-
+  li em {
+    color: rebeccapurple;
+  }
+  h1 + p {
+    font-size: 200%;
+  }

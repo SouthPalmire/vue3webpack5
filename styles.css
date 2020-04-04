@@ -1,9 +1,9 @@
-h2 {
+h2,h1 {
     color: green;
   }
-ul {
+p,ul {
     color: red;
   }
-h1 {
-    color: rgb(33, 66, 212);
+  li {
+    list-style-type: none;
   }

@@ -8,4 +8,7 @@ p,ul {
     color: orange;
     font-weight: bold;
   }
+  li {
+    list-style-type: none;
+  }
   

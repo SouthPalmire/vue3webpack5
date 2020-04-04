@@ -1,0 +1,15 @@
+body{
+    background-color:black;
+   } 
+.colblue { 
+    color: rgb(0, 195, 255);
+}
+.colred { 
+    color:red;
+}
+.colyellow { 
+    color:yellow;
+}
+.colgreen { 
+    color:green;
+}

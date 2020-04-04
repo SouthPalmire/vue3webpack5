@@ -4,11 +4,8 @@ h2,h1 {
 p,ul {
     color: red;
   }
-  .special {
+  li.special, span.special {
     color: orange;
     font-weight: bold;
   }
-  li {
-    list-style-type: none;
-  }
-  
+

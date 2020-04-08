@@ -5,11 +5,11 @@
  </head>
  <body> 
   <script type="text/javascript">
-    const base = 2;
-    for (var i= base; i < 5000000000; i = i * 2) {
-      document.write('<li>');
-      document.write(i);
-    }
+    var numbers = [1, 2, 3, 4, 5];
+
+for (var i = 0; i < numbers.length; i++) {
+  numbers[i] *= 2;
+}
   </script>
  </body>
 </html>

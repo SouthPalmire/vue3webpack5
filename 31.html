@@ -3,13 +3,28 @@
  <head>
   <title>markup_8</title>
  </head>
- <body> 
-  <script type="text/javascript">
-    var numbers = [1, 2, 3, 4, 5];
-
-for (var i = 0; i < numbers.length; i++) {
-  numbers[i] *= 2;
+ <style>
+  #square  {
+     width: 70px;
+     height: 70px;
+     background: green;
+     float: left;
 }
+</style>
+ <body> 
+  <div id="div">Button</div>
+
+  <script type="text/javascript">
+  div.style.cssText=`color: red !important;
+    background-color: yellow;
+    width: 100px;
+    text-align: center;
+  `;
+
+  document.body.style.backgroundColor = prompt('background color?', 'red');
+      const squareElement = document.getElementById('square')
+
+
   </script>
  </body>
 </html>

@@ -5,28 +5,20 @@
  </head>
  <body> 
   <script type="text/javascript">
-
     const base = 2;
-
     let uppp = document.createElement('ul');
     uppp.setAttribute('id','idppp');
     document.body.append(uppp);
-
     function getListContent() {
     let fragment = new DocumentFragment();
-    
-    for (let i= base + 2; i < 5000000000; i = i * 2) {
-      
+    for (let i = base * base; i < (base**33); i = i * base) {
       let lppp = document.createElement('li');
       lppp.append(i);
       fragment.append(lppp);
-      }
-        
+      }  
       return fragment;
       }
-
-    idppp.append(getListContent()); // (*)     
-
+    idppp.append(getListContent()); // (*)
   </script>
  </body>
 </html>

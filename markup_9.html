@@ -8,24 +8,24 @@
 
     const base = 2;
 
-    let ul = document.createElement('ul');
-    ul.setAttribute('id','tttt');
-    document.body.append(ul);
+    let uppp = document.createElement('ul');
+    uppp.setAttribute('id','idppp');
+    document.body.append(uppp);
 
     function getListContent() {
     let fragment = new DocumentFragment();
     
     for (let i= base + 2; i < 5000000000; i = i * 2) {
       
-      let li = document.createElement('li');
-      li.append(i);
-      fragment.append(li);
+      let lppp = document.createElement('li');
+      lppp.append(i);
+      fragment.append(lppp);
       }
         
       return fragment;
       }
 
-      tttt.append(getListContent()); // (*)     
+    idppp.append(getListContent()); // (*)     
 
   </script>
  </body>

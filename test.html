@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>Пример веб-страницы</title>
+  <style>
+   
+    </style>
+ </head>
+ <body>
+    <ul id="tttt"></ul>
+    <script>
+        function getListContent() {
+          let fragment = new DocumentFragment();
+        
+          for(let i=1; i<=3; i++) {
+            let li = document.createElement('li');
+            li.append(i);
+            fragment.append(li);
+          }
+        
+          return fragment;
+        }
+        
+        tttt.append(getListContent()); // (*)
+        </script>
+ </body>
+</html>

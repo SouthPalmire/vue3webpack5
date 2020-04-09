@@ -5,11 +5,28 @@
  </head>
  <body> 
   <script type="text/javascript">
+
     const base = 2;
-    for (var i= base + 2; i < 5000000000; i = i * 2) {
-      document.write('<li>');
-      document.write(i);
-    }
+
+    let ul = document.createElement('ul');
+    ul.setAttribute('id','tttt')
+    document.body.append(ul);
+
+    function getListContent() {
+    let fragment = new DocumentFragment();
+    
+    for (let i= base + 2; i < 5000000000; i = i * 2) {
+      
+      let li = document.createElement('li');
+      li.append(i);
+      fragment.append(li);
+      }
+        
+      return fragment;
+      }
+
+      tttt.append(getListContent()); // (*)     
+
   </script>
  </body>
 </html>

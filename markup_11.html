@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CSS</title>
-    <style>
-      div {
-        color: yellow;
-        width: 172px;
-        background: green;
-      }
-    </style>
+    <title>markup_11</title>
   </head>
   <body>
     <input type="text" id="message">  
     <div id="showMessage">&nbsp;</div>
-  <script>
+  <script  type="text/javascript">
+    showMessage.style.cssText=`color: yellow;
+      width: 172px;
+      background: green;`;
     const message = document.querySelector('input');
     const log = document.getElementById('showMessage');
       message.addEventListener('input', updateValue);

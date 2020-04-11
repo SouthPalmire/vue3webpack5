@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<head>
-    <title>markup_11.html</title>
-</head>
-<body>
-    <input type="text" id="message" />
+<html>
+  <head>
+    <title>markup_11</title>
+    <style>
+      div {
+        color: yellow;
+        width: 173px;
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="message">  
     <div id="showMessage">&nbsp;</div>
-    <script type="text/javascript">
-      message.addEventListener('');
-       
-      
-      
-    </script>
-</body>
+  <script>
+  message.oninput = function() {
+    showMessage.innerHTML = message.value;
+  };
+  </script>
+  </body>
 </html>

@@ -14,9 +14,12 @@
     <input type="text" id="message">  
     <div id="showMessage">&nbsp;</div>
   <script>
-  message.oninput = function() {
-    showMessage.innerHTML = message.value;
-  };
+    const message = document.querySelector('input');
+    const log = document.getElementById('showMessage');
+      message.addEventListener('input', updateValue);
+    function updateValue(e) {
+      log.textContent = e.target.value;
+      }
   </script>
   </body>
 </html>

@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <title>markup_12</title>
 </head>
 <body style="height: 100vh;">
     <div id="square"></div>
     <script type="text/javascript">
-        document.body.addEventListener('mousemove', ({  }) => Object.assign(square.style, {
-        top: `${client
-        
+        square.style.cssText=`
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: green;          
+            `;
+        document.body.addEventListener('mousemove', ({  }) => Object.assign(square.style, {clientX, clientY}),{
+        top: `${clientX}px`, 
+        left: `${clientY}px`
+        });    
     </script>
 </body>
 </html>

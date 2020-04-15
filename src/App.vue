@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/GeneratorSka.vue'
+import GeneratorSka from './components/GeneratorSka.vue'
 
 export default {
   name: 'App',

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+      <h2>Lorem ipsum</h2>
     <the-modal>
       <component is="GeneratorSka" />
     </the-modal>

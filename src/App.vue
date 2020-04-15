@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    GeneratorSka
+    "GeneratorSka"
   </div>
 </template>
 

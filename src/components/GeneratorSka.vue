@@ -1,4 +1,5 @@
 <template>
+<div>
   <button type="button" @click="rows--">-</button>
   {{ rows }}
   <button type="button" @click="rows++">+</button>
@@ -14,6 +15,7 @@
       </td>
     </tr>
   </table>
+</div>
 </template>
 
 <script>

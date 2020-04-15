@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    GeneratorSka
+    <component is="GeneratorSka" />
   </div>
 </template>
 

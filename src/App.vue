@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <GeneratorSka>
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld/>
   </div>
 </template>
 

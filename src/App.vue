@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <img>
-    <HelloWorld/>
+    
   </div>
 </template>
 

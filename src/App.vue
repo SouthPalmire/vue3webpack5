@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    
+    <the-modal>
+      <component is="GeneratorSka" />
+    </the-modal>
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-      <GeneratorSka/>
+      <GeneratorSka>
+      </GeneratorSka>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <GeneratorSka msg="Welcome"/>
+    <GeneratorSka>
   </div>
 </template>
 

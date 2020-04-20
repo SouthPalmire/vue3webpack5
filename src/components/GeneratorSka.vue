@@ -13,7 +13,7 @@
       <td v-for="column in columns+1" :key="column"></td>
     </tr>
     <tr>
-    <td v-for="column in columns" :key="column"></td>
+      <td v-for="column in columns" :key="column"></td>
       <td>
         <button  type="button" @click="columns++;rows++">&#8600;</button>
       </td>  

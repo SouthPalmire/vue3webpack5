@@ -34,8 +34,7 @@
   td:not(<button>) {
     background: blue;
   }
-  button {
-    
+  button {   
     border-radius: 5px;
   }
   .it tr:nth-child(odd) td:nth-child(even) {
@@ -55,8 +54,7 @@
     margin-top: 60px;
     background-color: black;
     }
-  table {
-    
+  table {  
     border-collapse: collapse;
   }
   th, td {

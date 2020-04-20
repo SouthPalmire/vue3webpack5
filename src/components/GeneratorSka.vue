@@ -31,9 +31,6 @@
 </script>
 
 <style>
-  td:not(<button>) {
-    background: blue;
-  }
   button {   
     border-radius: 5px;
   }

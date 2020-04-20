@@ -47,20 +47,20 @@
   div {  
     text-align: left;
     background-color: white;
-    height: 530px;
-    width: 530px;
+    height: 453px;
+    width: 453px;
   }
   body { 
     position: absolute;
     left: 33%;
     margin-top: 60px;
     background-color: black;
-    }
+  }
   table {  
     border-collapse: collapse;
   }
   th, td {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 </style>

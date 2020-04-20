@@ -10,9 +10,13 @@
   
   <table class="it">
     <tr v-for="row in rows" :key="row">
-      <td v-for="column in columns" :key="column">
+      <td v-for="column in columns+1" :key="column"></td>
+    </tr>
+    <tr>
+    <td v-for="column in columns" :key="column"></td>
+      <td>
         <button  type="button" @click="columns++;rows++">&#8600;</button>
-      </td>
+      </td>  
     </tr>
   </table>
 </div>
@@ -41,11 +45,12 @@
   background: black;
   }
   div {  
+    text-align: left;
     background-color: white;
     height: 500px;
     width: 500px;
   }
-  body {
+  body { 
     position: absolute;
     left: 33%;
     margin-top: 60px;

@@ -9,9 +9,9 @@
   <button type="button" @click="columns++">+</button>)
   
   <table class="it">
-    <tr>
-      <td>
-        <button type="button" @click=""></button>
+    <tr v-for="row in rows" :key="row">
+      <td v-for="column in columns" :key="column">
+        <button  type="button" @click="columns++;rows++">&#8600;</button>
       </td>
     </tr>
   </table>
@@ -31,5 +31,36 @@
 </script>
 
 <style>
-
+  td:not(<button>) {
+    background: blue;
+  }
+  button {
+    
+    border-radius: 5px;
+  }
+  .it tr:nth-child(odd) td:nth-child(even) {
+	background: black;
+  }
+  .it tr:nth-child(even) td:nth-child(odd) {
+  background: black;
+  }
+  div {  
+    background-color: white;
+    height: 500px;
+    width: 500px;
+  }
+  body {
+    position: absolute;
+    left: 33%;
+    margin-top: 60px;
+    background-color: black;
+    }
+  table {
+    
+    border-collapse: collapse;
+  }
+  th, td {
+    width: 30px;
+    height: 30px;
+  }
 </style>

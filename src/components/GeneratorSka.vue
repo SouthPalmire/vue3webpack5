@@ -47,8 +47,8 @@
   div {  
     text-align: left;
     background-color: white;
-    height: 500px;
-    width: 500px;
+    height: 530px;
+    width: 530px;
   }
   body { 
     position: absolute;

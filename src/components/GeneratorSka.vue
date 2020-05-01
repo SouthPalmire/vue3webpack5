@@ -1,12 +1,13 @@
 <template>
 <div>
-  <EditNumber></EditNumber>
+  <EditNumber>
+  </EditNumber>
   <table class="it">
     <tr v-for="row in rows" :key="row">
       <td v-for="column in columns+1" :key="column"></td>
     </tr>
     <tr>
-      <td v-for="column in columns" :key="column"></td>
+      <td v-for="column in columns" :key="column" v-bind:value='columns'></td>
       <td>
         <button type="button" @click="columns++;rows++">&#8600;</button>
       </td>
@@ -20,14 +21,15 @@
   export default {
     name: 'GeneratorSka',
     data() {
-      return {   
+      return { 
+        rows: 2,
+        columns: 2  
       };
     },
     components: {
       EditNumber
-      },
-    props: ['rows','columns']
-    }
+    }  
+  }
 </script>
 
 <style>

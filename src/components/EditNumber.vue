@@ -6,20 +6,20 @@
     x
     <button type="button" @click="columns--">-</button>
     {{ columns }}
-    <button type="button" @click="columns++">+</button>
+    <button type="button" @click="columns++" :columns='value'>+</button>
   </section>
 </template>
 
 <script> 
-  export default {
+  export default {  
     name: 'EditNumber',
     data() {
-      return {rows: 2,
-        columns: 2}
-      } 
-    }
+      return {
+        props: ['value'],
+      }
+    } 
+  }
 </script>
 
 <style>
-
 </style>

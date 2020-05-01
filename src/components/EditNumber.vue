@@ -12,8 +12,10 @@
 
 <script> 
   export default {  
+   
     name: 'EditNumber',
     data() {
+      
       return {      
       }
     } 

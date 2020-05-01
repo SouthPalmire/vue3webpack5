@@ -6,7 +6,7 @@
   v-on:columnsM='columns--'
   v-on:columnsP='columns++'
   ></EditNumber>
-  <table class="it" >
+  <table class="it">
     <tr v-for="row in rows" :key="row">
       <td v-for="column in columns+1" :key="column"></td>
     </tr>

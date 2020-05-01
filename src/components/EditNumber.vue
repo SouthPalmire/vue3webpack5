@@ -6,7 +6,7 @@
     x
     <button type="button" @click="columns--">-</button>
     {{ columns }}
-    <button type="button" @click="columns++" :columns='value'>+</button>
+    <button type="button" @click="columns++">+</button>
   </section>
 </template>
 

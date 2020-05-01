@@ -1,13 +1,6 @@
 <template>
 <div>
-  <button type="button" @click="rows--">-</button>
-  {{ rows }}
-  <button type="button" @click="rows++">+</button>
-  x
-  <button type="button" @click="columns--">-</button>
-  {{ columns }}
-  <button type="button" @click="columns++">+</button>)
-  
+  <EditNumber></EditNumber>
   <table class="it">
     <tr v-for="row in rows" :key="row">
       <td v-for="column in columns+1" :key="column"></td>
@@ -15,23 +8,26 @@
     <tr>
       <td v-for="column in columns" :key="column"></td>
       <td>
-        <button  type="button" @click="columns++;rows++">&#8600;</button>
-      </td>  
+        <button type="button" @click="columns++;rows++">&#8600;</button>
+      </td>
     </tr>
   </table>
 </div>
 </template>
 
 <script>
+  import EditNumber from './EditNumber.vue'
   export default {
     name: 'GeneratorSka',
     data() {
-      return {
-        rows: 2,
-        columns: 2,
+      return {   
       };
+    },
+    components: {
+      EditNumber
+      },
+    props: ['rows','columns']
     }
-  }
 </script>
 
 <style>
@@ -54,7 +50,7 @@
     position: absolute;
     left: 33%;
     margin-top: 60px;
-    background-color: black;
+    background-color: blue;
   }
   table {  
     border-collapse: collapse;

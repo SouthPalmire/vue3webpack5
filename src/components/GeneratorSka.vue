@@ -1,8 +1,12 @@
 <template>
 <div>
-  <EditNumber>
-  </EditNumber>
-  <table class="it">
+  <EditNumber 
+  v-on:rowsM='rows--'
+  v-on:rowsP='rows++'
+  v-on:columnsM='columns--'
+  v-on:columnsP='columns++'
+  ></EditNumber>
+  <table class="it" >
     <tr v-for="row in rows" :key="row">
       <td v-for="column in columns+1" :key="column"></td>
     </tr>
@@ -23,7 +27,7 @@
     data() {
       return { 
         rows: 2,
-        columns: 2  
+        columns: 2, 
       };
     },
     components: {
@@ -52,7 +56,7 @@
     position: absolute;
     left: 33%;
     margin-top: 60px;
-    background-color: blue;
+    background-color: black;
   }
   table {  
     border-collapse: collapse;

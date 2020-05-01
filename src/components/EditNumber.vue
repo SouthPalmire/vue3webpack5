@@ -1,12 +1,12 @@
 <template>
   <section>
-    <button type="button" @click="rows--">-</button>
+    <button type="button" @click="$emit('rowsM')">-</button>
     {{ rows }}
-    <button type="button" @click="rows++">+</button>
+    <button type="button" @click="$emit('rowsP')">+</button>
     x
-    <button type="button" @click="columns--">-</button>
+    <button type="button" @click="$emit('columnsM')">-</button>
     {{ columns }}
-    <button type="button" @click="columns++">+</button>
+    <button type="button" @click="$emit('columnsP')">+</button>
   </section>
 </template>
 
@@ -15,7 +15,8 @@
     name: 'EditNumber',
     data() {
       return {
-        props: ['value'],
+        rows: 2,
+        columns: 2,
       }
     } 
   }

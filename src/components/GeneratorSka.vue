@@ -5,6 +5,8 @@
   v-on:rowsP='rows += $event'
   v-on:columnsM='columns -= $event'
   v-on:columnsP='columns += $event'
+  v-bind:rowsV='rows'
+  v-bind:columnsV='columns'
   ></EditNumber>
   <table class="it">
     <tr v-for="row in rows" :key="row">
@@ -56,7 +58,7 @@
     position: absolute;
     left: 33%;
     margin-top: 60px;
-    background-color: blue;
+    background-color: black;
   }
   table {  
     border-collapse: collapse;

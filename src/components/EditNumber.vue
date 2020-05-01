@@ -14,9 +14,7 @@
   export default {  
     name: 'EditNumber',
     data() {
-      return {
-        rows: 2,
-        columns: 2,
+      return {      
       }
     } 
   }

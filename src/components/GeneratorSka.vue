@@ -56,7 +56,7 @@
     position: absolute;
     left: 33%;
     margin-top: 60px;
-    background-color: black;
+    background-color: blue;
   }
   table {  
     border-collapse: collapse;

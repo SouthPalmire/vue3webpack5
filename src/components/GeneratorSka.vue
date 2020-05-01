@@ -5,8 +5,8 @@
   v-on:rowsP='rows += $event'
   v-on:columnsM='columns -= $event'
   v-on:columnsP='columns += $event'
-  v-bind:rowsV='rows'
-  v-bind:columnsV='columns'
+  v-bind:rowsV='rows+1'
+  v-bind:columnsV='columns+1'
   ></EditNumber>
   <table class="it">
     <tr v-for="row in rows" :key="row">

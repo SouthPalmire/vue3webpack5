@@ -1,10 +1,10 @@
 <template>
 <div>
   <EditNumber 
-  v-on:rowsM='rows--'
-  v-on:rowsP='rows++'
-  v-on:columnsM='columns--'
-  v-on:columnsP='columns++'
+  v-on:rowsM='rows -= $event'
+  v-on:rowsP='rows += $event'
+  v-on:columnsM='columns -= $event'
+  v-on:columnsP='columns += $event'
   ></EditNumber>
   <table class="it">
     <tr v-for="row in rows" :key="row">
@@ -27,8 +27,8 @@
     data() {
       return { 
         rows: 2,
-        columns: 2, 
-      };
+        columns: 2
+      }
     },
     components: {
       EditNumber

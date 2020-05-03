@@ -1,20 +1,16 @@
 <template>
-  <section>
-    <button type="button" @click="$emit('rowsM',1)">-</button>
-    {{ rowsV }}
-    <button type="button" @click="$emit('rowsP',1)">+</button>
-    x
-    <button type="button" @click="$emit('columnsM',1)">-</button>
-    {{ columnsV }}
-    <button type="button" @click="$emit('columnsP',1)">+</button>
-  </section>
+  <span>
+    <button type="button"  @click="$emit('input', value-- )">-</button>
+    {{ value }}
+    <button type="button" @click="$emit('input', value++ )">+</button>
+  </span>
 </template>
 
 <script> 
-  export default {  
-    props: ['rowsV','columnsV'],
+  export default {
+    props: ['value'],
     name: 'EditNumber',
-    data() {  
+    data() { 
       return {
       }
     } 
@@ -22,4 +18,6 @@
 </script>
 
 <style>
+
 </style>
+

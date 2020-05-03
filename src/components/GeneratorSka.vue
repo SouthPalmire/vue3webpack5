@@ -1,13 +1,9 @@
 <template>
 <div>
-  <EditNumber 
-  v-on:rowsM='rows -= $event'
-  v-on:rowsP='rows += $event'
-  v-on:columnsM='columns -= $event'
-  v-on:columnsP='columns += $event'
-  v-bind:rowsV='rows+1'
-  v-bind:columnsV='columns+1'
-  ></EditNumber>
+  <EditNumber :value="rows" @input="rows = $event" />
+  x
+  <EditNumber :value="columns" @input="columns = $event" />
+
   <table class="it">
     <tr v-for="row in rows" :key="row">
       <td v-for="column in columns+1" :key="column"></td>

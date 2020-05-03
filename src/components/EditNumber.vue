@@ -1,8 +1,8 @@
 <template>
   <span>
-    <button type="button"  @click="$emit('input', --value )">-</button>
+    <button type="button"  @click="$emit('input', value-1 )">-</button>
     {{ value }}
-    <button type="button" @click="$emit('input', ++value )">+</button>
+    <button type="button" @click="$emit('input', value+1 )">+</button>
   </span>
 </template>
 

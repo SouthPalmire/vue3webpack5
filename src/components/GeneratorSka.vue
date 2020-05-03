@@ -1,8 +1,8 @@
 <template>
 <div>
-  <EditNumber :value="rows" @input="rows = $event" />
+  <EditNumber v-model="rows" />
   x
-  <EditNumber :value="columns" @input="columns = $event" />
+  <EditNumber v-model="columns" />
 
   <table class="it">
     <tr v-for="row in rows" :key="row">

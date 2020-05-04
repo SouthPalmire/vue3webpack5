@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-      <GeneratorSka>
-      </GeneratorSka>
+      <InteractivePalette>
+      </InteractivePalette>
   </div>
 </template>
 
 <script>
-import GeneratorSka from './components/GeneratorSka.vue'
+import InteractivePalette from './components/InteractivePalette.vue'
+//import GeneratorSka from './components/GeneratorSka.vue'
 
 export default {
   name: 'App',
   components: {
-    GeneratorSka
+//    GeneratorSka,
+    InteractivePalette
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
 <div>
   <EditNumber v-model="rows" />
-  x
+  x<input v-model="rows" type="number" />
   <EditNumber v-model="columns" />
 
   <table class="it">

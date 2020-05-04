@@ -1,7 +1,9 @@
 <template>
-  <span>
-   
-  </span>
+  <div>
+    <input>
+    <button>add</button>
+    <button>remove last</button>
+  </div>
 </template>
 
 <script> 
@@ -16,6 +18,8 @@
 </script>
 
 <style>
-
+  div {  
+    text-align: left;
+  }
 </style>
 

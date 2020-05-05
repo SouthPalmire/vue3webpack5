@@ -21,6 +21,10 @@
 </script>
 
 <style>
+  button {
+    margin-left: 5px;
+    border-radius: 5px;
+  }
   #head {  
     text-align: left;
   }

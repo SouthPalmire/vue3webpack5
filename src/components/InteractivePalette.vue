@@ -6,7 +6,8 @@
       <button type="button" @click="masive.pop()">remove last</button>  
       {{ masive }}
     </div>
-    <div id="square" 
+    <div id="square" type="button"
+      @click="0"
       v-for="item in masive" :key="item"
       :style="{background: masive}"
     ></div>

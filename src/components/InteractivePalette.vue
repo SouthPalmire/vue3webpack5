@@ -1,20 +1,24 @@
 <template>
   <div>
     <div id="head">
-      <input>
-      <button @click="fkk++">add</button>
-      <button @click="fkk--">remove last</button>  
+      <input type="text"  v-model="txt" >
+      <button type="button" @click="masive.push(txt)">add</button>
+      <button type="button" @click="masive.pop()">remove last</button>  
+      {{ masive }}
     </div>
-    <div id="square" v-for="fk in fkk" @click="fkk++" :key="fk"></div>
+    <div id="square" 
+      v-for="item in masive" :key="item"
+      :style="{background: masive}"
+    ></div>
   </div>
 </template>
 
 <script> 
   export default {
     name: 'InteractivePalette',
-    data() { 
-      return {
-        fkk: 0
+    data() {   
+      return {  
+        masive: []
       }
     } 
   }
@@ -30,8 +34,7 @@
   }
   #square {  
     width: 140px;
-    height: 70px;
-    background: green;
+    height: 70px;  
     margin: 25px ;
     float: left;
   }

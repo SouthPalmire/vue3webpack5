@@ -1,15 +1,14 @@
 <template>
   <div>
     <div id="head">
-      <input type="text"  v-model="txt" >
-      <button type="button" @click="masive.push(txt)">add</button>
-      <button type="button" @click="masive.pop()">remove last</button>  
-      {{ masive }}
+      <input type="text" v-model="txt">
+      <button type="button" @click="massive.push(txt)">add</button>
+      <button type="button" @click="massive.pop()">remove last</button>
     </div>
     <div id="square" type="button"
-      @click="0"
-      v-for="item in masive" :key="item"
-      :style="{background: masive}"
+      :style="{background: massive}"
+      @click="massive.push(item)"
+      v-for="(item, mass) in massive" :key="mass"  
     ></div>
   </div>
 </template>
@@ -18,8 +17,10 @@
   export default {
     name: 'InteractivePalette',
     data() {   
-      return {  
-        masive: []
+      return {
+        mass: '',
+        txt: '', 
+        massive: []
       }
     } 
   }

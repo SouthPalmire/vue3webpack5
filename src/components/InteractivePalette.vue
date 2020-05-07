@@ -8,7 +8,7 @@
     <div id="square" type="button"
       :style="{background: massive}"
       @click="massive.push(item)"
-      v-for="(item, mass) in massive" :key="mass"  
+      v-for="(item, mass) in massive" :key="mass"
     ></div>
   </div>
 </template>

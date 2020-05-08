@@ -1,19 +1,21 @@
 <template>
   <div id="app">
-      <InteractivePalette>
-      </InteractivePalette>
+    <SmartInput>
+    </SmartInput>
   </div>
 </template>
 
 <script>
-import InteractivePalette from './components/InteractivePalette.vue'
+import SmartInput from './components/SmartInput.vue'
+//import InteractivePalette from './components/InteractivePalette.vue'
 //import GeneratorSka from './components/GeneratorSka.vue'
 
 export default {
   name: 'App',
   components: {
+    SmartInput,
 //    GeneratorSka,
-    InteractivePalette
+//    InteractivePalette,
   }
 }
 </script>

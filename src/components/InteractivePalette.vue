@@ -17,8 +17,7 @@
   export default {
     name: 'InteractivePalette',
     data() {   
-      return {
-        mass: '',
+      return {  
         txt: '', 
         massive: []
       }

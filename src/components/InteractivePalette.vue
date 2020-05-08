@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div id="head">
+    <div class="head">
       <input type="text" v-model="txt">
       <button type="button" @click="massive.push(txt)">add</button>
       <button type="button" @click="massive.pop()">remove last</button>
     </div>
-    <div id="square" type="button"
+    <div class="square" type="button"
       :style="{background: massive}"
       @click="massive.push(item)"
       v-for="(item, mass) in massive" :key="mass"
@@ -31,10 +31,10 @@
     margin-left: 5px;
     border-radius: 5px;
   }
-  #head {  
+  .head {  
     text-align: left;
   }
-  #square {  
+  .square {  
     width: 140px;
     height: 70px;  
     margin: 25px ;

@@ -11,7 +11,8 @@
     </form>
 
     <div class="showcase">
-      <input class="showcase__target" v-model="target" :style="{ backgroundColor: targetInstruction.color }"/>
+      <input class="showcase__target" v-model="target" 
+      :style="{ backgroundColor: targetInstruction.color }"/>
     </div>
   </div>
 </template>

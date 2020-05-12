@@ -10,10 +10,20 @@
       </button> 
     </form>
 
+    <tr v-for="(index, instruction) in instructions" :key="instruction">
+      <td>{{index.min}}</td>
+      <td>{{index.max}}</td>
+      <td :style="{ backgroundColor: index.color }"></td>
+      <td :style="{ color: index.color }">{{index.text}}</td>
+      <td><button @click="newInstruction.pop()">delete</button></td>{{index}} {{instruction}}
+    </tr>
+
     <div class="showcase">
       <input class="showcase__target" v-model="target" />
     </div>
-{{newInstruction}} {{instructions}} {{target}}
+
+{{newInstruction}} {{instructions}} {{target}} 
+
   </div>
 </template>
 
@@ -29,6 +39,7 @@
           text: ''
         },
         target: '',
+        
       } 
     },
 //    computed: {
@@ -39,6 +50,7 @@
 //    },
     methods: {
       createInstruction() {
+        this.instructions.push(this.newInstruction)
       },
 //      deleteInstruction(index) {
 //      }
@@ -47,4 +59,8 @@
 </script>
 
 <style>
+  td {  
+    height: 25px;
+    width: 45px;
+  }
 </style>

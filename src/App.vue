@@ -1,14 +1,12 @@
 <template>
   <div id="app">
-    <test13>
-    </test13>
     <SmartInput>
     </SmartInput>
   </div>
 </template>
 
 <script>
-import test13 from './components/test13.vue'
+//import test13 from './components/test13.vue'
 import SmartInput from './components/SmartInput.vue'
 //import InteractivePalette from './components/InteractivePalette.vue'
 //import GeneratorSka from './components/GeneratorSka.vue'
@@ -16,7 +14,7 @@ import SmartInput from './components/SmartInput.vue'
 export default {
   name: 'App',
   components: {
-    test13,
+//    test13,
     SmartInput,
 //    GeneratorSka,
 //    InteractivePalette,

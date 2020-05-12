@@ -11,16 +11,15 @@
     </form>
 
     <div class="showcase">
-      <input class="showcase__target" v-model="target" 
-      :style="{ backgroundColor: targetInstruction.color }"/>
+      <input class="showcase__target" v-model="target" />
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    el: "#app",
-    data: {
+  export default { 
+    data() {
+      return{
       instructions: [],
       newInstruction: {
         min: '',
@@ -29,19 +28,19 @@
         text: ''
       },
       target: '',
-    },
-    computed: {
-      targetInstruction() {
-        const { target, instructions } = this
-        return instructions.find() || { color: 'initial', text: '' }
-      }
-    },
-    methods: {
-      createInstruction() {
-      },
-      deleteInstruction(index) {
-      }
-    }
+    }},
+//    computed: {
+//      targetInstruction() {
+//        const { target, instructions } = this
+//        return instructions.find() || { color: 'initial', text: '' }
+//      }
+//    },
+//    methods: {
+//      createInstruction() {
+//      },
+//      deleteInstruction(index) {
+//      }
+//    }
   }
 </script>
 

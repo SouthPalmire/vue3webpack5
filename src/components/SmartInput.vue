@@ -9,15 +9,15 @@
         create
       </button> 
     </form>
-
-    <tr v-for="(index, instruction) in instructions" :key="instruction">
+<div v-for="(index, instruction) in instructions" :key="instruction">
+    <tr>
       <td>{{index.min}}</td>
       <td>{{index.max}}</td>
       <td :style="{ backgroundColor: index.color }"></td>
       <td :style="{ color: index.color }">{{index.text}}</td>
-      <td><button @click="newInstruction.pop()">delete</button></td>{{index}} {{instruction}}
+      <td><button @click="instructions.pop()">delete</button></td>{{index}} {{instruction}}
     </tr>
-
+</div>
     <div class="showcase">
       <input class="showcase__target" v-model="target" />
     </div>

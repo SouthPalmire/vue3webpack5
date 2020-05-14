@@ -7,22 +7,35 @@
       <input type="text" v-model="newInstruction.text" placeholder="text" />
       <button type="button" @click="createInstruction()">
         create
-      </button> 
+      </button>
     </form>
-<table v-for="(index, instruction) in instructions" :key="instruction">
-    <tr>
-      <td>{{index.min}}</td>
-      <td>{{index.max}}</td>
-      <td :style="{ backgroundColor: index.color }"></td>
-      <td :style="{ color: index.color }">{{index.text}}</td>
-      <td><button @click="instructions.pop()">delete</button></td>{{index}} {{instruction}}
-    </tr>
-</table>
+
+    <table>
+      <tr v-for="( instruction, index ) in this.instructions" :key="index">
+        <td>{{instruction.min}}</td>
+        <td>{{instruction.max}}</td>
+        <td :style="{ backgroundColor: instruction.color }"></td>
+        <td :style="{ color: instruction.color }">{{instruction.text}}</td>
+        <td><button @click="deleteInstruction(index)">delete</button></td>
+        
+{{ index }} {{ instruction }}
+
+      </tr>
+    </table>
+
     <div class="showcase">
-      <input class="showcase__target" v-model="target" />
+      <input class="showcase__target" v-model="target" 
+        :style="{  
+          backgroundColor: targetInstruction.color 
+        }"
+      /> 
     </div>
 
-{{newInstruction}} {{instructions}} {{target}}
+    <div :style="{ color: targetInstruction.color }">
+      {{targetInstruction.text}}
+    </div>
+
+{{ newInstruction }} {{ instructions }} {{ target }}
 
   </div>
 </template>
@@ -30,7 +43,7 @@
 <script>
   export default {
     data() {
-      return{
+      return{  
         instructions: [],
         newInstruction: {
           min: '',
@@ -39,18 +52,19 @@
           text: ''
         },
         target: '',
-        
       } 
     },
-//    computed: {
-//      targetInstruction() {
+    computed: {
+      targetInstruction() { 
+        return {
 //        const { target, instructions } = this
 //        return instructions.find() || { color: 'initial', text: '' }
-//      }
-//    },
+        }
+      }
+    },
     methods: {
       createInstruction() {
-        this.instructions.push(this.newInstruction)
+        return this.instructions.push(this.newInstruction)
       },
 //      deleteInstruction(index) {
 //      }

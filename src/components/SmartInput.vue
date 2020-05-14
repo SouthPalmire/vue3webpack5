@@ -1,5 +1,5 @@
 <template>
-<div style="text-align: center;">
+  <div style="text-align: center;">
     <form>
       <input type="text" v-model="newInstruction.min" size="12" placeholder="min threshold" />
       <input type="text" v-model="newInstruction.max" size="12" placeholder="max threshold" />

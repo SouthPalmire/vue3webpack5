@@ -1,5 +1,5 @@
 <template>
-<div id="app" style="text-align: center;">
+<div style="text-align: center;">
     <form>
       <input type="text" v-model="newInstruction.min" size="12" placeholder="min threshold" />
       <input type="text" v-model="newInstruction.max" size="12" placeholder="max threshold" />
@@ -11,7 +11,7 @@
     </form>
 
     <table>
-      <tr v-for="( instruction, index ) in this.instructions" :key="index">
+      <tr v-for="( instruction, index ) in instructions" :key="index">
         <td>{{instruction.min}}</td>
         <td>{{instruction.max}}</td>
         <td :style="{ backgroundColor: instruction.color }"></td>
@@ -25,10 +25,7 @@
 
     <div class="showcase">
       <input class="showcase__target" v-model="target" 
-        :style="{  
-          backgroundColor: targetInstruction.color 
-        }"
-      /> 
+        :style="{ backgroundColor: targetInstruction.color }"/> 
     </div>
 
     <div :style="{ color: targetInstruction.color }">

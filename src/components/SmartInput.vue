@@ -12,10 +12,10 @@
 
     <table>
       <tr v-for="( instruction, index ) in instructions" :key="index">
-        <td>{{instruction.min}}</td>
-        <td>{{instruction.max}}</td>
+        <td>{{ instruction.min }}</td>
+        <td>{{ instruction.max }}</td>
         <td :style="{ backgroundColor: instruction.color }"></td>
-        <td :style="{ color: instruction.color }">{{instruction.text}}</td>
+        <td :style="{ color: instruction.color }">{{ instruction.text }}</td>
         <td><button @click="deleteInstruction(index)">delete</button></td>
         
 {{ index }} {{ instruction }}
@@ -29,7 +29,7 @@
     </div>
 
     <div :style="{ color: targetInstruction.color }">
-      {{targetInstruction.text}}
+      {{ targetInstruction.text }}
     </div>
 
 {{ newInstruction }} {{ instructions }} {{ target }}

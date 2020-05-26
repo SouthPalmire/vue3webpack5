@@ -71,7 +71,7 @@
     margin: auto;
   } 
   td {
-    border: 1px solid green;
+    border: 1px solid black;
     height: 25px;
     width: 60px;
   }

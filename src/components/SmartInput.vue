@@ -15,7 +15,7 @@
         <td :style="{ backgroundColor: instruction.color }"></td>
         <td :style="{ color: instruction.color }">{{ instruction.text }}</td>
         <td><button @click="deleteInstruction(index)">delete</button></td>
-      </tr>
+      </tr>  
     </table>
 
     <div class="showcase">
@@ -59,8 +59,9 @@
         let getInstruction = {min, max, color, text};
         this.instructions.push(getInstruction)
       },
-//      deleteInstruction(index) {
-//      }
+      deleteInstruction(index) {
+        this.instructions.splice(index, 1);
+      }
     }
   }
 </script>

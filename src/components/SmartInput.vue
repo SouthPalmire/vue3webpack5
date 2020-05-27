@@ -19,7 +19,9 @@
     </table>
 
     <div class="showcase">
-      <input style="text-align: center" class="showcase__target" v-model="target" :style="{ backgroundColor: targetInstruction.color }"/> 
+      <input class="showcase__target" v-model="target" 
+        :style="{ backgroundColor: targetInstruction.color }"
+      /> 
     </div>
 
     <div :style="{ color: targetInstruction.color }">
@@ -46,8 +48,9 @@
       }
     },
     computed: {
-      targetInstruction() { 
+      targetInstruction() {
         return {
+          
 //        const { target, instructions } = this
 //        return instructions.find() || { color: 'initial', text: '' }
         }
@@ -57,7 +60,7 @@
       createInstruction() {
         let {min, max, color, text} = this.newInstruction;
         let getInstruction = {min, max, color, text};
-        this.instructions.push(getInstruction)
+        this.instructions.push(getInstruction);
       },
       deleteInstruction(index) {
         this.instructions.splice(index, 1);
@@ -72,8 +75,12 @@
     margin: auto;
   } 
   td {
+    font-weight: bold;
     border: 1px solid black;
-    height: 25px;
-    width: 60px;
+    height: 35px;
+    width: 75px;
+  }
+  button { 
+    border-radius: 5px;
   }
 </style>

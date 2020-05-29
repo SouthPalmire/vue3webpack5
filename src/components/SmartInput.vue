@@ -28,7 +28,7 @@
       {{ targetInstruction.text }}
     </div>
 
-{{ newInstruction }} {{ instructions }} {{ target }}
+{{ newInstruction }} {{ instructions }} {{ target }} {{ targetInstruction }}
 
   </div>
 </template>
@@ -36,25 +36,27 @@
 <script>
   export default {
     data() {
-      return{  
+      return {  
         instructions: [],
         newInstruction: {
           min: '',
           max: '',
           color: '',
-          text: ''
+          text: '',
         },
         target: '',
       }
     },
     computed: {
-      targetInstruction() {
-        return {
-          
-//        const { target, instructions } = this
-//        return instructions.find() || { color: 'initial', text: '' }
-        }
-      }
+      targetInstruction() { 
+        const { target, instructions } = this;
+        function targetFunction({min, max}) {
+          if (target >= min && target <= max) {
+            return true;
+          }
+        }  
+        return instructions.find(targetFunction) || { color: 'initial', text: '' }
+      } 
     },
     methods: {
       createInstruction() {

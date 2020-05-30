@@ -19,7 +19,7 @@
     </table>
 
     <div class="showcase">
-      <input class="showcase__target" v-model="target" 
+      <input class="showcase__target" v-model="target" @input="logConsole()"
         :style="{ backgroundColor: targetInstruction.color }"
       /> 
     </div>
@@ -49,16 +49,17 @@
     },
     computed: {
       targetInstruction() { 
-        const { target, instructions } = this;
+        const { target, instructions } = this;  
         function targetFunction({min, max}) {
-          if (target >= min && target <= max) {
-            return true;
-          }
-        }  
-        return instructions.find(targetFunction) || { color: 'initial', text: '' }
+          return (target >= min) && (target <= max)
+        }
+        return instructions.find(targetFunction) || { color: 'initial', text: '' }  
       } 
     },
     methods: {
+      logConsole() {
+        return console.log(this.targetInstruction.min, this.targetInstruction.max, this.target)
+      },
       createInstruction() {
         let {min, max, color, text} = this.newInstruction;
         let getInstruction = {min, max, color, text};
@@ -68,7 +69,7 @@
         this.instructions.splice(index, 1);
       }
     }
-  }
+  }  
 </script>
 
 <style>

@@ -1,6 +1,6 @@
 <template>
   <div style="text-align: center">
-    <form>
+    <form class="form">
       <input type="text" v-model="newInstruction.min" size="12" placeholder="min threshold" />
       <input type="text" v-model="newInstruction.max" size="12" placeholder="max threshold" />
       <input type="text" v-model="newInstruction.color" placeholder="color" />
@@ -8,21 +8,21 @@
       <button type="button" @click="createInstruction()">create</button>
     </form>
 
-    <table>
-      <tr class="tr" v-for="( instruction, index ) in instructions" :key="index">
+    <table class="table">
+      <tr v-for="( instruction, index ) in instructions" :key="index">
         <td>{{ instruction.min }}</td>
         <td>{{ instruction.max }}</td>
-        <td :style="{ backgroundColor: instruction.color }"></td>
-        <td :style="{ color: instruction.color }">{{ instruction.text }}</td>
+        <td class="td" :style="{ backgroundColor: instruction.color }"></td>
+        <td :style="{ color: instruction.color }"> {{ instruction.text }} </td>
         <td><button @click="deleteInstruction(index)">delete</button></td>
       </tr>  
     </table>
 
-    <div class="showcase">
-      <input class="showcase__target" v-model="target" :style="{ backgroundColor: targetInstruction.color }" /> 
+    <div>
+      <input class="showcase" v-model="target" :style="{ backgroundColor: targetInstruction.color }" /> 
     </div>
 
-    <div :style="{ color: targetInstruction.color }">
+    <div class="bottom" :style="{ color: targetInstruction.color }">
       {{ targetInstruction.text }}
     </div>
 
@@ -47,7 +47,7 @@
       targetInstruction() { 
         const { target, instructions } = this; 
         function targetFunction({min, max}) {
-          return (parseInt(target, 10) >= min) && (parseInt(target, 10) <= max)
+          return (+target >= min) && (+target <= max)
         }
         return instructions.find(targetFunction) || { color: 'initial', text: '' }  
       }
@@ -66,17 +66,38 @@
 </script>
 
 <style>
-  table {  
+  .td {
+    height: 35px;
+    width: 100px;
+  }
+  .bottom {
+    font-family: 'Times New Roman';
+    font-weight: 500;
+    font-size: 1.3em;
+  }
+  input {
+    margin: 3px;
+  }
+  .showcase {
+    text-align: center;
+    font-size: 90px;
+    width: 250px;
+    height: 100px;
+  }
+  .table {  
+    font-size: 1.3em;
+    font-weight: 500;
+    font-family: 'Times New Roman';
+    border: 2px solid black;
     border-collapse: collapse;
     margin: auto;
   } 
   td {
-    font-weight: bold;
     border: 1px solid black;
-    height: 35px;
-    width: 75px;
+    padding: 5px;
   }
   button { 
+    margin: 5px;
     border-radius: 5px;
   }
 </style>

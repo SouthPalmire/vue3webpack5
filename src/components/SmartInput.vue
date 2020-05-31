@@ -19,7 +19,7 @@
     </table>
 
     <div class="showcase">
-      <input class="showcase__target" v-model="target" @input="logConsole()"
+      <input class="showcase__target" v-model="target" @input="logConsole()" 
         :style="{ backgroundColor: targetInstruction.color }"
       /> 
     </div>
@@ -27,8 +27,6 @@
     <div :style="{ color: targetInstruction.color }">
       {{ targetInstruction.text }}
     </div>
-
-{{ newInstruction }} {{ instructions }} {{ target }} {{ targetInstruction }}
 
   </div>
 </template>
@@ -58,7 +56,7 @@
     },
     methods: {
       logConsole() {
-        return console.log(this.targetInstruction.min, this.targetInstruction.max, this.target)
+        return console.log(this.targetInstruction)
       },
       createInstruction() {
         let {min, max, color, text} = this.newInstruction;

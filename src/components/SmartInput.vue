@@ -49,14 +49,14 @@
       targetInstruction() { 
         const { target, instructions } = this;  
         function targetFunction({min, max}) {
-          return (target >= min) && (target <= max)
+          return (target >= min) && (target*1 <= max)
         }
         return instructions.find(targetFunction) || { color: 'initial', text: '' }  
       } 
     },
     methods: {
       logConsole() {
-        return console.log(this.targetInstruction)
+        return console.log(this)
       },
       createInstruction() {
         let {min, max, color, text} = this.newInstruction;

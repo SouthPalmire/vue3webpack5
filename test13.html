@@ -1,31 +1,13 @@
-<!DOCTYPE html"
-<html>
- <head>
-  <title>markup_8</title>
- </head>
- <style>
-  #square  {
-     width: 70px;
-     height: 70px;
-     background: green;
-     float: right;
-     margin: 30%;
-}
-</style>
- <body> 
-  <div id="div">Button</div>
+<!DOCTYPE html>
+<script>
+'use strict';
 
-  <script type="text/javascript">
-  div.style.cssText=`color: red !important;
-    background-color: yellow;
-    width: 100px;
-    text-align: center;
-  `;
+(async () => {
+let url = 'https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all';
+let response = await fetch(url);
 
-  document.body.style.backgroundColor = prompt('background color?', 'red');
-      const squareElement = document.getElementById('square')
+let commits = await response.json(); // читаем ответ в формате JSON
 
-
-  </script>
- </body>
-</html>
+alert(commits[0].user.node_id);
+})()
+</script>

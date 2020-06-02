@@ -1,16 +1,23 @@
 <template>
   <div>
+    
   </div>
 </template>
 
 <script> 
   export default {
-    name: 'test13',
+    name: 'IssuesTable',
     data() {
       return {
       }
-    }
+    },
   }
+      let promise = fetch( url, [ options ] ) 
+
+
+
+
+      
 </script>
 
 <style>

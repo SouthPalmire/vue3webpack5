@@ -1,21 +1,21 @@
 <template>
   <div id="app">
-    <SmartInput>
-    </SmartInput>
+    <IssuesTable>
+    </IssuesTable>
   </div>
 </template>
 
 <script>
-//import test13 from './components/test13.vue'
-import SmartInput from './components/SmartInput.vue'
+import IssuesTable from './components/IssuesTable.vue'
+//import SmartInput from './components/SmartInput.vue'
 //import InteractivePalette from './components/InteractivePalette.vue'
 //import GeneratorSka from './components/GeneratorSka.vue'
 
 export default {
   name: 'App',
   components: {
-//    test13,
-    SmartInput,
+    IssuesTable,
+//    SmartInput,
 //    GeneratorSka,
 //    InteractivePalette,
   }

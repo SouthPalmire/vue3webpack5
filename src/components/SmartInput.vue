@@ -66,17 +66,16 @@
 </script>
 
 <style>
-  .td {
-    height: 35px;
-    width: 100px;
-  }
-  .bottom {
-    font-family: 'Times New Roman';
-    font-weight: 500;
-    font-size: 1.3em;
-  }
   input {
     margin: 3px;
+  }
+  td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  button { 
+    margin: 5px;
+    border-radius: 5px;
   }
   .showcase {
     text-align: center;
@@ -92,12 +91,13 @@
     border-collapse: collapse;
     margin: auto;
   } 
-  td {
-    border: 1px solid black;
-    padding: 5px;
+  .td {
+    height: 35px;
+    width: 100px;
   }
-  button { 
-    margin: 5px;
-    border-radius: 5px;
+  .bottom {
+    font-family: 'Times New Roman';
+    font-weight: 500;
+    font-size: 1.3em;
   }
 </style>

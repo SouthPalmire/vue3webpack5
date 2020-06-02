@@ -11,13 +11,7 @@
       return {
       }
     },
-  }
-      let promise = fetch( url, [ options ] ) 
-
-
-
-
-      
+  }      
 </script>
 
 <style>

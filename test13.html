@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<script>
-'use strict';
+<html>
 
-(async () => {
-let url = 'https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all';
-let response = await fetch(url);
+  <head>
+    <title>test</title>
+  </head>
 
-let commits = await response.json(); // читаем ответ в формате JSON
+  <body>
+    <script>
+      (async () => {
+        let url = 'https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all';
+        let response = await fetch(url);
+        let commits = await response.json();
 
-alert(commits[0].user.node_id);
-})()
-</script>
+        document.write(commits[11].title);
+        
+        })()
+    </script>
+  </body>
+
+</html>

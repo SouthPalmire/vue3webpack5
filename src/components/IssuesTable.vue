@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click='getMassiveData()'>issues</button>
+    <button class="button" @click='getMassiveData()'>i</button>
     <div class="list" v-for="item in massive" :key="item.index">
       <div class="number">
         {{ item.number }}
@@ -10,7 +10,8 @@
       </div>
       <div class="icon">
         {{ item.state }}    
-        <img class="icon-in" :src="`http://localhost:8080/svg/tick.svg`" />
+        <img class="icon-out" v-if="item.state == 'closed' " :src="`http://localhost:8080/svg/tick.svg`" />
+        <img class="icon-in" v-else :src="`http://localhost:8080/svg/dev.svg`" />  
       </div>
     </div>
   </div>
@@ -35,7 +36,12 @@
 </script>
 
 <style>
+  .button {
+    border-radius: 10px;
+  }
   .list {
+    font-family: 'Courier New';
+    font-weight: 600;
   }
   .title {
     margin-left: 10px;
@@ -48,8 +54,8 @@
   .icon {
     text-align: right;
   }
-  .icon-in { 
-    width: 10px;
-    height: 10px;
+  .icon-in, .icon-out { 
+    width: 15px;
+    height: 15px;
   }
 </style>

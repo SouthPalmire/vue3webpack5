@@ -9,7 +9,7 @@
         {{ item.title }}
       </div>
       <div class="icon">
-        {{ item.state }}    
+        {{ item.state }}
         <img class="icon-out" v-if="item.state == 'closed' " :src="`http://localhost:8080/svg/tick.svg`" />
         <img class="icon-in" v-else :src="`http://localhost:8080/svg/dev.svg`" />  
       </div>
@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script> 
+<script>
   export default {
     name: 'IssuesTable',
     data() {
@@ -28,11 +28,11 @@
     methods: {
       getMassiveData() {
         fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
-          .then(response => response.json())
-          .then(data => (this.massive = data));
+          .then(response => response.json())  
+          .then(data => (this.massive = data));    
       },
-    }  
-  }    
+    }
+  }
 </script>
 
 <style>
@@ -48,13 +48,13 @@
     float: left;
   }
   .number {
-    width: 20px;  
+    width: 20px;
     float: left;
   }
   .icon {
     text-align: right;
   }
-  .icon-in, .icon-out { 
+  .icon-in, .icon-out {
     width: 15px;
     height: 15px;
   }

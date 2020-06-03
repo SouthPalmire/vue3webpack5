@@ -13,7 +13,7 @@
         <img class="icon-out" v-if="item.state == 'closed' " :src="`http://localhost:8080/svg/tick.svg`" />
         <img class="icon-in" v-else :src="`http://localhost:8080/svg/dev.svg`" />  
       </div>
-    </div>{{ massive }}
+    </div>
   </div>
 </template>
 

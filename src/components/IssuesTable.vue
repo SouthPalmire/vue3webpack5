@@ -8,10 +8,10 @@
       <div class="title">
         {{ item.title }}
       </div>
-      <div class="icon">
+      <div class="state">
         {{ item.state }}
-        <img class="icon-out" v-if="item.state == 'closed' " :src="`http://localhost:8080/svg/tick.svg`" />
-        <img class="icon-in" v-else :src="`http://localhost:8080/svg/dev.svg`" />  
+        <img class="state-out" v-if="item.state == 'closed' " :src="`http://localhost:8080/svg/tick.svg`" />
+        <img class="state-in" v-else :src="`http://localhost:8080/svg/dev.svg`" />  
       </div>
     </div>
   </div>
@@ -22,23 +22,20 @@
     name: 'IssuesTable',
     data() {
       return {
-        massive: [],
+        massive: []
       }
     },
     methods: {
       getMassiveData() {
         fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
           .then(response => response.json())  
-          .then(data => (this.massive = data.map(({title, state, number}) => ({title, state, number}))));    
+          .then(data => (this.massive = data.map(({title, state, number}) => ({title, state, number}))));   
       },
     }
   }
 </script>
 
 <style>
-  .button {
-    border-radius: 10px;
-  }
   .list {
     font-family: 'Courier New';
     font-weight: 600;
@@ -51,10 +48,10 @@
     width: 20px;
     float: left;
   }
-  .icon {
+  .state {
     text-align: right;
   }
-  .icon-in, .icon-out {
+  .state-in, .state-out {
     width: 15px;
     height: 15px;
   }

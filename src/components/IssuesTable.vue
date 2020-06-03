@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <button class="button" @click='getMassiveData()'>i</button>
+  <div> 
+    {{ getMassiveData() }}
     <div class="list" v-for="item in massive" :key="item.index">
       <div class="number">
         {{ item.number }}

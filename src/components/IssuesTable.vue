@@ -1,5 +1,5 @@
 <template>
-  <div> 
+  <div>    
     {{ getMassiveData() }}
     <div class="list" v-for="item in massive" :key="item.index">
       <div class="number">
@@ -13,7 +13,7 @@
         <img class="icon-out" v-if="item.state == 'closed' " :src="`http://localhost:8080/svg/tick.svg`" />
         <img class="icon-in" v-else :src="`http://localhost:8080/svg/dev.svg`" />  
       </div>
-    </div>
+    </div>{{ massive }}
   </div>
 </template>
 
@@ -29,7 +29,7 @@
       getMassiveData() {
         fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
           .then(response => response.json())  
-          .then(data => (this.massive = data));    
+          .then(data => (this.massive = data.map(({title, state, number}) => ({title, state, number}))));    
       },
     }
   }

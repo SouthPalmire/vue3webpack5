@@ -7,16 +7,12 @@
 
   <body>
     <script>
-      (async () => {
-
-        let response = await fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all');
-        let commits = await response.json();
+      let massive = [];
+      fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
+        .then(response => response.json())
+        .then(data => (this.massive = data));
         
-//        console.log(Array.from(commits));
-        
-//        document.write(commits[0].title, (commits[1].title))
-        
-        })()
+      console.log(massive)
     </script>
   </body>
 

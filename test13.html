@@ -8,11 +8,13 @@
   <body>
     <script>
       (async () => {
-        let url = 'https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all';
-        let response = await fetch(url);
-        let commits = await response.json();
 
-        document.write(commits[0].title);
+        let response = await fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all');
+        let commits = await response.json();
+        
+//        console.log(Array.from(commits));
+        
+//        document.write(commits[0].title, (commits[1].title))
         
         })()
     </script>

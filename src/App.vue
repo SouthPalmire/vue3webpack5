@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <IssuesTable>
-    </IssuesTable>
+    <IssuesTable />
   </div>
 </template>
 

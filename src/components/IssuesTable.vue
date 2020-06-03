@@ -8,11 +8,9 @@
       <div class="title">
         {{ item.title }}
       </div>
-      <div class="icon-off">
-        {{ useIcon() }}
-      </div>
       <div class="icon">
-        <img class="icon-in" :src="`http://localhost:8080/tick.svg`" />
+        {{ item.state }}    
+        <img class="icon-in" :src="`http://localhost:8080/svg/tick.svg`" />
       </div>
     </div>
   </div>
@@ -32,9 +30,6 @@
           .then(response => response.json())
           .then(data => (this.massive = data));
       },
-      useIcon() {
-        return console.log()
-      }
     }  
   }    
 </script>
@@ -54,10 +49,6 @@
     text-align: right;
   }
   .icon-in { 
-    width: 10px;
-    height: 10px;
-  }
-  .icon-off {
     width: 10px;
     height: 10px;
   }

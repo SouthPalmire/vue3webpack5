@@ -1,6 +1,9 @@
 <template>
-  <div>    
+  <div>  
     <div class="list" v-for="item in massive" :key="item.index">
+      <VueMarkdown>
+        {{ item.body }}
+      </VueMarkdown>  
       <div class="number">
         {{ item.number }}
       </div>
@@ -17,8 +20,12 @@
 </template>
 
 <script>
+  import VueMarkdown from 'vue-markdown'
   export default {
     name: 'IssuesTable',
+    components: {
+      VueMarkdown 
+    },
     data() {
       return {
         massive: []
@@ -27,15 +34,13 @@
     created() {
       fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
         .then(response => response.json())  
-        .then(data => (this.massive = data.map(({title, state, number}) => ({title, state, number})))); 
+        .then(data => (this.massive = data.map(({title, state, number, body}) => ({title, state, number, body})))); 
     }
   }
 </script>
 
 <style>
-  .list {
-    font-family: 'Courier New';
-    font-weight: 600;
+  .list { 
   }
   .title {
     margin-left: 10px;

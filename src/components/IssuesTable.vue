@@ -1,6 +1,5 @@
 <template>
   <div>    
-    {{ getMassiveData() }}
     <div class="list" v-for="item in massive" :key="item.index">
       <div class="number">
         {{ item.number }}
@@ -25,12 +24,10 @@
         massive: []
       }
     },
-    methods: {
-      getMassiveData() {
-        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
+    created() {
+      fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
           .then(response => response.json())  
-          .then(data => (this.massive = data.map(({title, state, number}) => ({title, state, number}))));   
-      },
+          .then(data => (this.massive = data.map(({title, state, number}) => ({title, state, number})))); 
     }
   }
 </script>

@@ -9,8 +9,8 @@
       </div>
       <div class="state">
         {{ item.state }}
-        <img class="state-out" v-if="item.state == 'closed' " :src="`http://localhost:8080/svg/tick.svg`" />
-        <img class="state-in" v-else :src="`http://localhost:8080/svg/dev.svg`" />  
+        <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
+        <img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />  
       </div>
     </div>
   </div>

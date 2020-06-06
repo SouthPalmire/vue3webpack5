@@ -6,18 +6,18 @@
       </div>
       <form class="form">
         <div class="div-1">
-          <span class="button">
-            <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
-          </span>
-          <span class="created">
-            {{ item.created_at }}
-          </span>
+          <span class="title">
+            {{ item.title }}
+          </span>    
           <span class="state">
             {{ item.state }}   
           </span>
-          <span class="title">
-            {{ item.title }}
-          </span>          
+           <span class="created">
+            {{ item.created_at }}
+          </span>
+           <span class="button">
+            <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
+          </span>      
         </div>
         <div class="div-2">
           <VueMarkdown class="body">
@@ -59,12 +59,13 @@
     background-color: gray;
   }
   .div-1 {
+    display: flex;
     margin: 5px;
     width: auto;
-    height: 15px;
-    
+    height: 20px;
     -webkit-order: 1;
     order: 1;
+    background-color: blue;
   }
   .div-2 {
     margin: 5px;
@@ -106,21 +107,27 @@
   .issue { 
   }
   .title {
+    width: auto;
+    
     float: left;
   }
   .title::first-letter {
     text-transform: uppercase;
   }
   .number {
+    margin: 5px;
     background-color: gray;
     width: 100px;
     height: 100px;
     float: left;
   }
   .state {
+   
+    
     float: right;
   }
   .state-img {
+    margin: 5px;
     display: flex;
     align-items: center;
     float: left;

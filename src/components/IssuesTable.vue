@@ -5,7 +5,7 @@
         {{ item.number }}
       </div>
       <form class="form">
-        <div class="div-1">
+        <div class="form-1">
           <span class="title">
             {{ item.title }}
           </span>    
@@ -19,7 +19,7 @@
             <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
           </span>      
         </div>
-        <div class="div-2">
+        <div class="form-2">
           <VueMarkdown class="body">
             {{ item.body }}
           </VueMarkdown>
@@ -58,23 +58,19 @@
     margin: 1px;
     background-color: gray;
   }
-  .div-1 {
+  .form-1 {
     display: flex;
     justify-content: flex-end;
     margin: 5px;
     width: auto;
     height: 20px;
-
-
     background-color: blue;
   }
-  .div-2 {
+  .form-2 {
     margin: 5px;
     width: auto;
     height: 50px;
     background-color: violet;
-
-
   }
   .template {
   }
@@ -88,7 +84,6 @@
   }
   .form {
     flex-direction: column;
-    flex-wrap: wrap;
     display: flex;
     width: 1100px;
     height: 90px;
@@ -123,9 +118,7 @@
     height: 100px;
     float: left;
   }
-  .state {
-   
-    
+  .state {    
     float: right;
   }
   .state-img {

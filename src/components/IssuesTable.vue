@@ -6,18 +6,18 @@
       </div>
       <form class="form">
         <div class="div-1">
-          <span class="title">
-            {{ item.title }}
-          </span>
-          <span class="state">
-            {{ item.state }}   
+          <span class="button">
+            <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
           </span>
           <span class="created">
             {{ item.created_at }}
           </span>
-          <span class="button">
-            <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
+          <span class="state">
+            {{ item.state }}   
           </span>
+          <span class="title">
+            {{ item.title }}
+          </span>          
         </div>
         <div class="div-2">
           <VueMarkdown class="body">
@@ -54,17 +54,23 @@
 </script>
 
 <style>
+  span {
+    margin: 1px;
+    background-color: gray;
+  }
   .div-1 {
-    width: 600px;
-    height: 30px;
-    background-color: blue;
+    margin: 2px;
+    width: auto;
+    height: 15px;
+    
     -webkit-order: 1;
     order: 1;
   }
   .div-2 {
-    width: 600px;
+    margin: 2px;
+    width: auto;
     height: 50px;
-    background-color: blue;
+    background-color: violet;
     -webkit-order: 2;
     order: 2;
   }
@@ -79,9 +85,9 @@
     height: 15px;
   }
   .form {
+    flex-direction: column;
     flex-wrap: wrap;
     display: flex;
-    background-color: green;
     width: 1100px;
     height: 90px;
     float: left;
@@ -90,18 +96,17 @@
     background-color: gray;
     display: flex;
     align-items: center;
-    float: left;
+    float: right;
   }
   .created {
-    float: left;
+    float: right;
   }
   .body {
-    background-color: yellow;
   }
   .issue { 
   }
   .title {
-    float: left;
+   float: right;
   }
   .title::first-letter {
     text-transform: uppercase;
@@ -113,7 +118,7 @@
     float: left;
   }
   .state {
-    float: left;
+ float: right;
   }
   .state-img {
     float: left;

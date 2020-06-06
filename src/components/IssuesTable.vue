@@ -118,16 +118,18 @@
     float: left;
   }
   .state {
- float: right;
+    float: right;
   }
   .state-img {
+    display: flex;
+    align-items: center;
     float: left;
     background-color: grey;
     width: 100px;
     height: 100px;
   }
   .state-in, .state-out {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
   }
 </style>

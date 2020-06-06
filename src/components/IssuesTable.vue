@@ -59,7 +59,7 @@
     background-color: gray;
   }
   .div-1 {
-    margin: 2px;
+    margin: 5px;
     width: auto;
     height: 15px;
     
@@ -67,7 +67,7 @@
     order: 1;
   }
   .div-2 {
-    margin: 2px;
+    margin: 5px;
     width: auto;
     height: 50px;
     background-color: violet;
@@ -106,7 +106,7 @@
   .issue { 
   }
   .title {
-   float: right;
+    float: left;
   }
   .title::first-letter {
     text-transform: uppercase;

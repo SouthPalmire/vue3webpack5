@@ -15,16 +15,16 @@
           {{ item.created_at }}
         </div>
         <button class="button">
-          <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />
+          <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
         </button>
       </form> 
-      <VueMarkdown class="body">
-        {{ item.body }}
-      </VueMarkdown> 
-      <div>
+      <div class="state-img">
         <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
         <img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />  
       </div>
+      <VueMarkdown class="body">
+        {{ item.body }}
+      </VueMarkdown>   
     </div>
   </div>
 </template>
@@ -59,15 +59,24 @@
     height: 15px;
   }
   .form {
+    background-color: green;
+    width: 1000px;
+    height: 25px;
     float: left;
   }
   .button {
+    border-radius: 10px;
+    display: flex;
+    align-items:center;
     float: left;
   }
   .created {
     float: left;
   }
   .body {
+    width: 1200px;
+    height: 300px;
+    background-color: yellow;
   }
   .issue { 
   }
@@ -75,16 +84,25 @@
     float: left;
   }
   .title::first-letter {
-  text-transform: uppercase;
+    text-transform: uppercase;
   }
   .number {
+    background-color: grey;
+    width: 100px;
+    height: 100px;
     float: left;
   }
   .state {
     float: left;
   }
+  .state-img {
+    float: left;
+    background-color: grey;
+    width: 100px;
+    height: 100px;
+  }
   .state-in, .state-out {
-    width: 15px;
-    height: 15px;
+    width: 100px;
+    height: 100px;
   }
 </style>

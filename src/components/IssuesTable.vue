@@ -1,9 +1,7 @@
 <template>
   <div>  
     <div class="list" v-for="item in massive" :key="item.index">
-      <VueMarkdown>
-        {{ item.body }}
-      </VueMarkdown>  
+      
       <div class="number">
         {{ item.number }}
       </div>
@@ -15,6 +13,9 @@
         <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
         <img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />  
       </div>
+      <VueMarkdown class="body">
+        {{ item.body }}
+      </VueMarkdown>  
     </div>
   </div>
 </template>
@@ -40,11 +41,17 @@
 </script>
 
 <style>
+  .body {
+    text-align: left;
+  }
   .list { 
   }
   .title {
     margin-left: 10px;
     float: left;
+  }
+  .title::first-letter {
+  text-transform: uppercase;
   }
   .number {
     width: 20px;

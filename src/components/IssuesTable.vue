@@ -1,30 +1,34 @@
-<template>
+<template class="template">
   <div>  
     <div class="issue" v-for="item in massive" :key="item.index">  
       <div class="number">
         {{ item.number }}
       </div>
       <form class="form">
-        <div class="title">
-          {{ item.title }}
+        <div class="div-1">
+          <span class="title">
+            {{ item.title }}
+          </span>
+          <span class="state">
+            {{ item.state }}   
+          </span>
+          <span class="created">
+            {{ item.created_at }}
+          </span>
+          <span class="button">
+            <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
+          </span>
         </div>
-        <div class="state">
-          {{ item.state }}   
-        </div>
-        <div class="created">
-          {{ item.created_at }}
-        </div>
-        <button class="button">
-          <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
-        </button>
+        <div class="div-2">
+          <VueMarkdown class="body">
+            {{ item.body }}
+          </VueMarkdown>
+        </div>  
       </form> 
       <div class="state-img">
         <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
         <img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />  
       </div>
-      <VueMarkdown class="body">
-        {{ item.body }}
-      </VueMarkdown>   
     </div>
   </div>
 </template>
@@ -50,6 +54,22 @@
 </script>
 
 <style>
+  .div-1 {
+    width: 600px;
+    height: 30px;
+    background-color: blue;
+    -webkit-order: 1;
+    order: 1;
+  }
+  .div-2 {
+    width: 600px;
+    height: 50px;
+    background-color: blue;
+    -webkit-order: 2;
+    order: 2;
+  }
+  .template {
+  }
   .input {
     width: 15px;
     height: 15px;
@@ -59,23 +79,23 @@
     height: 15px;
   }
   .form {
+    flex-wrap: wrap;
+    display: flex;
     background-color: green;
-    width: 1000px;
-    height: 25px;
+    width: 1100px;
+    height: 90px;
     float: left;
   }
   .button {
-    border-radius: 10px;
+    background-color: gray;
     display: flex;
-    align-items:center;
+    align-items: center;
     float: left;
   }
   .created {
     float: left;
   }
   .body {
-    width: 1200px;
-    height: 300px;
     background-color: yellow;
   }
   .issue { 
@@ -87,7 +107,7 @@
     text-transform: uppercase;
   }
   .number {
-    background-color: grey;
+    background-color: gray;
     width: 100px;
     height: 100px;
     float: left;

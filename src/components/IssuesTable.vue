@@ -60,11 +60,12 @@
   }
   .div-1 {
     display: flex;
+    justify-content: flex-end;
     margin: 5px;
     width: auto;
     height: 20px;
-    -webkit-order: 1;
-    order: 1;
+
+
     background-color: blue;
   }
   .div-2 {
@@ -72,8 +73,8 @@
     width: auto;
     height: 50px;
     background-color: violet;
-    -webkit-order: 2;
-    order: 2;
+
+
   }
   .template {
   }
@@ -107,8 +108,9 @@
   .issue { 
   }
   .title {
+    text-align: left;
     width: auto;
-    
+    flex-grow: 1;
     float: left;
   }
   .title::first-letter {

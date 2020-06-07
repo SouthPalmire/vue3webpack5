@@ -12,10 +12,10 @@
           <span class="state">
             {{ item.state }}   
           </span>
-           <span class="created">
+          <span class="created">
             {{ item.created_at }}
           </span>
-           <span class="button">
+            <span class="button">
             <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
           </span>      
         </div>
@@ -58,6 +58,21 @@
     margin: 1px;
     background-color: gray;
   }
+  .title::first-letter {
+    text-transform: uppercase;
+  }
+  .template { 
+  }
+  .issue {
+    display: flex;
+  }
+  .form {
+    flex-direction: column;
+    display: flex;
+    flex-grow: 1;
+    height: 90px;
+    float: left;
+  }
   .form-1 {
     display: flex;
     justify-content: flex-end;
@@ -66,28 +81,17 @@
     height: 20px;
     background-color: blue;
   }
-  .form-2 {
-    margin: 5px;
+  .title {
+    text-align: left;
     width: auto;
-    height: 50px;
-    background-color: violet;
-  }
-  .template {
-  }
-  .input {
-    width: 15px;
-    height: 15px;
-  }
-  .arrow {
-    width: 15px;
-    height: 15px;
-  }
-  .form {
-    flex-direction: column;
-    display: flex;
-    width: 1100px;
-    height: 90px;
+    flex-grow: 1;
     float: left;
+  }
+  .state {    
+    float: right;
+  }
+  .created {
+    float: right;
   }
   .button {
     background-color: gray;
@@ -95,32 +99,26 @@
     align-items: center;
     float: right;
   }
-  .created {
-    float: right;
+  .arrow {
+    width: 15px;
+    height: 15px;
   }
-  .body {
-  }
-  .issue { 
-  }
-  .title {
-    text-align: left;
+  .form-2 {
+    margin: 5px;
     width: auto;
-    flex-grow: 1;
-    float: left;
-  }
-  .title::first-letter {
-    text-transform: uppercase;
-  }
-  .number {
+    height: 50px;
+    
+  } 
+  .body {
+    background-image: linear-gradient(to bottom, grey, white);
+  } 
+  .number {  
     margin: 5px;
     background-color: gray;
     width: 100px;
     height: 100px;
     float: left;
-  }
-  .state {    
-    float: right;
-  }
+  } 
   .state-img {
     margin: 5px;
     display: flex;

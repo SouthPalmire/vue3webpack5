@@ -4,27 +4,27 @@
       <div class="number">
         {{ item.number }}
       </div>
-      <form class="form">
+      <div class="form">
         <div class="form-1">
-          <span class="title">
+          <div class="title">
             {{ item.title }}
-          </span>    
-          <span class="state">
+          </div>    
+          <div class="state">
             {{ item.state }}   
-          </span>
-          <span class="created">
+          </div>
+          <div class="created">
             {{ item.created_at }}
-          </span>
-            <span class="button">
+          </div>
+            <div class="button">
             <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
-          </span>      
+          </div>      
         </div>
         <div class="form-2">
           <VueMarkdown class="body">
             {{ item.body }}
           </VueMarkdown>
         </div>  
-      </form> 
+      </div> 
       <div class="state-img">
         <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
         <img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />  
@@ -54,10 +54,6 @@
 </script>
 
 <style>
-  span {
-    margin: 1px;
-    background-color: gray;
-  }
   .title::first-letter {
     text-transform: uppercase;
   }
@@ -81,19 +77,26 @@
     height: 20px;
     background-color: blue;
   }
-  .title {
+  .title { 
+    margin: 1px;
+    background-color: gray;
     text-align: left;
     width: auto;
     flex-grow: 1;
     float: left;
   }
   .state {    
+    margin: 1px;
+    background-color: gray;
     float: right;
   }
   .created {
+    margin: 1px;
+    background-color: gray;
     float: right;
   }
   .button {
+    margin: 1px;
     background-color: gray;
     display: flex;
     align-items: center;
@@ -113,12 +116,21 @@
     background-image: linear-gradient(to bottom, grey, white);
   } 
   .number {  
-    margin: 5px;
+    font-size: 40px;  
+    color: white;
+    transition-duration: 1s;
     background-color: gray;
     width: 100px;
     height: 100px;
     float: left;
   } 
+  .number:hover {
+    color:black;
+    background-color:white;
+    transition-timing-function: ease-out;
+    transition-duration: 1s;
+    transition-property: background-color, color;
+  }
   .state-img {
     margin: 5px;
     display: flex;

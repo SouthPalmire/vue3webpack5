@@ -15,9 +15,9 @@
           <div class="issue-head__created">
             {{ item.created_at }}
           </div>
-          <button class="issue-head__button" @click="show = !show">
+          <div class="issue-head__button" @click="show = !show">
             <img class="issue-button__arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
-          </button>      
+          </div>      
         </div>
         <div class="issue-body">
           <VueMarkdown class="issue-body__open" v-if="show">{{ item.body }}</VueMarkdown>
@@ -59,56 +59,66 @@
   }
 
   .block__issue {
+    overflow: 100%;
+    text-align: center;
     display: flex;
   }
 
   .issue-number {  
     flex: none;
     align-items: center;
-    margin: 5px;
+    margin: 2px;
     font-size: 85px;  
-    color: white;
+    color: black;
     transition-duration: 0.5s;
-    background-color: black;
+    background-color: white;
     width: 100px;
     height: 100px;
     float: left;
   }
 
   .issue-number:hover {
-    color:black;
-    background-color:white;
+    color:white;
+    background-color: black;
     transition-timing-function: ease-out;
     transition-duration: 0.5s;
     transition-property: background-color, color;
   }
 
   .issue {
+    flex: 2;
     display: flex;
     flex-direction: column;
   }
 
-  .issue-head {
+  .issue-head {  
     display: flex;
   }
 
   .issue-head__title { 
-    margin: 1px;
+    color: black;
+    font-weight: bold;
+    margin: 2px;
     background-color: gray;
     text-align: left;
     flex-grow: 1;
     float: left;
   }
 
-  .issue-head__state {    
+  .issue-head__state {  
+    color: black;
+    margin: 2px;  
     background-color: gray;
   }
 
   .issue-head__created {
+    color: black;
+    margin: 2px;
     background-color: gray;
   }
 
   .issue-head__button {
+    margin: 2px;
     background-color: gray;
   }
 
@@ -122,20 +132,23 @@
   } 
 
   .issue-body__open {  
-    background-image: linear-gradient(to bottom, grey, white);
+    margin: 2px;
+    background-color: grey;
   }
 
   .issue-body__closed {
-    background-color: grey;
+    margin: 2px;
+    overflow: hidden;
+    height: 50px;
+    background-image: linear-gradient(to bottom, grey, white);
   } 
 
   .state-img {
     flex: none;
-    margin: 5px;
+    margin: 2px;
     display: flex;
     align-items: center;
     float: left;
-    background-color: grey;
     width: 100px;
     height: 100px;
   }

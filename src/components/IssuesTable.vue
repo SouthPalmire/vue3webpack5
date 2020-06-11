@@ -1,28 +1,27 @@
-<template class="template">
+<template>
   <div>  
-    <div class="issue" v-for="item in massive" :key="item.index">  
-      <div class="number">
+    <div class="block__issue" v-for="item in massive" :key="item.index">  
+      <div class="issue-number">
         {{ item.number }}
       </div>
-      <div class="form">
-        <div class="form-1">
-          <div class="title">
+      <div class="issue">
+        <div class="issue-head">
+          <div class="issue-head__title">
             {{ item.title }}
           </div>    
-          <div class="state">
+          <div class="issue-head__state">
             {{ item.state }}   
           </div>
-          <div class="created">
+          <div class="issue-head__created">
             {{ item.created_at }}
           </div>
-            <div class="button">
-            <img class="arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
-          </div>      
+          <button class="issue-head__button" @click="show = !show">
+            <img class="issue-button__arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
+          </button>      
         </div>
-        <div class="form-2">
-          <VueMarkdown class="body">
-            {{ item.body }}
-          </VueMarkdown>
+        <div class="issue-body">
+          <VueMarkdown class="issue-body__open" v-if="show">{{ item.body }}</VueMarkdown>
+          <VueMarkdown class="issue-body__closed" v-else >{{ item.body }}</VueMarkdown>
         </div>  
       </div> 
       <div class="state-img">
@@ -42,6 +41,7 @@
     },
     data() {
       return {
+        show: true,
         massive: []
       }
     },
@@ -54,84 +54,83 @@
 </script>
 
 <style>
-  .title::first-letter {
+  .issue-title::first-letter {
     text-transform: uppercase;
   }
-  .template { 
-  }
-  .issue {
+
+  .block__issue {
     display: flex;
   }
-  .form {
-    flex-direction: column;
-    display: flex;
-    flex-grow: 1;
-    height: 90px;
-    float: left;
-  }
-  .form-1 {
-    display: flex;
-    justify-content: flex-end;
-    margin: 5px;
-    width: auto;
-    height: 20px;
-    background-color: blue;
-  }
-  .title { 
-    margin: 1px;
-    background-color: gray;
-    text-align: left;
-    width: auto;
-    flex-grow: 1;
-    float: left;
-  }
-  .state {    
-    margin: 1px;
-    background-color: gray;
-    float: right;
-  }
-  .created {
-    margin: 1px;
-    background-color: gray;
-    float: right;
-  }
-  .button {
-    margin: 1px;
-    background-color: gray;
-    display: flex;
+
+  .issue-number {  
+    flex: none;
     align-items: center;
-    float: right;
-  }
-  .arrow {
-    width: 15px;
-    height: 15px;
-  }
-  .form-2 {
     margin: 5px;
-    width: auto;
-    height: 50px;
-    
-  } 
-  .body {
-    background-image: linear-gradient(to bottom, grey, white);
-  } 
-  .number {  
-    font-size: 40px;  
+    font-size: 85px;  
     color: white;
-    transition-duration: 1s;
-    background-color: gray;
+    transition-duration: 0.5s;
+    background-color: black;
     width: 100px;
     height: 100px;
     float: left;
-  } 
-  .number:hover {
+  }
+
+  .issue-number:hover {
     color:black;
     background-color:white;
     transition-timing-function: ease-out;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
     transition-property: background-color, color;
   }
+
+  .issue {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .issue-head {
+    display: flex;
+  }
+
+  .issue-head__title { 
+    margin: 1px;
+    background-color: gray;
+    text-align: left;
+    flex-grow: 1;
+    float: left;
+  }
+
+  .issue-head__state {    
+    background-color: gray;
+  }
+
+  .issue-head__created {
+    background-color: gray;
+  }
+
+  .issue-head__button {
+    background-color: gray;
+  }
+
+  .issue-button__arrow {
+    width: 15px;
+    height: 15px;
+  }
+
+  .issue-body {  
+   
+  } 
+
+  .issue-body__open {  
+    background-image: linear-gradient(to bottom, grey, white);
+  }
+
+  .issue-body__closed {
+    background-color: grey;
+  } 
+
   .state-img {
+    flex: none;
     margin: 5px;
     display: flex;
     align-items: center;
@@ -140,7 +139,9 @@
     width: 100px;
     height: 100px;
   }
-  .state-in, .state-out {
+
+  .state-in, 
+  .state-out {
     width: 80px;
     height: 80px;
   }

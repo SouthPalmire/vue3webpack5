@@ -15,7 +15,7 @@
           <div class="issue-head__created">
             {{ item.created_at }}
           </div>
-          <div class="issue-head__button" @click="show = !show">
+          <div class="issue-head__collapse-button" @click="show = !show">
             <img class="issue-button__arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
           </div>      
         </div>
@@ -65,6 +65,7 @@
   }
 
   .issue-number {  
+    display: flex;
     flex: none;
     align-items: center;
     margin: 2px;
@@ -74,7 +75,6 @@
     background-color: white;
     width: 100px;
     height: 100px;
-    float: left;
   }
 
   .issue-number:hover {
@@ -96,6 +96,7 @@
   }
 
   .issue-head__title { 
+    padding: 5px;
     color: black;
     font-weight: bold;
     margin: 2px;
@@ -105,19 +106,22 @@
     float: left;
   }
 
-  .issue-head__state {  
+  .issue-head__state { 
+    padding: 5px; 
     color: black;
     margin: 2px;  
     background-color: gray;
   }
 
   .issue-head__created {
+    padding: 5px;
     color: black;
     margin: 2px;
     background-color: gray;
   }
 
-  .issue-head__button {
+  .issue-head__collapse-button {
+    padding: 5px;
     margin: 2px;
     background-color: gray;
   }
@@ -139,7 +143,7 @@
   .issue-body__closed {
     margin: 2px;
     overflow: hidden;
-    height: 50px;
+    height: 68px;
     background-image: linear-gradient(to bottom, grey, white);
   } 
 
@@ -155,7 +159,8 @@
 
   .state-in, 
   .state-out {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
+    padding-left: 15px;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>  
-    <div class="block__issue" v-for="item in massive" :key="item.index">  
+    <div class="block__issue" v-for="(item, index) in massive" :key="item.index">  
       <div class="issue-number">
         {{ item.number }}
       </div>
@@ -15,13 +15,13 @@
           <div class="issue-head__created">
             {{ item.created_at }}
           </div>
-          <div class="issue-head__collapse-button" @click="show = !show">
+          <div class="issue-head__collapse-button" @click="current = index">
             <img class="issue-button__arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
           </div>      
         </div>
         <div class="issue-body">
-          <VueMarkdown class="issue-body__open" v-if="show">{{ item.body }}</VueMarkdown>
-          <VueMarkdown class="issue-body__closed" v-else >{{ item.body }}</VueMarkdown>
+          <VueMarkdown v-bind:class="{someClass: index===current}" v-if="show">{{ item.body }}</VueMarkdown>
+          <VueMarkdown v-bind:class="{someClass: index===current}" v-else >{{ item.body }}</VueMarkdown>
         </div>  
       </div> 
       <div class="state-img">
@@ -41,6 +41,7 @@
     },
     data() {
       return {
+        current: '',
         show: true,
         massive: []
       }
@@ -54,7 +55,8 @@
 </script>
 
 <style>
-  .issue-title::first-letter {
+
+  .issue-head__title::first-letter {
     text-transform: uppercase;
   }
 
@@ -135,12 +137,12 @@
    
   } 
 
-  .issue-body__open {  
+  .someClassT {  
     margin: 2px;
     background-color: grey;
   }
 
-  .issue-body__closed {
+  .someClass {
     margin: 2px;
     overflow: hidden;
     height: 68px;

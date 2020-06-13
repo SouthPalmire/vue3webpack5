@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Document</title>
-</head>
-<style>
-  .menuButton {
-  position: relative;
-  transition-property: background-color, color;
-  transition-duration: 1s;
-  transition-timing-function: ease-out;
-  text-align: left;
-  background-color: grey;
-  left: 5px;
-  top: 5px;
-  height: 26px;
-  color: white;
-  border-color: black;
-  font-family: sans-serif;
-  font-size: 20px;
-  text-decoration: none;
-  box-shadow: 2px 2px 1px black;
-  padding: 2px 4px;
-  border: solid 1px black;
-}
-
-.menuButton:hover {
-  position: relative;
-  transition-property: background-color, color;
-  transition-duration: 1s;
-  transition-timing-function: ease-out;
-  background-color:white;
-  color:black;
-  box-shadow: 2px 2px 1px black;
-}
-</style>
-<body>  
-  <div class="sidebar">
-    <p><a class="menuButton" href="home">Home</a></p>
-    <p><a class="menuButton" href="about">About</a></p>
-    <p><a class="menuButton" href="contact">Contact Us</a></p>
-    <p><a class="menuButton" href="links">Links</a></p>
-  </div>
-</body>
+ <head>
+  <meta charset="utf-8">
+  <title>transform</title>
+  <style>
+   .turn:hover {
+    -moz-transform: rotate(15deg); /* Для Firefox */
+    -ms-transform: rotate(15deg); /* Для IE */
+    -webkit-transform: rotate(15deg); /* Для Safari, Chrome, iOS */
+    -o-transform: rotate(15deg); /* Для Opera */
+    transform: rotate(15deg);
+   }
+  </style>
+ </head>
+ <body>
+  <p><img src="images/igels.png" alt="Ёжик" class="turn">
+     <img src="images/igels.png" alt="Ёжик" class="turn"></p>
+ </body>
 </html>
+
+<div class="issue-body">
+  <VueMarkdown class="issue-body__open" v-if="show" >{{ item.body }}</VueMarkdown>
+  <VueMarkdown class="issue-body__closed" v-else >{{ item.body }}</VueMarkdown>
+</div>  
+</div> 
+<div class="state-img">
+<img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
+<img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />  
+</div>
+<li v-bind:class="{someClass: index===show}">{{ item }}
+<button v-on:click="show = index">Toggle single class</button>
+</li>
+
+
+<div class="issue-body">
+  <VueMarkdown class="issue-body__open" v-if="show">{{ item.body }}</VueMarkdown>
+  <VueMarkdown class="issue-body__closed" v-else >{{ item.body }}</VueMarkdown>
+</div>  
+</div> 
+<div class="state-img">
+<img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
+<img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />  
+</div>

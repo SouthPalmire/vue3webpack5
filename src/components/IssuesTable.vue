@@ -1,6 +1,6 @@
 <template>
-  <div>  
-    <div class="block__issue" v-for="(item, index) in massive" :key="index">  
+  <div>
+    <div class="block__issue" v-for="(item, index) in massive" :key="index">
       <div class="issue-number">
         {{ item.number }}
       </div>
@@ -8,24 +8,25 @@
         <div class="issue-head">
           <div class="issue-head__title">
             {{ item.title }}
-          </div>    
+          </div>
           <div class="issue-head__state">
-            {{ item.state }}   
+            {{ item.state }}
           </div>
           <div class="issue-head__created">
             {{ item.created_at }}
           </div>
           <div class="issue-head__collapse-button" @click="$set(item, 'selected', !item.selected)">
-            <img class="issue-button__arrow" v-bind:class="{issueButtonTransition: item.selected }" src="http://localhost:8080/svg/down-arrow.svg" />
-          </div>      
+            <img class="issue-button__arrow" v-bind:class="{issueButtonTransition: item.selected}" src="http://localhost:8080/svg/down-arrow.svg" />
+          </div>
         </div>
         <div class="issue-body">
-          <VueMarkdown class="issueBodyOpen" v-bind:class="{issueBodyClose: item.selected }" >{{ item.body }}</VueMarkdown>     
+          <VueMarkdown class='issueBodyOpen' v-if='item.selected == true || undefined' >{{ item.body }}</VueMarkdown>
+          <VueMarkdown class='issueBodyClose' v-else>{{ item.body }}</VueMarkdown>
         </div>
-      </div> 
+      </div>
       <div class="state-img">
         <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
-        <img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />  
+        <img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />
       </div>
     </div>
   </div>
@@ -36,7 +37,7 @@
   export default {
     name: 'IssuesTable',
     components: {
-      VueMarkdown 
+      VueMarkdown
     },
     data() {
       return {
@@ -47,11 +48,9 @@
     },
     created() {
       fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
-        .then(response => response.json())  
-        .then(data => (this.massive = data.map(({title, state, number, body, created_at}) => ({title, state, number, body, created_at})))); 
-    },
-
-    
+        .then(response => response.json())
+        .then(data => (this.massive = data.map(({title, state, number, body, created_at}) => ({title, state, number, body, created_at}))));
+    }
   }
 </script>
 
@@ -66,10 +65,13 @@
     display: flex;
   }
 
-  .issue-number {    
+  .issue-number {
+    flex: none;
+    display: flex;
+    justify-content: center;
     align-items: center;
     margin: 2px;
-    font-size: 40px;  
+    font-size: 40px;
     color: black;
     transition-duration: 0.5s;
     background-color: white;
@@ -78,8 +80,8 @@
   }
 
   .block__issue:hover .issue-number {
-    font-size: 85px;
-    color:white;
+    font-size: 75px;
+    color: white;
     background-color: black;
     transition-timing-function: ease-out;
     transition-duration: 0.5s;
@@ -92,11 +94,11 @@
     flex-direction: column;
   }
 
-  .issue-head {  
+  .issue-head {
     display: flex;
   }
 
-  .issue-head__title { 
+  .issue-head__title {
     padding: 5px;
     color: black;
     font-weight: bold;
@@ -107,10 +109,10 @@
     float: left;
   }
 
-  .issue-head__state { 
-    padding: 5px; 
+  .issue-head__state {
+    padding: 5px;
     color: black;
-    margin: 2px;  
+    margin: 2px;
     background-color: gray;
   }
 
@@ -132,22 +134,23 @@
   }
 
   .issue-button__arrow {
-    transition: transform 0.5s ease;
+    transition: transform 0.2s ease;
     width: 15px;
     height: 15px;
   }
 
-  .issueBodyOpen {  
+  .issueBodyOpen {
+    padding: 0%;
     margin: 2px;
     background-color: grey;
   }
 
-  .issueBodyClose {  
+  .issueBodyClose {
     margin: 2px;
     overflow: hidden;
     height: 68px;
     background-image: linear-gradient(to bottom, grey, white);
-  } 
+  }
 
   .state-img {
     flex: none;
@@ -159,7 +162,7 @@
     height: 100px;
   }
 
-  .state-in, 
+  .state-in,
   .state-out {
     width: 60px;
     height: 60px;

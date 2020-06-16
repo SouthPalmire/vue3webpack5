@@ -26,3 +26,20 @@
 </div>
  </body>
 </html>
+
+<li v-bind:class="{someClass: index===current}">{{item}}
+  <button v-on:click="current = index">Toggle single class</button>
+</li>
+
+<div id="vue"> 
+  <h2>Option 2</h2> Many can be selected, stores state on item
+  <ul>
+    <li v-for="item in items" :class="{highlight:item.selected}" @click="$set(item, 'selected', !item.selected)">
+      {{ item.id }}
+    </li>
+  </ul>
+</div>
+
+<div class="issue-body">
+  <VueMarkdown class='issueBodyOpen' v-bind:class="{issueBodyClose:item.selected}" >{{ item.body }}</VueMarkdown>     
+</div>

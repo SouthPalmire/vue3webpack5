@@ -1,6 +1,6 @@
 <template>
   <div>  
-    <div class="block__issue" v-for="(item, index) in massive" :key="item.index">  
+    <div class="block__issue" v-for="(item, index) in massive" :key="index">  
       <div class="issue-number">
         {{ item.number }}
       </div>
@@ -15,14 +15,13 @@
           <div class="issue-head__created">
             {{ item.created_at }}
           </div>
-          <div class="issue-head__collapse-button" @click="current = index">
-            <img class="issue-button__arrow" src="http://localhost:8080/svg/down-arrow.svg" />     
+          <div class="issue-head__collapse-button" @click="$set(item, 'selected', !item.selected)">
+            <img class="issue-button__arrow" v-bind:class="{issueButtonTransition: item.selected }" src="http://localhost:8080/svg/down-arrow.svg" />
           </div>      
         </div>
         <div class="issue-body">
-          <VueMarkdown v-bind:class="{someClass: index===current}" v-if="show">{{ item.body }}</VueMarkdown>
-          <VueMarkdown v-bind:class="{someClass: index===current}" v-else >{{ item.body }}</VueMarkdown>
-        </div>  
+          <VueMarkdown class="issueBodyOpen" v-bind:class="{issueBodyClose: item.selected }" >{{ item.body }}</VueMarkdown>     
+        </div>
       </div> 
       <div class="state-img">
         <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
@@ -41,8 +40,8 @@
     },
     data() {
       return {
-        current: '',
-        show: true,
+        selected: '',
+        index: '',
         massive: []
       }
     },
@@ -50,12 +49,13 @@
       fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
         .then(response => response.json())  
         .then(data => (this.massive = data.map(({title, state, number, body, created_at}) => ({title, state, number, body, created_at})))); 
-    }
+    },
+
+    
   }
 </script>
 
 <style>
-
   .issue-head__title::first-letter {
     text-transform: uppercase;
   }
@@ -66,12 +66,10 @@
     display: flex;
   }
 
-  .issue-number {  
-    display: flex;
-    flex: none;
+  .issue-number {    
     align-items: center;
     margin: 2px;
-    font-size: 85px;  
+    font-size: 40px;  
     color: black;
     transition-duration: 0.5s;
     background-color: white;
@@ -79,7 +77,8 @@
     height: 100px;
   }
 
-  .issue-number:hover {
+  .block__issue:hover .issue-number {
+    font-size: 85px;
     color:white;
     background-color: black;
     transition-timing-function: ease-out;
@@ -128,21 +127,22 @@
     background-color: gray;
   }
 
+  .issueButtonTransition {
+    transform: rotate(180deg);
+  }
+
   .issue-button__arrow {
+    transition: transform 0.5s ease;
     width: 15px;
     height: 15px;
   }
 
-  .issue-body {  
-   
-  } 
-
-  .someClassT {  
+  .issueBodyOpen {  
     margin: 2px;
     background-color: grey;
   }
 
-  .someClass {
+  .issueBodyClose {  
     margin: 2px;
     overflow: hidden;
     height: 68px;

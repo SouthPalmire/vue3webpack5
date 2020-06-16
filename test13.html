@@ -42,3 +42,9 @@
 <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
 <img class="state-in" v-else src="http://localhost:8080/svg/dev.svg" />  
 </div>
+
+<ul v-for="(item, index) in items">
+  <li v-bind:class="{someClass: index===currentIndex}">{{item}}
+    <button v-on:click="currentIndex = index">Toggle single class</button>
+  </li>
+</ul>

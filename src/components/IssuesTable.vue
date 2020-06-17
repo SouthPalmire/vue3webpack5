@@ -55,6 +55,13 @@
 </script>
 
 <style>
+  code {
+    font-weight: bolder;
+  }
+
+  .language-vue {
+    font-weight: bolder;
+  }
   .issue-head__title::first-letter {
     text-transform: uppercase;
   }

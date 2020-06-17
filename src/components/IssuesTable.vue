@@ -139,17 +139,29 @@
     height: 15px;
   }
 
-  .issue-Body__Open {
-    color: black;
+  .issue-body {
+    background: linear-gradient(to bottom, grey, white);
     margin: 2px;
+  }
+
+  .issue-Body__Open {
+    padding-left: 5px;
+    text-align: left;
+    overflow: hidden;
+    max-width: 1123px;
+    color: black;
     background-color: grey;
   }
 
   .issue-Body__Close {
-    margin: 2px;
+    padding-left: 5px;
+    text-align: left;
+    max-width: 1123px;
     overflow: hidden;
     height: 68px;
-    background-image: linear-gradient(to bottom, grey, white);
+    background: linear-gradient(to bottom, black, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .state-img {

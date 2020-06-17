@@ -16,12 +16,12 @@
             {{ item.created_at }}
           </div>
           <div class="issue-head__collapse-button" @click="$set(item, 'selected', !item.selected)">
-            <img class="issue-button__arrow" v-bind:class="{issueButtonTransition: item.selected}" src="http://localhost:8080/svg/down-arrow.svg" />
+            <img class="issue-head__collapse-button__transition" v-bind:class="{collapseButtonTransition: item.selected}" src="http://localhost:8080/svg/down-arrow.svg" />
           </div>
         </div>
         <div class="issue-body">
-          <VueMarkdown class='issueBodyOpen' v-if='item.selected == true || undefined' >{{ item.body }}</VueMarkdown>
-          <VueMarkdown class='issueBodyClose' v-else>{{ item.body }}</VueMarkdown>
+          <VueMarkdown class='issue-Body__Open' v-if='item.selected' >{{ item.body }}</VueMarkdown>
+          <VueMarkdown class='issue-Body__Close' v-else>{{ item.body }}</VueMarkdown>
         </div>
       </div>
       <div class="state-img">
@@ -71,7 +71,7 @@
     justify-content: center;
     align-items: center;
     margin: 2px;
-    font-size: 40px;
+    font-size: 50px;
     color: black;
     transition-duration: 0.5s;
     background-color: white;
@@ -80,7 +80,7 @@
   }
 
   .block__issue:hover .issue-number {
-    font-size: 75px;
+    font-size: 70px;
     color: white;
     background-color: black;
     transition-timing-function: ease-out;
@@ -129,23 +129,23 @@
     background-color: gray;
   }
 
-  .issueButtonTransition {
+  .collapseButtonTransition {
     transform: rotate(180deg);
   }
 
-  .issue-button__arrow {
-    transition: transform 0.2s ease;
+  .issue-head__collapse-button__transition {
+    transition: transform 0.5s;
     width: 15px;
     height: 15px;
   }
 
-  .issueBodyOpen {
-    padding: 0%;
+  .issue-Body__Open {
+    color: black;
     margin: 2px;
     background-color: grey;
   }
 
-  .issueBodyClose {
+  .issue-Body__Close {
     margin: 2px;
     overflow: hidden;
     height: 68px;
@@ -153,11 +153,9 @@
   }
 
   .state-img {
-    flex: none;
     margin: 2px;
     display: flex;
     align-items: center;
-    float: left;
     width: 100px;
     height: 100px;
   }

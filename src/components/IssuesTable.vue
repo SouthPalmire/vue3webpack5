@@ -55,17 +55,10 @@
 </script>
 
 <style>
-  code {
-    font-weight: bolder;
-  }
-
-  .language-vue {
-    font-weight: bolder;
-  }
   .issue-head__title::first-letter {
     text-transform: uppercase;
   }
-
+  
   .block__issue {
     overflow: 100%;
     text-align: center;

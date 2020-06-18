@@ -58,7 +58,7 @@
   .issue-head__title::first-letter {
     text-transform: uppercase;
   }
-  
+
   .block__issue {
     overflow: 100%;
     text-align: center;
@@ -101,7 +101,6 @@
   .issue-head__title {
     padding: 5px;
     color: black;
-    font-weight: bold;
     margin: 2px;
     background-color: gray;
     text-align: left;

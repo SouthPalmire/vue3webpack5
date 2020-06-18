@@ -55,12 +55,16 @@
 </script>
 
 <style>
+  code {
+    font-weight: bold;
+  }
+
   .issue-head__title::first-letter {
     text-transform: uppercase;
   }
 
   .block__issue {
-    overflow: 100%;
+    overflow: auto;
     text-align: center;
     display: flex;
   }
@@ -92,6 +96,7 @@
     flex: 2;
     display: flex;
     flex-direction: column;
+    overflow: auto;
   }
 
   .issue-head {
@@ -99,6 +104,7 @@
   }
 
   .issue-head__title {
+    font-weight: bold;
     padding: 5px;
     color: black;
     margin: 2px;
@@ -146,16 +152,14 @@
   .issue-Body__Open {
     padding-left: 5px;
     text-align: left;
-    overflow: hidden;
-    max-width: 1123px;
     color: black;
     background-color: grey;
+    overflow: auto;
   }
 
   .issue-Body__Close {
     padding-left: 5px;
     text-align: left;
-    max-width: 1123px;
     overflow: hidden;
     height: 68px;
     background: linear-gradient(to bottom, black, white);

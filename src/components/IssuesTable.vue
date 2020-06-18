@@ -55,6 +55,7 @@
 </script>
 
 <style>
+
   code {
     font-weight: bold;
   }
@@ -64,13 +65,12 @@
   }
 
   .block__issue {
+    display: flex;
     overflow: auto;
     text-align: center;
-    display: flex;
   }
 
   .issue-number {
-    flex: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,13 +87,12 @@
     font-size: 70px;
     color: white;
     background-color: black;
-    transition-timing-function: ease-out;
     transition-duration: 0.5s;
     transition-property: background-color, color;
   }
 
   .issue {
-    flex: 2;
+    flex: 1;
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -111,7 +110,6 @@
     background-color: gray;
     text-align: left;
     flex-grow: 1;
-    float: left;
   }
 
   .issue-head__state {
@@ -170,6 +168,7 @@
   .state-img {
     margin: 2px;
     display: flex;
+    justify-content: center;
     align-items: center;
     width: 100px;
     height: 100px;
@@ -179,6 +178,5 @@
   .state-out {
     width: 60px;
     height: 60px;
-    padding-left: 15px;
   }
 </style>

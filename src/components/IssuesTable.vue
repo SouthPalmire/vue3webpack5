@@ -16,12 +16,15 @@
             {{ item.created_at }}
           </div>
           <div class="issue-head__collapse-button" @click="$set(item, 'selected', !item.selected)">
-            <img class="issue-head__collapse-button__transition" v-bind:class="{collapseButtonTransition: item.selected}" src="http://localhost:8080/svg/down-arrow.svg" />
+            <img class="issue-head__collapse-button__transition" :class="{collapseButtonTransition: item.selected}" src="http://localhost:8080/svg/down-arrow.svg" />
           </div>
         </div>
-        <div class="issue-body">
-          <VueMarkdown class='issue-Body__Open' v-if='item.selected' >{{ item.body }}</VueMarkdown>
-          <VueMarkdown class='issue-Body__Close' v-else>{{ item.body }}</VueMarkdown>
+        <div class="issue-Body" :class="{'Body__Close': !item.selected}" >
+          <div :class="{'issue-Body__Close': !item.selected}">
+          </div>
+          <div class="issue-Body__Open">
+            <VueMarkdown> {{ item.body }} </VueMarkdown>
+          </div>
         </div>
       </div>
       <div class="state-img">
@@ -142,27 +145,33 @@
     height: 15px;
   }
 
-  .issue-body {
-    background: linear-gradient(to bottom, grey, white);
-    margin: 2px;
+  .Body__Close {
+    height: 71px;
+  }
+
+  .issue-Body {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .issue-Body__Close { 
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px; 
+    height: 71px;
+    background: linear-gradient(to bottom, transparent, white);
   }
 
   .issue-Body__Open {
+    min-height: 71px;
+    margin: 2px;
     padding-left: 5px;
     text-align: left;
     color: black;
     background-color: grey;
-    overflow: auto;
-  }
-
-  .issue-Body__Close {
-    padding-left: 5px;
-    text-align: left;
     overflow: hidden;
-    height: 68px;
-    background: linear-gradient(to bottom, black, white);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   .state-img {

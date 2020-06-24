@@ -165,7 +165,7 @@
   }
 
   .issue-Body__Open {
-    min-height: 71px;
+    min-height: 67px;
     margin: 2px;
     padding-left: 5px;
     text-align: left;

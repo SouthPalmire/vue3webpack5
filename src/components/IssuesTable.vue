@@ -26,6 +26,9 @@
             <VueMarkdown> {{ item.body }} </VueMarkdown>
           </div>
         </div>
+        <router-link class='router-btn' :class="{'router-btn__Click': item.selected}" teg='button' to="markup_16" >
+          issue-code
+        </router-link>
       </div>
       <div class="state-img">
         <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
@@ -63,6 +66,17 @@
     font-weight: bold;
   }
 
+  .router-btn {
+    margin: 2px;
+    color: grey;
+    height: 20px;
+  }
+
+  .router-btn__Click {
+    background: grey;
+    color: black;
+  }
+
   .issue-head__title::first-letter {
     text-transform: uppercase;
   }
@@ -82,8 +96,8 @@
     color: black;
     transition-duration: 0.5s;
     background-color: white;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
   }
 
   .block__issue:hover .issue-number {
@@ -146,7 +160,7 @@
   }
 
   .Body__Close {
-    height: 71px;
+    height: 68px;
   }
 
   .issue-Body {
@@ -178,8 +192,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
   }
 
   .state-in,

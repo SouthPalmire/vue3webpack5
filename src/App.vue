@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <IssuesTable />
+    <router-view />
   </div>
 </template>
 
 <script>
-import IssuesTable from './components/IssuesTable.vue'
+//import IssuesTable from './components/IssuesTable.vue'
 //import SmartInput from './components/SmartInput.vue'
 //import InteractivePalette from './components/InteractivePalette.vue'
 //import GeneratorSka from './components/GeneratorSka.vue'
@@ -13,7 +13,7 @@ import IssuesTable from './components/IssuesTable.vue'
 export default {
   name: 'App',
   components: {
-    IssuesTable,
+//   IssuesTable,
 //    SmartInput,
 //    GeneratorSka,
 //    InteractivePalette,

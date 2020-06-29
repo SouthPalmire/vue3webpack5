@@ -2,21 +2,30 @@
   <div class="main">
 
     <h1><strong>#20 Comment me</strong></h1>
-    <p>Using <strong>curl</strong> command line tool create command under this issue</p>
+    <p>Using <code><strong>curl</strong></code> command line tool create command under this issue</p>
     <p><strong>Comments:</strong></p>
 
-    <div class="comments" v-for="(item, index) in massive" :key="index">
-      <div class="comments-body">
+    <div class="comments-massive" v-for="(item, index) in massive" :key="index">
+      <div class="comments-massive__body">
         <VueMarkdown> {{ item.body }} </VueMarkdown>
       </div>
-      <div class="comments-created">
+      <div class="comments-massive__created">
         {{ item.created_at }}
-      </div>
-      <button class="comments-delete" @click='deleteComment()'>Delete</button>
+      </div>  
     </div>
 
-    <input class="comments-target" v-model='target'/>
-    <button v-if='target' @click='createComment()'>Add</button>
+    <div class="comments-newMassive" v-for="(item, index) in newMassive" :key="index">
+      <div class="comments-newMassive__body">
+        <VueMarkdown> {{ item.body }} </VueMarkdown>
+      </div>
+      <div class="comments-newMassive__created">
+        {{ item.created_at }}
+      </div>
+      <button class="comments-newMassive__delete" @click='deleteComment(), deleteNewMassive()'>Delete</button>
+    </div>
+
+    <input class="comments-newMassive__target" v-model='target'/>
+    <button v-if='target' @click='createComment(), createNewMassive()'>Add</button>
 
   </div>
 </template>
@@ -31,7 +40,8 @@
     data() {
       return {
         target: '',
-        massive: []
+        massive: [],
+        newMassive: [],
       }
     },
     created() {
@@ -44,6 +54,12 @@
 
       },
       deleteComment() {
+
+      },
+      createNewMassive() {
+
+      },
+      deleteNewMassive() {
 
       }
     }
@@ -60,19 +76,31 @@
   
   }
 
-  .comments-body {
+  .comments-massive__body {
   
   }
 
-  .comments-created {
+  .comments-massive__created {
   
   }
 
-  .comments-delete {
+  .comments-newMassive {
+
+  }
+
+  .comments-newMassive__body {
+
+  }
+
+  .comments-newMassive__created {
+
+  }
+
+  .comments-newMassive__delete {
   
   }
 
-  .comments-target {
+  .comments-newMassive__target {
   
   }
 

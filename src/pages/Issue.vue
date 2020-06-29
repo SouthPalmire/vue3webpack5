@@ -24,9 +24,9 @@
       <button class="comments-newMassive__delete" @click='deleteComment(), deleteNewMassive(newIndex)'>Delete</button>
     </div>
 
-    <input type="text" class="comments-newMassive__target" v-model='target.body' />
-    <button v-if='target.body' @click='createComment(), createNewMassive()'>Add</button>
-{{newMassive}} 
+    <input type="text" class="comments-newMassive__target" v-model='target' />
+    <button v-if='target' @click='createComment(), createNewMassive()'>Add</button>
+
   </div>
 </template>
 
@@ -39,9 +39,7 @@
     },
     data() {
       return {
-        target: {
-          body:''
-        },
+        target: '',
         massive: [],
         newMassive: [],
       }
@@ -49,7 +47,7 @@
     created() {
       fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments')
         .then(response => response.json())
-        .then(data => (this.massive = data.map(({user, body, created_at}) => ({user, body, created_at}))));
+        .then(data => (this.massive = data.map(({body, created_at}) => ({body, created_at}))))
     },
     methods: {
       createComment() {
@@ -59,9 +57,10 @@
 
       },
       createNewMassive() {
-        let { body } = this.target;
-        let createNewMassiveBody = { body };
-        this.newMassive.push(createNewMassiveBody);
+        let { target: body } = this;
+        let created_at = new Date();
+        let massiveCreate = { body, created_at };
+        this.newMassive.push(massiveCreate);
       },
       deleteNewMassive(newIndex) {
         this.newMassive.splice(newIndex, 1);

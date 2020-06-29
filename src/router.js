@@ -4,8 +4,8 @@ import Issue from './pages/Issue'
 
 export default new VueRouter({
   routes: [
-    { path: '/', component: IssuesTable },
-    { path: '/issue/:id', component: Issue },
+    { path: '/issue/:id', component: IssuesTable },
+    { path: '/', component: Issue },
   ],
   mode: 'history'
 })

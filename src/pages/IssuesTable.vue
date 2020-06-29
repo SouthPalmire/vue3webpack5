@@ -13,7 +13,7 @@
             {{ item.state }}
           </div>
           <div class="issue-head__created">
-            {{ item.created_at }}
+            {{ item.created_at }} {{ item.created_at | moment('utc', 'HH:mm:ss') }}
           </div>
           <div class="issue-head__collapse-button" @click="$set(item, 'selected', !item.selected)">
             <img class="issue-head__collapse-button__transition" :class="{collapseButtonTransition: item.selected}" src="http://localhost:8080/svg/down-arrow.svg" />

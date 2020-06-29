@@ -2,7 +2,7 @@
   <div class="main">
 
     <h1><strong>#20 Comment me</strong></h1>
-    <p>Using <code><strong>curl</strong></code> command line tool create command under this issue</p>
+    <p>Using <code>curl</code> command line tool create command under this issue</p>
     <p><strong>Comments:</strong></p>
 
     <div class="comments-massive" v-for="(item, index) in massive" :key="index">
@@ -14,19 +14,19 @@
       </div>  
     </div>
 
-    <div class="comments-newMassive" v-for="(item, index) in newMassive" :key="index">
+    <div class="comments-newMassive" v-for="(newItem, newIndex) in newMassive" :key="newItem">
       <div class="comments-newMassive__body">
-        <VueMarkdown> {{ item.body }} </VueMarkdown>
+        <VueMarkdown> {{ newItem.body }} </VueMarkdown>
       </div>
       <div class="comments-newMassive__created">
-        {{ item.created_at }}
+        {{ newItem.created_at }}
       </div>
-      <button class="comments-newMassive__delete" @click='deleteComment(), deleteNewMassive()'>Delete</button>
+      <button class="comments-newMassive__delete" @click='deleteComment(), deleteNewMassive(newIndex)'>Delete</button>
     </div>
 
-    <input class="comments-newMassive__target" v-model='target'/>
-    <button v-if='target' @click='createComment(), createNewMassive()'>Add</button>
-
+    <input type="text" class="comments-newMassive__target" v-model='target.body' />
+    <button v-if='target.body' @click='createComment(), createNewMassive()'>Add</button>
+{{newMassive}} 
   </div>
 </template>
 
@@ -39,7 +39,9 @@
     },
     data() {
       return {
-        target: '',
+        target: {
+          body:''
+        },
         massive: [],
         newMassive: [],
       }
@@ -51,16 +53,18 @@
     },
     methods: {
       createComment() {
-
+        
       },
       deleteComment() {
 
       },
       createNewMassive() {
-
+        let { body } = this.target;
+        let createNewMassiveBody = { body };
+        this.newMassive.push(createNewMassiveBody);
       },
-      deleteNewMassive() {
-
+      deleteNewMassive(newIndex) {
+        this.newMassive.splice(newIndex, 1);
       }
     }
   }
@@ -72,7 +76,7 @@
 
   }
 
-  .comments {
+  .comments-massive {
   
   }
 

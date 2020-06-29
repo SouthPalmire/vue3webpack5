@@ -1,15 +1,24 @@
 <template>
-<div>
-  <h1>#20 issue</h1>
-  <div style="ttt" v-for="(item, index) in massive" :key="index">
-    <VueMarkdown> {{ item.body }} </VueMarkdown> 
-    {{ item.user.login }} 
-    {{ item.created_at }}
-    <button @click='deleteComment()'>-</button>
+  <div class="main">
+
+    <h1><strong>#20 Comment me</strong></h1>
+    <p>Using <strong>curl</strong> command line tool create command under this issue</p>
+    <p><strong>Comments:</strong></p>
+
+    <div class="comments" v-for="(item, index) in massive" :key="index">
+      <div class="comments-body">
+        <VueMarkdown> {{ item.body }} </VueMarkdown>
+      </div>
+      <div class="comments-created">
+        {{ item.created_at }}
+      </div>
+      <button class="comments-delete" @click='deleteComment()'>Delete</button>
+    </div>
+
+    <input class="comments-target" v-model='target'/>
+    <button v-if='target' @click='createComment()'>Add</button>
+
   </div>
-  <input />
-  <button @click='createComment()'>+</button>
-</div>
 </template>
 
 <script>
@@ -21,7 +30,7 @@
     },
     data() {
       return {
-        item: '',
+        target: '',
         massive: []
       }
     },
@@ -42,5 +51,29 @@
 </script>
 
 <style>
+
+  .main {
+
+  }
+
+  .comments {
+  
+  }
+
+  .comments-body {
+  
+  }
+
+  .comments-created {
+  
+  }
+
+  .comments-delete {
+  
+  }
+
+  .comments-target {
+  
+  }
 
 </style>

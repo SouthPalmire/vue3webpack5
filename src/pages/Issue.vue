@@ -5,7 +5,7 @@
     <p>Using <code>curl</code> command line tool create command under this issue</p>
     <p><strong>Comments:</strong></p>
 
-    <div class="comments-massive" v-for="(item, index) in massive" :key="index">
+    <div class="comments-massive" v-for="item in massive" :key="item">
       <div class="comments-massive__body">
         <VueMarkdown> {{ item.body }} </VueMarkdown>
       </div>

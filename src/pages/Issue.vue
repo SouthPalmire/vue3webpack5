@@ -49,19 +49,43 @@
         .then(response => response.json())
         .then(data => (this.massive = data.map(({body, created_at}) => ({body, created_at}))))
     },
-    methods: {
-      createComment() {
-        
-      },
-      deleteComment() {
 
+    methods: {
+
+      createComment() {
+        let { target } = this;
+        const requestOptionsPush = {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '
+          },
+          body: JSON.stringify({ body: target }),
+        };
+        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments', requestOptionsPush)
+        ;
       },
+
+      deleteComment() {
+        const requestOptionsDelete = {
+          method: 'DELETE',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '
+          },
+          
+        };
+        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments', requestOptionsDelete)
+        ;
+      },
+
       createNewMassive() {
         let { target: body } = this;
         let created_at = new Date();
         let massiveCreate = { body, created_at };
         this.newMassive.push(massiveCreate);
       },
+      
       deleteNewMassive(newIndex) {
         this.newMassive.splice(newIndex, 1);
       }

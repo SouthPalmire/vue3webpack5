@@ -16,7 +16,7 @@
       <div class="comments-created">
         {{ comment.created_at }}
       </div>
-      <button class="comments-delete" v-if="comment.user.login == 'SouthPalmire'" @click='deleteComment()'>Delete</button>
+      <button class="comments-delete" v-if="comment.user.login == 'SouthPalmire'" @click='deleteComment(comment)'>Delete</button>
     </div>
 
     <input type="text" class="comments-target" v-model='target' />
@@ -39,7 +39,7 @@
         comments: []
       }
     },
-    created() {
+    mounted() {
       fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20')
         .then(response => response.json())
         .then(data => this.issueHead = data);
@@ -60,15 +60,16 @@
         };
         fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments', requestOptionsPush);
       },
-      deleteComment() {
+      deleteComment(comment) {
+        const { id } = comment;
         const requestOptionsDelete = {
           method: 'DELETE',
           headers: { 
             'Authorization': 'Bearer '
           },
         };
-        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/comments/652585464', requestOptionsDelete);
-      }
+        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/comments/')+(id), requestOptionsDelete);
+      }, 
     }
   }
 </script>

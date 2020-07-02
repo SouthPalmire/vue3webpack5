@@ -39,7 +39,7 @@
         comments: []
       }
     },
-    mounted() {
+    created() {
       fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20')
         .then(response => response.json())
         .then(data => this.issueHead = data);

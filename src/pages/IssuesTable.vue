@@ -6,14 +6,14 @@
       </div>
       <div class="issue">
         <div class="issue-head">
-          <div class="issue-head__title">
+          <router-link class="issue-head__title" teg="a"  to="issue/20">
             {{ item.title }}
-          </div>
+          </router-link>
           <div class="issue-head__state">
             {{ item.state }}
           </div>
           <div class="issue-head__created">
-            {{ item.created_at }} {{ item.created_at | moment('utc', 'HH:mm:ss') }}
+            {{ item.created_at | moment("from", "now") }}
           </div>
           <div class="issue-head__collapse-button" @click="$set(item, 'selected', !item.selected)">
             <img class="issue-head__collapse-button__transition" :class="{collapseButtonTransition: item.selected}" src="http://localhost:8080/svg/down-arrow.svg" />
@@ -26,9 +26,6 @@
             <VueMarkdown> {{ item.body }} </VueMarkdown>
           </div>
         </div>
-        <router-link class='router-btn' :class="{'router-btn__Click': item.selected}" teg='button' to="markup_16" >
-          issue-code
-        </router-link>
       </div>
       <div class="state-img">
         <img class="state-out" v-if="item.state == 'closed'" src="http://localhost:8080/svg/tick.svg" />
@@ -62,19 +59,16 @@
 
 <style>
 
+  a {
+    color: blue;
+  }
+
+  a:visited {
+    color: purple;
+  }
+
   code {
     font-weight: bold;
-  }
-
-  .router-btn {
-    margin: 2px;
-    color: grey;
-    height: 20px;
-  }
-
-  .router-btn__Click {
-    background: grey;
-    color: black;
   }
 
   .issue-head__title::first-letter {

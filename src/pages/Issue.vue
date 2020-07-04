@@ -20,7 +20,7 @@
           <VueMarkdown> {{ comment.body }} </VueMarkdown>
         </div>
         <div class="comments-created">
-          {{ comment.created_at }}
+          {{ comment.created_at | moment("from", "now") }}
         </div>
         <button v-if="comment.user.login == 'SouthPalmire'" @click="deleteComment(comment)">Delete</button>
       </div>
@@ -47,14 +47,17 @@
       }
     },
     created() {
-      fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20')
-        .then(response => response.json())
-        .then(data => this.issueHead = data);
-      fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments')
-        .then(response => response.json())
-        .then(data => this.comments = data)
+      this.loadingPage()
     },
     methods: {
+      loadingPage() {
+        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20')
+          .then(response => response.json())
+          .then(data => this.issueHead = data);
+        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments')
+          .then(response => response.json())
+          .then(data => this.comments = data)
+      },
       createComment() {
         const { target } = this;
         const requestOptionsPush = {
@@ -75,7 +78,7 @@
           },
         };
         fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/comments/')+(id), requestOptionsDelete);
-      }, 
+      }
     }
   }
 </script>

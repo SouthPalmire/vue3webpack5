@@ -6,7 +6,7 @@
       </div>
       <div class="issue">
         <div class="issue-head">
-          <router-link class="issue-head__title" teg="a"  to="issue/20">
+          <router-link class="issue-head__title" teg="a"  to="">
             {{ item.title }}
           </router-link>
           <div class="issue-head__state">
@@ -50,9 +50,14 @@
       }
     },
     created() {
-      fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
+      this.loadingPage()
+    },
+    methods: {
+      loadingPage() {
+        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues?state=all')
         .then(response => response.json())
         .then(data => (this.massive = data.map(({title, state, number, body, created_at}) => ({title, state, number, body, created_at}))));
+      }
     }
   }
 </script>

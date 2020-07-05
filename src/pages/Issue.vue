@@ -22,11 +22,11 @@
         <div class="comments-created">
           {{ comment.created_at | moment("from", "now") }}
         </div>
-        <button v-if="comment.user.login == 'SouthPalmire'" @click="deleteComment(comment)">Delete</button>
+        <button v-if="comment.user.login == 'SouthPalmire'" @click="deleteCommentMirror(index), deleteComment(comment)">Delete</button>
       </div>
 
       <textarea class="comments-target" v-model='target'></textarea><p/>
-      <button v-if='target' @click="createComment()">Add</button>
+      <button v-if='target' @click="createCommentMirror(), createComment()">Add</button>
     </div>
 
   </div>
@@ -78,6 +78,16 @@
           },
         };
         fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/comments/')+(id), requestOptionsDelete);
+      },
+      createCommentMirror() {
+        const { target: body } = this;
+        const created_at = new Date();
+        const user = {login: 'SouthPalmire'}
+        const massiveCreate = { body, created_at, user };
+        this.comments.push(massiveCreate);
+      },
+      deleteCommentMirror(index) {
+        this.comments.splice(index, 1);
       }
     }
   }

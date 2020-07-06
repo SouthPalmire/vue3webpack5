@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if=" $route.params.id == issue.number ">
     
     <div v-if="issueHead | comments == ''">
       <p><code>Loading issue...</code></p>

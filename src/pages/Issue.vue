@@ -22,11 +22,11 @@
         <div class="comments-created">
           {{ comment.created_at | moment("from", "now") }}
         </div>
-        <button v-if="(comment.user.login == 'SouthPalmire') && (comment.id != undefined)" @click="deleteCommentMirror(index), deleteComment(comment)">Delete</button>
+        <button v-if="comment.user.login == 'SouthPalmire'" @click="deleteComment(comment, index)">Delete</button>
       </div>
 
       <textarea class="comments-target" v-model='target'></textarea><p/>
-      <button v-if='target' @click="createCommentMirror(), createComment()">Add</button>
+      <button v-if='target' @click="createComment()">Add</button>
     </div>
 
   </div>
@@ -67,9 +67,11 @@
           },
           body: JSON.stringify({ body: target }),
         };
-        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments', requestOptionsPush);
+        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments', requestOptionsPush)
+        .then(response => response.json())
+        .then(data => this.comments.push(data))
       },
-      deleteComment(comment) {
+      deleteComment(comment, index) {
         const { id } = comment;
         const requestOptionsDelete = {
           method: 'DELETE',
@@ -78,15 +80,6 @@
           },
         };
         fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/comments/')+(id), requestOptionsDelete);
-      },
-      createCommentMirror() {
-        const { target: body } = this;
-        const created_at = new Date();
-        const user = { login: 'SouthPalmire' }
-        const massiveCreate = { body, created_at, user };
-        this.comments.push(massiveCreate);
-      },
-      deleteCommentMirror(index) {
         this.comments.splice(index, 1);
       }
     }

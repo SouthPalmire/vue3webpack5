@@ -22,7 +22,7 @@
         <div class="comments-created">
           {{ comment.created_at | moment("from", "now") }}
         </div>
-        <button v-if="comment.user.login == 'SouthPalmire'" @click="deleteCommentMirror(index), deleteComment(comment)">Delete</button>
+        <button v-if="(comment.user.login == 'SouthPalmire') && (comment.id != undefined)" @click="deleteCommentMirror(index), deleteComment(comment)">Delete</button>
       </div>
 
       <textarea class="comments-target" v-model='target'></textarea><p/>
@@ -82,7 +82,7 @@
       createCommentMirror() {
         const { target: body } = this;
         const created_at = new Date();
-        const user = {login: 'SouthPalmire'}
+        const user = { login: 'SouthPalmire' }
         const massiveCreate = { body, created_at, user };
         this.comments.push(massiveCreate);
       },

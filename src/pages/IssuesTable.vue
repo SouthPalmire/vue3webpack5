@@ -6,7 +6,7 @@
       </div>
       <div class="issue">
         <div class="issue-head">
-          <router-link class="issue-head__title" teg="a"  to="">
+          <router-link class="issue-head__title" :to="{ path: `/issue/${item.number}` }">
             {{ item.title }}
           </router-link>
           <div class="issue-head__state">
@@ -64,14 +64,6 @@
 
 <style>
 
-  a {
-    color: blue;
-  }
-
-  a:visited {
-    color: purple;
-  }
-
   code {
     font-weight: bold;
   }
@@ -121,11 +113,15 @@
   .issue-head__title {
     font-weight: bold;
     padding: 5px;
-    color: black;
+    color: blue;
     margin: 2px;
     background-color: gray;
     text-align: left;
     flex-grow: 1;
+  }
+
+  .issue-head__title:visited {
+    color: purple;
   }
 
   .issue-head__state {

@@ -44,7 +44,6 @@
     },
     data() {
       return {
-        routeID: this.$route.params.id,
         target: '',
         issue: '',
         comments: []
@@ -55,10 +54,11 @@
     },
     methods: {
       loadingPage() {
-        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/')+(this.routeID))
+        const routeID = this.$route.params.id
+        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/')+(routeID))
           .then(response => response.json())
           .then(data => this.issue = data)
-        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/')+(this.routeID)+('/comments'))
+        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/')+(routeID)+('/comments'))
           .then(response => response.json())
           .then(data => this.comments = data)
       },

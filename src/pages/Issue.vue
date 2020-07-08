@@ -55,10 +55,10 @@
     methods: {
       loadingPage() {
         const routeID = this.$route.params.id
-        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/')+(routeID))
+        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/' + routeID)
           .then(response => response.json())
           .then(data => this.issue = data)
-        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/')+(routeID)+('/comments'))
+        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/' + routeID + '/comments')
           .then(response => response.json())
           .then(data => this.comments = data)
       },
@@ -83,7 +83,7 @@
             'Authorization': 'Bearer '
           },
         };
-        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/comments/')+(id), requestOptionsDelete);
+        fetch( 'https://api.github.com/repos/SouthPalmire/sandbox/issues/comments/' + id , requestOptionsDelete );
         this.comments.splice(index, 1);
       }
     }

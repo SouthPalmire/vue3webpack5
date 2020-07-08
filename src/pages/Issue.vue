@@ -1,17 +1,20 @@
 <template>
-  <div v-if=" $route.params.id == issue.number ">
+  <div>
     
-    <div v-if="issueHead | comments == ''">
-      <p><code>Loading issue...</code></p>
+    <div v-if="comments == ''">
       <p><code>Loading comments...</code></p>
+    </div>
+
+    <div v-if="issue == ''">
+      <p><code>Loading issue...</code></p>
     </div>
 
     <div v-else>
       <h1>
-        <strong>#{{ issueHead.number }} {{ issueHead.title }}</strong>
+        <strong>#{{ issue.number }} {{ issue.title }}</strong>
       </h1>
       <div>
-        <VueMarkdown> {{ issueHead.body }} </VueMarkdown>
+        <VueMarkdown class="comments-body"> {{ issue.body }} </VueMarkdown>
         <p><strong>Comments:</strong></p>
       </div>
 
@@ -41,8 +44,9 @@
     },
     data() {
       return {
+        routeID: this.$route.params.id,
         target: '',
-        issueHead: '',
+        issue: '',
         comments: []
       }
     },
@@ -51,10 +55,10 @@
     },
     methods: {
       loadingPage() {
-        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20')
+        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/')+(this.routeID))
           .then(response => response.json())
-          .then(data => this.issueHead = data);
-        fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments')
+          .then(data => this.issue = data)
+        fetch(('https://api.github.com/repos/SouthPalmire/sandbox/issues/')+(this.routeID)+('/comments'))
           .then(response => response.json())
           .then(data => this.comments = data)
       },
@@ -94,6 +98,10 @@
     flex-grow: 5;
     align-items: center;
     text-align: left;
+  }
+
+  .comments-body {
+    overflow: auto;
   }
 
   .comments-body {

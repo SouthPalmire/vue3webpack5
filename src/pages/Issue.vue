@@ -1,9 +1,5 @@
 <template>
   <div>
-    
-    <div v-if="comments == ''">
-      <p><code>Loading comments...</code></p>
-    </div>
 
     <div v-if="issue == ''">
       <p><code>Loading issue...</code></p>
@@ -17,7 +13,13 @@
         <VueMarkdown class="comments-body"> {{ issue.body }} </VueMarkdown>
         <p><strong>Comments:</strong></p>
       </div>
+    </div>
+        
+    <div v-if="comments == ''">
+      <p><code>Loading comments...</code></p>
+    </div>
 
+    <div v-else>
       <div class="comments" v-for="(comment, index) in comments" :key="index">
         <div class="comments-body">
           <VueMarkdown> {{ comment.body }} </VueMarkdown>
@@ -27,7 +29,9 @@
         </div>
         <button v-if="comment.user.login == 'SouthPalmire'" @click="deleteComment(comment, index)">Delete</button>
       </div>
+    </div>
 
+    <div v-if="issue">      
       <textarea class="comments-target" v-model='target'></textarea><p/>
       <button v-if='target' @click="createComment()">Add</button>
     </div>

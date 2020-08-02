@@ -32,3 +32,27 @@ async function getPageData() {
 
 
 getPageData()
+
+ar http = require('http'),
+    iconv = require('iconv-lite');
+
+    http.get("http://lib.ru/RUFANT/", function(res) {
+      res.pipe(iconv.decodeStream('koi8-ru')).collect(function(err, decodedBody) {
+        console.log(decodedBody);
+      });
+    });
+
+http.get("http://lib.ru/RUFANT/", function(res) {
+   res.pipe(iconv.decodeStream('koi8-ru')).collect(function(err, decodedBody) {
+      console.log(decodedBody);
+   });
+});
+
+const res = fetch("http://lib.ru/RUFANT/")  
+  .then(  
+    function(res) {  
+       
+      res.pipe(iconv.decodeStream('koi8-ru')).collect(function(err, decodedBody) {
+         console.log(decodedBody);
+      });
+  });

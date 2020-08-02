@@ -1,19 +1,32 @@
 const fetch = require('node-fetch')
+const iconv = require('iconv-lite')
+const fs = require('fs')
+const readline = require('readline')
+const stream = require('stream')
 
 async function getPageData() {
-   const pageData = []
+   let pageData = []
    const res = await fetch('http://lib.ru/RUFANT/')
    const blok = await res.text()
 
-   const reType = /(?<=<small><b>)(.*?)(?=<\/b>)/g
-   const reUri = /(?<=<\/small><\/tt> <A HREF=)(.*?)(?=\/>)/g
-   const reName = /(?<=\/><b>)(.*?)(?=<\/b><\/A>)/g
+   // const full = /(?<=<small><b>)(?<type>.*?)(?=<\/b>).*?(?<=<\/small><\/tt> <A HREF=)(?<uri>.*?)(?=\/>).*?(?<=\/><b>)(?<name>.*?)(?=<\/b><\/A>)/g
   
-   // console.log(blok)
-   pageData.push(blok.match(reType))
-   pageData.push(blok.match(reUri))
-   pageData.push(blok.match(reName))
-   console.log(pageData)
-}
-getPageData()
+   // let result = full.exec(blok)
 
+   const { groups: {type, uri, name}} = /(?<=<small><b>)(?<type>.*?)(?=<\/b>).*?(?<=<\/small><\/tt> <A HREF=)(?<uri>.*?)(?=\/>).*?(?<=\/><b>)(?<name>.*?)(?=<\/b><\/A>)/g.exec(blok)
+   const newPageData = {type, uri, name}
+   // console.log(`name: ${name}, type: ${type}, uri: ${uri}`);
+   // pageData.push(`${name}`, `${type}`, `${uri}`)
+   pageData.push(newPageData)
+   console.log(pageData)
+   // console.log(cosso)
+
+   // console.log(blok)
+
+   // console.log(result.groups.type)
+   // console.log(result.groups.uri)
+   // console.log(result.groups.name)
+
+}
+
+getPageData()

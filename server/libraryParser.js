@@ -6,18 +6,19 @@ const stream = require('stream')
 
 async function getPageData() {
    let pageData = []
+   let blokDecode = ''
    const res = await fetch('http://lib.ru/RUFANT/')
    const blok = await res.text()
-   // const full = /(?<=<small><b>)(?<type>.*?)(?=<\/b>).*?(?<=<\/small><\/tt> <A HREF=)(?<uri>.*?)(?=\/>).*?(?<=\/><b>)(?<name>.*?)(?=<\/b><\/A>)/g
 
-   const { groups: { type, uri, name }} = /(?<=<small><b>)(?<type>.*?)(?=<\/b>).*?(?<=<\/small><\/tt> <A HREF=)(?<uri>.*?)(?=\/>).*?(?<=\/><b>)(?<name>.*?)(?=<\/b><\/A>)/g.exec(blok)
+   var message = iconv.encode(iconv.decode(blok, "win1251"), "utf8").toString();
+
+   const { groups: { type, uri, name }} = /(?<=<small><b>)(?<type>.*?)(?=<\/b>).*?(?<=<\/small><\/tt> <A HREF=)(?<uri>.*?)(?=\/>).*?(?<=\/><b>)(?<name>.*?)(?=<\/b><\/A>)/gu.exec(message)
    const newPageData = { name, type, uri }
 
    pageData.push(newPageData)
    console.log(pageData)
 
    // console.log(blok)
-
 }
 
 getPageData()

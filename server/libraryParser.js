@@ -15,7 +15,7 @@ async function getPageData() {
               
     rl.on('line', (input) => {
         const result = regular.exec(input)       
-        if ( result != null ) {  
+        if (result) {  
             const { name, type, uri } = result.groups
             const newObject = { name, type, uri }
             autors.push(newObject)

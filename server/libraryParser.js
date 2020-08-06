@@ -4,20 +4,20 @@ const iconv = require('iconv-lite')
 
 async function getPageData() {
     const regular = /(?<=<small><b>)(?<type>.*?)(?=<\/b>).*?(?<=<\/small><\/tt> <A HREF=)(?<uri>.*?)(?=\/>).*?(?<=\/><b>)(?<name>.*?)(?=<\/b><\/A>)/   
-    let autors = []
+    const autors = []
 
     const data = await fetch('http://lib.ru/RUFANT/')
-    .then(response => response.body.pipe(iconv.decodeStream('koi8-r')))
+        .then(response => response.body.pipe(iconv.decodeStream('koi8-r')))
     
     const rl = readline.createInterface({
         input: data
     });
               
     rl.on('line', (input) => {
-        let result = regular.exec(input)       
-        if (result != null ) {  
-            const {name, type, uri} = result.groups
-            const newObject = {name, type, uri}
+        const result = regular.exec(input)       
+        if ( result != null ) {  
+            const { name, type, uri } = result.groups
+            const newObject = { name, type, uri }
             autors.push(newObject)
         }
     })
@@ -35,14 +35,14 @@ getPageData()
  
 // http.get("http://lib.ru/RUFANT/", function(res) {
 //    res.pipe(iconv.decodeStream('koi8-ru')).collect(function(err, decodedBody) {
-//       let massive = []
+//       let autors = []
 //       let result
 //       const regular = /(?<=<small><b>)(?<type>.*?)(?=<\/b>).*?(?<=<\/small><\/tt> <A HREF=)(?<uri>.*?)(?=\/>).*?(?<=\/><b>)(?<name>.*?)(?=<\/b><\/A>)/g
 //       while (result = regular.exec(decodedBody)) {
-//          const {name, type, uri} = result.groups
-//          const newObject = {name, type, uri}
-//          massive.push(newObject)
+//          const { name, type, uri } = result.groups
+//          const newObject = { name, type, uri }
+//          autors.push(newObject)
 //       }
-//       console.log(massive)
+//       console.log(autors)
 //    });  
 // });

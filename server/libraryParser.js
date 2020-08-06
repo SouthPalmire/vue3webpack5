@@ -1,9 +1,9 @@
-const readline = require('readline')
-const fetch = require('node-fetch')
-const iconv = require('iconv-lite')
+const readline = require('readline');
+const fetch = require('node-fetch');
+const iconv = require('iconv-lite');
 
 
-const functionParser = async () => {
+(async () => {
     const data = await fetch('http://lib.ru/RUFANT/')
         .then(response => response.body.pipe(iconv.decodeStream('koi8-r')))
     const regular = /(?<=<small><b>)(?<type>.*?)(?=<\/b>).*?(?<=<\/small><\/tt> <A HREF=)(?<uri>.*?)(?=\/>).*?(?<=\/><b>)(?<name>.*?)(?=<\/b><\/A>)/   
@@ -18,8 +18,8 @@ const functionParser = async () => {
         }
     })
     .on('close', () => console.log(autors))
-}
-functionParser();
+})()
+
 
 
 

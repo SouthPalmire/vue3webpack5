@@ -15,7 +15,7 @@ const iconv = require('iconv-lite');
             const { name, type, uri } = result.groups
             const newObject = { name, type, uri }
             autors.push(newObject)
-        }
+        } 
     })
     .on('close', () => console.log(autors))
 })()

@@ -1,5 +1,3 @@
-
-
 const readline = require('readline');
 const fetch = require('node-fetch');
 const iconv = require('iconv-lite');

@@ -1,3 +1,4 @@
+
 const readline = require('readline');
 const fetch = require('node-fetch');
 const iconv = require('iconv-lite');
@@ -16,7 +17,7 @@ const iconv = require('iconv-lite');
             const newObject = { name, type, uri }
             autors.push(newObject)
         } 
-    })
+    }) 
     .on('close', () => console.log(autors))
 })()
 

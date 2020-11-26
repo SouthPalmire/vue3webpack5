@@ -7,10 +7,11 @@ class ReadLineIntarface extends EventEmitter {
         super()
         this.input = input
     }
-    // createOutput() {
-    //     const autors = []
-    //     console.log(autors)
-    // }
+    createOutput() {
+        const autors = []
+        console.log(autors)
+        console.log(this.input)
+    }
 }
 
 const off = async function getData() {
@@ -19,14 +20,14 @@ const off = async function getData() {
         .then(response => response.body.pipe(iconv.decodeStream('koi8-ru')))
         .then(data => getBody = data) 
         console.log(getBody)
-    }
-  
-const test = new ReadLineIntarface(off())
+}
+console.log(off())  
+// const test = new ReadLineIntarface(off())
 // console.log(test)
 // console.log(test.createOutput())
 
-// const readline = {
-//     createInterface({ input }) {
-//         return new ReadLineIntarface(input)
-//     }
-// }
+const readline = {
+    createInterface({ input }) {
+        return new ReadLineIntarface(input)
+    }
+}

@@ -28,11 +28,7 @@ async function getPageData() {
     const autors = []
 
     const data = await fetch('http://lib.ru/RUFANT/')
-<<<<<<< HEAD
-        .then(response => response.body.pipe(iconv.decodeStream('windows-1251')))
-=======
-        .then(response => response.body.pipe(iconv.decodeStream('koi8-r')))
->>>>>>> 3df4130195b1934da41c98efdadfa6378a5b8ff6
+        .then(response => response.body.pipe(iconv.decodeStream('koi8-ru')))
     
     const rl = readline.createInterface({
         input: data

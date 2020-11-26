@@ -1,14 +1,12 @@
-<<<<<<< HEAD
 var fs = require('fs');
 const EventEmitter = require('events');
-=======
 // const EventEmitter = require('events');
->>>>>>> 3df4130195b1934da41c98efdadfa6378a5b8ff6
+
 const fetch = require('node-fetch');
 const iconv = require('iconv-lite');
 
 
-<<<<<<< HEAD
+
 const www = async function getData() {
   let autors = []
   const data = await fetch('http://lib.ru/RUFANT/')
@@ -23,7 +21,7 @@ const www = async function getData() {
 }
 console.log(www())
 // getData()
-=======
+
 async function getPageData() {
 
 
@@ -56,4 +54,3 @@ getPageData()
 //         return new ReadlineInterface(input)
 //     }
 // }
->>>>>>> 3df4130195b1934da41c98efdadfa6378a5b8ff6

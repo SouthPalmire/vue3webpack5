@@ -11,6 +11,12 @@ class ReadlineInterface extends EventEmitter {
     }
 }
 
+// const readline = {
+//     createInterface({ input }) {
+//         return new ReadlineInterface(input)
+//     }
+// };
+
 (async () => {
     const getStream = await fetch('http://lib.ru/RUFANT/')
         .then(response => response.body.pipe(iconv.decodeStream('koi8-ru')))

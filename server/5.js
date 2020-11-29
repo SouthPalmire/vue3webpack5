@@ -8,6 +8,7 @@ class ReadlineInterface extends EventEmitter {
         this.input = input
         const autors = input.split("\n")
         console.log(autors)
+        console.log(typeof autors)
     }
 }
 

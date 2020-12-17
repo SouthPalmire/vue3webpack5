@@ -16,17 +16,17 @@ class ReadlineInterface extends EventEmitter {
                         this.emit('line', brokenString + element)
                     } 
                     else { 
-                        this.emit('line', element) 
+                        this.emit('line', element)
                     }
                 })
             }
             else {
                 brokenString += chunk
             }
-            this.emit('line', brokenString)
         })
 
         .on('end', () => {
+            this.emit('line', brokenString)
             this.emit('close')
         })
     }

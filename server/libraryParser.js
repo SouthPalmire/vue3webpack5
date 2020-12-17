@@ -7,9 +7,8 @@ class ReadlineInterface extends EventEmitter {
         super()
         let brokenString
         input.on('data', (chunk) => {
-            const bufferToString = chunk.toString()
-            if (bufferToString.indexOf('\n') !== -1) {
-                bufferToString.split('\n').forEach((element, index, array) => {
+            if (chunk.indexOf('\n') !== -1) {
+                chunk.split('\n').forEach((element, index, array) => {
                     if (index === array.length -1) {
                         brokenString = element
                     } 
@@ -20,10 +19,13 @@ class ReadlineInterface extends EventEmitter {
                         this.emit('line', element) 
                     }
                 })
-                // this.emit('line', brokenString)
             }
+            else {
+                brokenString += chunk
+            }
+            this.emit('line', brokenString)
         })
-        
+
         .on('end', () => {
             this.emit('close')
         })

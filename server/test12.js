@@ -1,4 +1,2 @@
-setTimeout(function() {
-    console.log('First');
-    }, 3000);
- console.log('Second');
+const textUrl = document.location.href.toString()
+console.log(textUrl);

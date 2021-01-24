@@ -4,8 +4,8 @@ const app = express();
 app.get('/random*', (req, res) => {
 
   const randomNumber = () => {
-    const min = /(?<=min=).*?(?=&max)/.exec(req.url);
-    const max = /(?<=max=).*/.exec(req.url);
+    const min = req.query.min;
+    const max = req.query.max;
     return (Math.floor(Math.random() * (max - min + 1)) + min)*1;
   }
 

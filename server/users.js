@@ -3,12 +3,12 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-const urlencodedParser = bodyParser.urlencoded({extended: false});
+const urlPars = bodyParser.urlencoded({extended: false});
  
-app.get("/register", urlencodedParser, function (request, response) {
+app.get("/register", urlPars, function (request, response) {
     response.sendFile(__dirname + "/register.html");
 });
-app.post("/register", urlencodedParser, function (request, response) {
+app.post("/register", urlPars, function (request, response) {
     if(!request.body) return response.sendStatus(400);
 
     if(request.body.firstname ==='') response.send('please enter your firstname');
@@ -26,11 +26,11 @@ app.post("/register", urlencodedParser, function (request, response) {
     if(request.body.date_of_birth === '') response.send('plese enter your date of birth');
 
     console.log(request.body);
-    response.send(`${request.body.firstname} - ${request.body.lastname} - ${request.body.email}`);
+    response.send(JSON.stringify(request.body));
 });
 
 app.get("/", function(request, response){
-    response.send("DB");
+    response.send('DB');
 });
   
 app.listen(1337, () => {

@@ -13,6 +13,7 @@
     "core-js": "^3.6.4",
     "express": "^4.17.1",
     "iconv-lite": "^0.6.2",
+    "mysql": "^2.18.1",
     "node-fetch": "^2.6.0",
     "vue": "^2.6.11",
     "vue-markdown": "^2.2.4",

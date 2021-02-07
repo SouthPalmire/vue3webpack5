@@ -3,12 +3,12 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-const urlPars = bodyParser.urlencoded({extended: false});
+const urlencodedParser = bodyParser.urlencoded({extended: false});
  
-app.get("/register", urlPars, function (request, response) {
+app.get("/register", urlencodedParser, function (request, response) {
     response.sendFile(__dirname + "/register.html");
 });
-app.post("/register", urlPars, function (request, response) {
+app.post("/register", urlencodedParser, function (request, response) {
     if(!request.body) return response.sendStatus(400);
 
     if(request.body.firstname ==='') response.send('please enter your firstname');

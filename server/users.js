@@ -1,5 +1,22 @@
 const express = require('express');
 const bodyParser = require("body-parser");
+const mysql = require('mysql');
+
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : '5399',
+    database : 'people'
+});
+
+connection.connect((err) => {
+    if(err) {
+        console.log(err);
+        return err;
+    } else {
+        console.log('ok')
+    }
+})
 
 const app = express();
 
@@ -29,8 +46,17 @@ app.post("/register", urlencodedParser, function (request, response) {
     response.send(JSON.stringify(request.body));
 });
 
+const wer = 'SELECT * FROM someone';
+
+const qwe = connection.query(wer, (err, result) => {
+    console.log(err);
+    console.log(result);
+    return result;
+});
+
+
 app.get("/", function(request, response){
-    response.send('DB');
+    response.send(`${qwe}`);
 });
   
 app.listen(1337, () => {

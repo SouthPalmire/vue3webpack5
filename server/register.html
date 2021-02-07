@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Регистрация</title>
+    <title>registration</title>
     <meta charset="utf-8" />
 </head>
 <body>
-    <h1>Введите данные</h1>
+    <h1>registration</h1>
     <form action="/register" method="post">
-        <label>Имя</label><br>
-        <input type="text" name="userName" /><br><br>
-        <label>Возраст</label><br>
-        <input type="number" name="userAge" /><br><br>
-        <input type="submit" value="Отправить" />
+        <label>Firstname</label><br>
+        <input type="text" name="firstname" /><br><br>
+
+        <label>Lastname</label><br>
+        <input type="text" name="lastname" /><br><br>
+
+        <label>password</label><br>
+        <input type="text" name="password" /><br><br>
+
+        <label>confirm password</label><br>
+        <input type="text" name="confirm_password" /><br><br>
+
+        <label>e-mail</label><br>
+        <input type="text" name="email" /><br><br>
+
+        <label>date of birth</label><br>
+        <input type="number" name="date_of_birth" /><br><br>
+        <input type="submit" value="send" />
     </form>
 </body>
 </html>

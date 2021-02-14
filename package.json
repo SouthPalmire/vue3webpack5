@@ -16,6 +16,8 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "node-fetch": "^2.6.0",
+    "sha1": "^1.1.1",
+    "unix-timestamp": "^0.2.0",
     "vue": "^2.6.11",
     "vue-markdown": "^2.2.4",
     "vue-moment": "^4.1.0",

@@ -10,7 +10,7 @@ const urlencodedParser = bodyParser.urlencoded({extended: false});
 const connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    passwsord : '5399',
+    password : '5399',
     database : 'testDB'
 });
 
@@ -51,7 +51,7 @@ app.post("/register", urlencodedParser, function (request, response) {
         console.log('please enter your e-mail');
     }
 
-    if (request.body.email.indexOf('@') === -1) {
+    if (!/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(request.body.email)) {
         response.send('wrong e-mail');
         console.log('wrong e-mail');
     }

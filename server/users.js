@@ -7,12 +7,17 @@ const app = express();
 
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '5399',
+    passwsord : '5399',
     database : 'testDB'
 });
+
+connection.connect((err) => {
+    if(err) console.log(err);
+    else console.log('sql connection')
+})
 
 app.get("/register", urlencodedParser, function (request, response) {
     response.sendFile(__dirname + "/register.html");

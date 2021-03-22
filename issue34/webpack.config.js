@@ -9,9 +9,11 @@ module.exports = {
       filename: 'build.js'
    },
    module: {
+      // mode: 'development',
       rules: [
          {
             test: /\.vue$/,
+            loader: 'vue-loader'
          },
          {
             test: /\.css$/,

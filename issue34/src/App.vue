@@ -1,6 +1,8 @@
 <template>
    <div id="text">
-      {{ text }}
+      <input v-model="getText" type="text">
+      <hr/>
+      {{ getText }}
    </div>
 </template>
 
@@ -9,7 +11,7 @@ export default {
    name: 'app',
    data() {
       return {
-         text: 'fffffffffff'
+         getText: ''
       }
    }
 }

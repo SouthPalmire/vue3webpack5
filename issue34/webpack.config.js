@@ -2,10 +2,10 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-   entry: path.join(__dirname, 'public', 'app.js'),
+   entry: path.join(__dirname, 'public', 'main.js'),
    output: {
-      path: path.join(__dirname, 'dist'),
-      publicPath: '/dist/',
+      path: path.join(__dirname, 'public'),
+      publicPath: '/public/',
       filename: 'app.js'
    },
    module: {

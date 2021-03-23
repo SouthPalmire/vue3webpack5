@@ -25,7 +25,7 @@ export default {
    },
    methods: {
       fetchUser() {
-         fetch('http://127.0.0.1:1337/api')
+         fetch('http://127.0.0.1:1337/api', { 'mode': 'no-cors' })
           .then(response => response.json())
           .then(data => this.massive = data)
       }

@@ -9,9 +9,9 @@ const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 const connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'root',
-    password : '5399',
-    database : 'testDB'
+    user     : 'someone',
+    password : '53995399',
+    database : 'users'
 });
 
 connection.connect((err) => {

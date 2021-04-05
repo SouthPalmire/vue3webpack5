@@ -64,7 +64,7 @@
           .then(data => this.issue = data)
         fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/' + routeID + '/comments')
           .then(response => response.json())
-          .then(data => this.comments = data)
+          .then(data => this.comments = data.map())
       },
       createComment() {
         const { target } = this;
@@ -74,7 +74,7 @@
             'Authorization': 'Bearer '
           },
           body: JSON.stringify({ body: target }),
-        };
+        }; 
         fetch('https://api.github.com/repos/SouthPalmire/sandbox/issues/20/comments', requestOptionsPush)
         .then(response => response.json())
         .then(data => this.comments.push(data))

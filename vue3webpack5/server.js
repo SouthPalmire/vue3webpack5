@@ -2,9 +2,8 @@
 const express = require('express')
 const PORT = 1337
 const mysql = require('mysql2')
-// const bcrypt = require('bcryptjs')
-// const salt = bcrypt.genSaltSync(33)
-const sha1 = require('sha1')
+const crypto = require('crypto')
+const salt = 'abc'
 const app = express()
 
 const connection = mysql.createConnection({
@@ -38,9 +37,7 @@ app.post('/api*', (req, res) => {
     const { login, registration } = req.query
 
     if (login) {
-        // const checkPassword = bcrypt.hashSync(password, salt)
-        const checkPassword = sha1(password)
-
+        const checkPassword = crypto.createHmac('sha1', salt).update(password).digest('hex')
 
         if (password === '') {
             res.send('please enter your password')
@@ -64,8 +61,7 @@ app.post('/api*', (req, res) => {
     }
 
     if (registration) {
-        // const registrationPasswordCreate = bcrypt.hashSync(passwordCreate, salt)
-        const registrationPasswordCreate = sha1(passwordCreate)
+        const registrationPasswordCreate = crypto.createHmac('sha1', salt).update(passwordCreate).digest('hex')
         const createBirthDate = date_of_birth.split('-').join('')
 
         if(firstname ==='') {

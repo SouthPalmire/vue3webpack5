@@ -68,11 +68,16 @@ app.post('/api*', (req, res) => {
                         console.log(err)
                     } else {
                         connection.query("SELECT firstname, lastname, email, date_of_birth FROM user WHERE `email` = ? AND `password` = ?", [email, registrationPasswordCreate], function(err, data) {
-                        if(err) console.log(err)
-                        res.status(201).json(data)
-                        console.log('creating user')
-                    })}
-                });
+                            if(err) {
+                                res.status(520).json('something wrong, try again')
+                                console.log(err)
+                            } else {
+                                res.status(201).json(data)
+                                console.log('creating user')
+                            }
+                        })
+                    }
+                })
             }
         })
     }

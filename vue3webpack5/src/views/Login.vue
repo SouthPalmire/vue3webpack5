@@ -13,6 +13,10 @@
       <button @click.prevent="fetchUserData">log in</button>
 
       <button @click.prevent="this.$router.push('register')">registration</button>
+      
+      <ul v-show="errors" style="color: red">
+         <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+      </ul>
    </div>
 </template>
 
@@ -23,11 +27,12 @@ export default {
       return {
          email: '',
          password: '',
-         fetchData: ''
+         errors: []
       }
    },  
    methods: {
       async fetchUserData() {
+         this.errors = []
          const { email, password } = this
          const requestOptions = {
             method: 'POST',
@@ -38,7 +43,7 @@ export default {
          }
          const fetchLogin = await fetch('http://127.0.0.1:1337/api/?login=true', requestOptions)
 
-         if (fetchLogin.status === 202) {
+         if (fetchLogin.ok) {
             let json = await fetchLogin.json()
             this.$router.push({ 
                name: 'profile', 
@@ -49,10 +54,11 @@ export default {
                   date_of_birth: json[0].date_of_birth
                } 
             })
+         } else {
+            this.errors.push(await fetchLogin.json())
+            this.email = ''
+            this.password = ''
          }
-
-         this.email = ''
-         this.password = ''
       }
    }
 }

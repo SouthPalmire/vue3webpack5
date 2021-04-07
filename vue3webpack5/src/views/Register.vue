@@ -27,6 +27,10 @@
       </label><br><br>
 
       <button @click.prevent="fetchUserData">register</button>
+
+      <ul v-show="errors" style="color: red">
+         <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+      </ul>
    </div>
 </template>
 
@@ -41,7 +45,7 @@ export default {
          confirmPasswordCreate: '',
          email: '',
          date_of_birth: '',
-         fetchData: ''
+         errors: []
       }
    },
    methods: {
@@ -52,11 +56,11 @@ export default {
             headers: {
                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ firstname, lastname, passwordCreate, confirmPasswordCreate, email, date_of_birth })
+            body: JSON.stringify({ firstname, lastname, passwordCreate, email, date_of_birth })
          }
          const fetchRegister = await fetch('http://127.0.0.1:1337/api/?registration=true', requestOptions)
 
-         if (fetchRegister.status === 201) {
+         if (fetchRegister.ok) {
             let json = await fetchRegister.json()
             this.$router.push({ 
                name: 'profile', 
@@ -67,14 +71,15 @@ export default {
                   date_of_birth: json[0].date_of_birth
                } 
             })
+         } else {
+            this.errors.push(await fetchRegister.json())
+            this.firstname = ''
+            this.lastname = ''
+            this.email = ''
+            this.passwordCreate = ''
+            this.confirmPasswordCreate = ''
+            this.date_of_birth = ''
          }
-
-         this.firstname = ''
-         this.lastname = ''
-         this.email = ''
-         this.passwordCreate = ''
-         this.confirmPasswordCreate = ''
-         this.date_of_birth = ''
       }
    }
 }

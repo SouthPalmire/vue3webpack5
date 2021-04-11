@@ -2,41 +2,99 @@
    <div>
       <h1>registration</h1>
 
-      <label>Firstname<br>
-         <input v-model="firstname" type="text" name="firstname" />
-      </label><br><br>
+      <form @submit.prevent="fetchUserData">
+         <label>Firstname<br>
+            <input 
+               v-model="firstname"
+               @blur="v$.firstname.$touch()"
+               type="text" 
+               name="firstname" 
+            />
+         </label><br><br>
 
-      <label>Lastname<br>
-         <input v-model="lastname" type="text"/>
-      </label><br><br>
+         <label>Lastname<br>
+            <input 
+               v-model="lastname"
+               @blur="v$.lastname.$touch()"
+               type="text"
+               name="lastname"
+            />
+         </label><br><br>
 
-      <label>password<br>
-         <input v-model="passwordCreate" type="password"/>
-      </label><br><br>
+         <label>password<br>
+            <input 
+               v-model="passwordCreate"
+               @blur="v$.passwordCreate.$touch()"
+               type="password"
+            />
+         </label><br><br>
 
-      <label>confirm password<br>
-         <input v-model="confirmPasswordCreate" type="password"/>
-      </label><br><br>
+         <label>confirm password<br>
+            <input 
+               v-model="confirmPasswordCreate"
+               @blur="v$.confirmPasswordCreate.$touch()"
+               type="password"
+            />
+         </label><br><br>
 
-      <label>e-mail<br>
-         <input v-model="email" name="email" type="email"/>
-      </label><br><br>
+         <label>e-mail<br>
+            <input 
+               v-model="email" 
+               @blur="v$.email.$touch()"
+               name="email" 
+               type="email"
+            />
+         </label><br><br>
 
-      <label>date of birth<br>
-         <input v-model="date_of_birth" type="date"/>
-      </label><br><br>
+         <label>date of birth<br>
+            <input 
+               v-model="date_of_birth"
+               @blur="v$.date_of_birth.$touch()"
+               type="date"
+            />
+         </label><br><br>
 
-      <button @click.prevent="fetchUserData">register</button>
+         <button type="submit">
+            register
+         </button>
+      </form>
 
-      <ul v-show="errors" style="color: red">
-         <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-      </ul>
+      <p v-show="errors">{{ errors }}</p>
    </div>
 </template>
 
 <script>
+import useVuelidate from '@vuelidate/core'
+import { required, email } from '@vuelidate/validators'
+
 export default {
    name: 'Register',
+   setup() {
+       return { v$: useVuelidate() }
+   },
+   validations() {
+      return {
+         firstname: {
+            required,
+            email
+         },
+         lastname: {
+            required
+         },
+         passwordCreate: {
+            required
+         },
+         confirmPasswordCreate: {
+            required
+         },
+         email: {
+            required
+         },
+         date_of_birth: {
+            required
+         }
+      }
+   },
    data() {
       return {
          firstname: '',
@@ -45,7 +103,7 @@ export default {
          confirmPasswordCreate: '',
          email: '',
          date_of_birth: '',
-         errors: []
+         errors: ''
       }
    },
    methods: {
@@ -72,7 +130,7 @@ export default {
                } 
             })
          } else {
-            this.errors.push(await fetchRegister.json())
+            this.errors = await fetchRegister.json()
             this.firstname = ''
             this.lastname = ''
             this.email = ''

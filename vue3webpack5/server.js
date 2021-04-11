@@ -32,7 +32,7 @@ app.post('/api*', (req, res) => {
     const { login, registration } = req.query
 
     if (login) {
-        const checkPassword = crypto.createHmac('sha1', salt).update(password).digest('hex')
+        const checkPassword = crypto.createHash('sha1', salt).update(password).digest('hex')
 
         connection.query("SELECT firstname, lastname, email, date_of_birth  FROM user WHERE `email` = ? AND `password` = ?", [email, checkPassword], function(err, data) {
             if (err) {
@@ -50,7 +50,7 @@ app.post('/api*', (req, res) => {
     }
 
     if (registration) {
-        const registrationPasswordCreate = crypto.createHmac('sha1', salt).update(passwordCreate).digest('hex')
+        const registrationPasswordCreate = crypto.createHash('sha1', salt).update(passwordCreate).digest('hex')
         const createBirthDate = date_of_birth.split('-').join('')
 
         connection.query("SELECT * FROM user WHERE `email` = ?", [email], function(err, data) {

@@ -8,6 +8,8 @@
     "start": "nodemon server.js"
   },
   "dependencies": {
+    "@vuelidate/core": "^2.0.0-alpha.15",
+    "@vuelidate/validators": "^2.0.0-alpha.13",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",

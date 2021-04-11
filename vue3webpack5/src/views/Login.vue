@@ -2,37 +2,71 @@
    <div>
       <h1>login</h1>
 
-      <label>e-mail<br>
-         <input v-model="email" type="email" name="email" placeholder="enter your email"/>
-      </label><br><br>
+      <form @submit.prevent="fetchUserData">
+         <label>e-mail<br>
+            <input 
+               v-model="email"
+               @blur="v$.email.$touch()"
+               type="email" 
+               name="email" 
+               placeholder="enter your email"
+            />
+         </label><br><br>
 
-      <label>password<br>
-         <input v-model="password" type="password" name="password" placeholder="enter your password"/>
-      </label><br><br>
+         <label>password<br>
+            <input 
+               v-model="password"
+               @blur="v$.password.$touch()"
+               type="password" 
+               placeholder="enter your password"
+            />
+         </label><br><br>
 
-      <button @click.prevent="fetchUserData">log in</button>
+         <button type="submit" :disabled="v$.email.$invalid || v$.password.$invalid">
+            log in
+         </button>
 
-      <button @click.prevent="this.$router.push('register')">registration</button>
-      
-      <ul v-show="errors" style="color: red">
-         <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-      </ul>
+         <button @click.prevent="this.$router.push('register')">
+            registration
+         </button>
+      </form>
+
+      <p v-show="v$.email.$invalid && v$.email.$dirty && !this.errors">please enter your email</p>
+      <p v-show="v$.password.$invalid && v$.password.$dirty && !this.errors">please enter your password</p>
+      <p v-show="errors">{{ errors }}</p>
    </div>
 </template>
 
 <script>
+import useVuelidate from '@vuelidate/core'
+import { required, email } from '@vuelidate/validators'
+
 export default {
    name: 'Login',
+   setup() {
+       return { v$: useVuelidate() }
+   },
+   validations() {
+      return {
+         email: {
+            required,
+            email
+         },
+         password: {
+            required
+         }
+      }
+   },
    data() {
       return {
          email: '',
          password: '',
-         errors: []
+         errors: ''
       }
-   },  
+   },
    methods: {
       async fetchUserData() {
-         this.errors = []
+         this.errors = ''
          const { email, password } = this
          const requestOptions = {
             method: 'POST',
@@ -55,7 +89,7 @@ export default {
                } 
             })
          } else {
-            this.errors.push(await fetchLogin.json())
+            this.errors = await fetchLogin.json()
             this.email = ''
             this.password = ''
          }
@@ -63,3 +97,4 @@ export default {
    }
 }
 </script>
+

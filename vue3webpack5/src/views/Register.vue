@@ -11,6 +11,9 @@
                name="firstname" 
             />
          </label><br><br>
+         <p v-show="v$.firstname.$invalid && v$.firstname.$dirty && !this.errors">
+            please enter your firstname
+         </p>
 
          <label>Lastname<br>
             <input 
@@ -20,6 +23,9 @@
                name="lastname"
             />
          </label><br><br>
+         <p v-show="v$.lastname.$invalid && v$.lastname.$dirty && !this.errors">
+            please enter your lastname
+         </p>
 
          <label>password<br>
             <input 
@@ -28,6 +34,9 @@
                type="password"
             />
          </label><br><br>
+         <p v-show="v$.passwordCreate.$invalid && v$.passwordCreate.$dirty && !this.errors">
+            please enter your password
+         </p>
 
          <label>confirm password<br>
             <input 
@@ -36,6 +45,9 @@
                type="password"
             />
          </label><br><br>
+         <p v-show="v$.confirmPasswordCreate.$invalid && v$.confirmPasswordCreate.$dirty && !this.errors">
+            please confirm your password
+         </p>
 
          <label>e-mail<br>
             <input 
@@ -45,6 +57,10 @@
                type="email"
             />
          </label><br><br>
+         <p v-show="v$.email.$invalid && v$.email.$dirty && !this.errors">
+            please enter your email
+         </p>
+
 
          <label>date of birth<br>
             <input 
@@ -53,8 +69,11 @@
                type="date"
             />
          </label><br><br>
+         <p v-show="v$.date_of_birth.$invalid && v$.date_of_birth.$dirty && !this.errors">
+            please enter date of birth
+         </p>
 
-         <button type="submit">
+         <button type="submit" :disabled="btnDisable">
             register
          </button>
       </form>
@@ -65,7 +84,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import { required, email } from '@vuelidate/validators'
+import { required, email, alpha, sameAs } from '@vuelidate/validators'
 
 export default {
    name: 'Register',
@@ -76,19 +95,21 @@ export default {
       return {
          firstname: {
             required,
-            email
+            alpha
          },
          lastname: {
-            required
+            required,
+            alpha
          },
          passwordCreate: {
             required
          },
          confirmPasswordCreate: {
-            required
+            sameAs: sameAs(this.passwordCreate)
          },
          email: {
-            required
+            required,
+            email
          },
          date_of_birth: {
             required
@@ -104,6 +125,16 @@ export default {
          email: '',
          date_of_birth: '',
          errors: ''
+      }
+   },
+   computed: {
+      btnDisable() {
+         return this.v$.firstname.$invalid ||
+                this.v$.lastname.$invalid ||
+                this.v$.passwordCreate.$invalid ||
+                this.v$.confirmPasswordCreate.$invalid ||
+                this.v$.email.$invalid ||
+                this.v$.date_of_birth.$invalid
       }
    },
    methods: {

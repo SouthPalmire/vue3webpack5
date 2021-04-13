@@ -97,9 +97,3 @@ export default {
    }
 }
 </script>
-
-<style>
-.#ema {
-   color: red;
-}
-</style>

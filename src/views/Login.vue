@@ -11,6 +11,7 @@
                name="email" 
                placeholder="enter your email"
             />
+         <p v-show="v$.email.$invalid && v$.email.$dirty && !this.errors">please enter your email</p>
          </label><br><br>
 
          <label>password<br>
@@ -20,6 +21,7 @@
                type="password" 
                placeholder="enter your password"
             />
+         <p v-show="v$.password.$invalid && v$.password.$dirty && !this.errors">please enter your password</p>
          </label><br><br>
 
          <button type="submit" :disabled="v$.email.$invalid || v$.password.$invalid">
@@ -31,8 +33,6 @@
          </button>
       </form>
 
-      <p v-show="v$.email.$invalid && v$.email.$dirty && !this.errors">please enter your email</p>
-      <p v-show="v$.password.$invalid && v$.password.$dirty && !this.errors">please enter your password</p>
       <p v-show="errors">{{ errors }}</p>
    </div>
 </template>
@@ -98,3 +98,8 @@ export default {
 }
 </script>
 
+<style>
+.#ema {
+   color: red;
+}
+</style>

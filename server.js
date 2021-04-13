@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
 
 app.use(express.json());
 
-app.use(express.static(__dirname + '/dist'))
+// app.use(express.static(__dirname + '/dist'))
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
@@ -23,9 +23,9 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get("/", function (request, response) {
-    response.sendFile(__dirname + '/dist/index.html')
-});
+// app.get("/", function (request, response) {
+//     response.sendFile(__dirname + '/dist/index.html')
+// });
 
 app.post('/api*', (req, res) => {    
     const { email, password, firstname, lastname, passwordCreate, date_of_birth } = req.body

@@ -1,25 +1,8 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div id="nav">
+    <router-view/>
   </div>
 </template>
-
-<script>
-//import IssuesTable from './components/IssuesTable.vue'
-//import SmartInput from './components/SmartInput.vue'
-//import InteractivePalette from './components/InteractivePalette.vue'
-//import GeneratorSka from './components/GeneratorSka.vue'
-
-//export default {
-//  name: 'App',
-//  components: {
-//   IssuesTable,
-//    SmartInput,
-//    GeneratorSka,
-//    InteractivePalette,
-//  }
-//}
-</script>
 
 <style>
 #app {
@@ -27,5 +10,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+p {
+  color: red;
 }
 </style>

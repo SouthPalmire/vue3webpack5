@@ -75,7 +75,7 @@ export default {
             },
             body: JSON.stringify({ email, password })
          }
-         const fetchLogin = await fetch('http://127.0.0.1:1337/api/?login=true', requestOptions)
+         const fetchLogin = await fetch('http://127.0.0.1:1337/api/login', requestOptions)
 
          if (fetchLogin.ok) {
             let json = await fetchLogin.json()

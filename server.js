@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
 
 app.use(express.json());
 
-// app.use(express.static(__dirname + '/dist'))
+app.use(express.static(__dirname + '/dist'))
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
@@ -23,64 +23,61 @@ app.use((req, res, next) => {
     next();
 })
 
-// app.get("/", function (request, response) {
-//     response.sendFile(__dirname + '/dist/index.html')
-// });
+app.get("/", function (request, response) {
+    response.sendFile(__dirname + '/dist/index.html')
+});
 
-app.post('/api*', (req, res) => {    
-    const { email, password, firstname, lastname, passwordCreate, date_of_birth } = req.body
-    const { login, registration } = req.query
+app.post('/api/login', (req, res) => {
+    const { email, password } = req.body
+    const checkPassword = crypto.createHash('sha1', salt).update(password).digest('hex')
 
-    if (login) {
-        const checkPassword = crypto.createHash('sha1', salt).update(password).digest('hex')
+    connection.query("SELECT firstname, lastname, email, date_of_birth  FROM user WHERE `email` = ? AND `password` = ?", [email, checkPassword], function(err, data) {
+        if (err) {
+            res.status(520).json('something wrong, try again')
+            console.log(err)
+        }
+        else if(data.length) {
+            res.status(202).json(data)
+            console.log('send response')
+        } else {
+            res.status(404).json('wrong email or password')
+            console.log('wrong email or password')
+        }
+    })
+})
 
-        connection.query("SELECT firstname, lastname, email, date_of_birth  FROM user WHERE `email` = ? AND `password` = ?", [email, checkPassword], function(err, data) {
-            if (err) {
-                res.status(520).json('something wrong, try again')
-                console.log(err)
-            }
-            else if(data.length) {
-                res.status(202).json(data)
-                console.log('send response')
-            } else {
-                res.status(404).json('wrong email or password')
-                console.log('wrong email or password')
-            }
-        })
-    }
+app.post('/api/register', (req, res) => {
+    const { email, firstname, lastname, passwordCreate, date_of_birth } = req.body
+    const registrationPasswordCreate = crypto.createHash('sha1', salt).update(passwordCreate).digest('hex')
+    const createBirthDate = date_of_birth.split('-').join('')
 
-    if (registration) {
-        const registrationPasswordCreate = crypto.createHash('sha1', salt).update(passwordCreate).digest('hex')
-        const createBirthDate = date_of_birth.split('-').join('')
-
-        connection.query("SELECT * FROM user WHERE `email` = ?", [email], function(err, data) {
-            if (err) {
-                res.status(520).json('something wrong, try again')
-                console.log(err)
-            }
-            else if(data.length) {
-                res.status(400).json('email already exist')
-                console.log('email already exist')
-            } else {
-                connection.query("INSERT INTO user (firstname, lastname, password, email, date_of_birth, registration_date) VALUES (?,?,?,?,?,UNIX_TIMESTAMP())", [firstname, lastname, registrationPasswordCreate, email, createBirthDate], function(err, data) {
-                    if (err) {
-                        res.status(520).json('something wrong, try again')
-                        console.log(err)
-                    } else {
-                        connection.query("SELECT firstname, lastname, email, date_of_birth FROM user WHERE `email` = ? AND `password` = ?", [email, registrationPasswordCreate], function(err, data) {
-                            if(err) {
-                                res.status(520).json('something wrong, try again')
-                                console.log(err)
-                            } else {
-                                res.status(201).json(data)
-                                console.log('creating user')
-                            }
-                        })
-                    }
-                })
-            }
-        })
-    }
+    connection.query("SELECT * FROM user WHERE `email` = ?", [email], function(err, data) {
+        if (err) {
+            res.status(520).json('something wrong, try again')
+            console.log(err)
+        }
+        else if(data.length) {
+            res.status(400).json('email already exist')
+            console.log('email already exist')
+        } else {
+            connection.query("INSERT INTO user (firstname, lastname, password, email, date_of_birth, registration_date) VALUES (?,?,?,?,?,UNIX_TIMESTAMP())", [firstname, lastname, registrationPasswordCreate, email, createBirthDate], function(err, data) {
+                if (err) {
+                    res.status(520).json('something wrong, try again')
+                    console.log(err)
+                } else {
+                    connection.query("SELECT firstname, lastname, email, date_of_birth FROM user WHERE `email` = ? AND `password` = ?", [email, registrationPasswordCreate], function(err, data) {
+                        if(err) {
+                            res.status(520).json('something wrong, try again')
+                            console.log(err)
+                        } else {
+                            res.status(201).json(data)
+                            console.log('creating user')
+                        }
+                    })
+                }
+            })
+        }
+    })
 })
 
 const startServer = () => {

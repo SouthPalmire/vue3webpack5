@@ -147,7 +147,7 @@ export default {
             },
             body: JSON.stringify({ firstname, lastname, passwordCreate, email, date_of_birth })
          }
-         const fetchRegister = await fetch('http://127.0.0.1:1337/api/?registration=true', requestOptions)
+         const fetchRegister = await fetch('http://127.0.0.1:1337/api/register', requestOptions)
 
          if (fetchRegister.ok) {
             let json = await fetchRegister.json()

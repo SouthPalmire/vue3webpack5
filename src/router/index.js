@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
+import GuestBook from '../views/GuestBook.vue'
 
 const routes = [
   { 
@@ -23,6 +24,11 @@ const routes = [
     name: 'profile',
     path: '/profile/:firstname?/:lastname?/:email?/:date_of_birth?', 
     component: Profile,
+  },
+  { 
+    name: 'guestbook',
+    path: '/guestbook/:id?', 
+    component: GuestBook,
   }
 ]
 

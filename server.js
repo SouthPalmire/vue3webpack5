@@ -27,11 +27,31 @@ app.get("/", function (request, response) {
     response.sendFile(__dirname + '/dist/index.html')
 });
 
+app.get('/api/guestbook', (req, res) => {
+    connection.query("SELECT firstname, lastname, theme, date_time, text  FROM user JOIN gb ON `id` = `user_id`", function(err, data) {
+        res.status(200).json(data)
+        console.log('send response')
+    })
+})
+
+app.post('/api/guestbook', (req, res) => {
+    const { userId, userTheme, userText } = req.body
+
+    connection.query("INSERT INTO gb (user_id, theme, date_time, text) VALUES (?,?,now(),?)", [ userId, userTheme, userText ], function(err, data) {
+        if (err) {
+            res.status(520).json('something wrong, try again')
+            console.log(err)
+        } else {
+            res.status(201).json(data)
+        }
+    })
+})
+
 app.post('/api/login', (req, res) => {
     const { email, password } = req.body
     const checkPassword = crypto.createHash('sha1', salt).update(password).digest('hex')
 
-    connection.query("SELECT firstname, lastname, email, date_of_birth  FROM user WHERE `email` = ? AND `password` = ?", [email, checkPassword], function(err, data) {
+    connection.query("SELECT id, firstname, lastname, email, date_of_birth  FROM user WHERE `email` = ? AND `password` = ?", [email, checkPassword], function(err, data) {
         if (err) {
             res.status(520).json('something wrong, try again')
             console.log(err)
@@ -65,7 +85,7 @@ app.post('/api/register', (req, res) => {
                     res.status(520).json('something wrong, try again')
                     console.log(err)
                 } else {
-                    connection.query("SELECT firstname, lastname, email, date_of_birth FROM user WHERE `email` = ? AND `password` = ?", [email, registrationPasswordCreate], function(err, data) {
+                    connection.query("SELECT id, firstname, lastname, email, date_of_birth FROM user WHERE `email` = ? AND `password` = ?", [email, registrationPasswordCreate], function(err, data) {
                         if(err) {
                             res.status(520).json('something wrong, try again')
                             console.log(err)

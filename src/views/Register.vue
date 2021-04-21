@@ -154,6 +154,7 @@ export default {
             this.$router.push({ 
                name: 'profile', 
                params: { 
+                  id: json[0].id,
                   firstname: json[0].firstname,
                   lastname: json[0].lastname,
                   email: json[0].email,

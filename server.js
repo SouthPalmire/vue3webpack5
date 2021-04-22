@@ -29,8 +29,13 @@ app.get("/", function (request, response) {
 
 app.get('/api/guestbook', (req, res) => {
     connection.query("SELECT firstname, lastname, theme, date_time, text  FROM user JOIN gb ON `id` = `user_id`", function(err, data) {
-        res.status(200).json(data)
-        console.log('send response')
+        if (err) {
+            res.status(520).json('something wrong, try again')
+            console.log(err)
+        } else {
+            res.status(200).json(data)
+            console.log('send response')
+        }
     })
 })
 
@@ -43,6 +48,7 @@ app.post('/api/guestbook', (req, res) => {
             console.log(err)
         } else {
             res.status(201).json(data)
+            console.log('send response')
         }
     })
 })

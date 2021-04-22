@@ -10,20 +10,17 @@
 
          <p>date of birth:</p>{{ this.$route.params.date_of_birth }}<hr><br>
 
-         <button @click="guestbook">guestbook</button>
+         <button @click.prevent="guestbookRout">
+            guestbook
+         </button>
    </div>
 </template>
 
 <script>
 export default {
    name: 'Profile',
-   data() {
-      return{
-
-      }
-   },
    methods: {
-      guestbook() {
+      guestbookRout() {
          const id = this.$route.params.id
          this.$router.push({ 
             name: 'guestbook', 

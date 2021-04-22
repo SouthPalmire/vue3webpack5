@@ -4,7 +4,3 @@ CREATE TABLE IF NOT EXISTS gb (
     -> date_time datetime NOT NULL,
     -> text varchar(255) NOT NULL
 );
-
-
-mysql -u someone -p
-insert into gb values(1, 'some', now(), 'qwerty');

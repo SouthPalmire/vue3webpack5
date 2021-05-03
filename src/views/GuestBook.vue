@@ -1,29 +1,57 @@
 <template>
    <div>
-      <div v-for="( page, index ) in computedPage" :key="index">
+      <div v-for="( note, index ) in notes" :key="index">
          <div>
-            {{ page.firstname }} {{ page.lastname }}
-            {{ moment(page.date_time).format('DD.MM.YYYY [&nbsp;] HH:mm') }}
+            {{ note.firstname }} {{ note.lastname }}
+            {{ moment(note.date_time).format('DD.MM.YYYY [&nbsp;] HH:mm') }}
          </div>
          <div>
-            {{ page.theme }}
+            Theme: {{ note.theme }}
          </div>
          <div>
-            {{ page.text }}
+            {{ note.text }}
          </div><hr>
+
+         <a href="#" @click.prevent="fetchComments(note.id_gb)" v-if="note.last_comment_time && note.number_of_comments">
+            {{ note.number_of_comments }} comments, last created {{ moment(note.last_comment_time).fromNow() }} 
+         </a>
+         <a v-else>
+            no comments yet
+         </a><hr>
+             
+         <div v-if="comments[note.id_gb]">
+            <div v-if="filteredComments.length">
+               <div v-for="( comment, index ) in filteredComments" :key="index">
+                  <div v-for="( c, index ) in comment" :key="index">
+                     {{ moment(c.comment_date_time).fromNow() }}<br>
+                     {{ c.comment_text }}
+                  </div>
+               </div>
+            </div>
+
+            <div v-else class="spinner-border" role="status">
+               <span class="sr-only">Loading...</span>
+            </div>
+         </div>
+
+         
+         
+         <input v-model="commentText[index]" type="text" placeholder="enter comment">
+         <button @click="postUserComment(note.id_gb)" v-if="commentText[index]">send</button><hr>
       </div>
 
-      <button @click="pageNumber--" :disabled = "pageNumber == 0">
+      <button @click="prevPage" :disabled="offsetNotes == 0">
          previous
       </button>
-      <button @click="pageNumber++" :disabled = "pageNumber >= pageCount-1">
+
+      <button @click="nextPage" :disabled="notes.length < 3">
          next
       </button><hr>
 
-      <input type="text" v-model="userTheme">theme<br>
-      <input type="text" v-model="userText">text<br>
+      <input type="text" v-model="userTheme" placeholder="theme"><br>
+      <input type="text" v-model="userText" placeholder="text"><br>
 
-      <button @click.prevent="postUserComment">
+      <button @click.prevent="postUserNote" :disabled="userText && userTheme === ''">
          send comment
       </button>
    </div>
@@ -35,41 +63,49 @@ export default {
    name: 'GuestBook',
    data() {
       return {
+         notes: [],
          comments: [],
          userText: '',
          userTheme: '',
-         pageNumber: 0,
-         pageSize: 7
+         commentText: [],
+         offsetNotes: 0,
+         limitNotes: 3
       }
    },
 
    created() {
-      this.fetchComments()
+      this.fetchNotes()
       this.moment = moment
    },
 
-   computed: {
-      pageCount() {
-         const length = this.comments.length
-         const size = this.pageSize
-         return Math.ceil(length/size)
-      },
+   watch: {
+      offsetNotes(value) {
+         this.fetchNotes(value)
+      }
+   },
 
-      computedPage() {
-         const start = this.pageNumber * this.pageSize
-         const end = start + this.pageSize
-         return this.comments.slice(start, end)
+   computed: {
+      filteredComments() {
+         return this.comments.filter( element => element != null )
       }
    },
 
    methods: {
-      fetchComments() {
-         fetch('http://127.0.0.1:1337/api/guestbook')
+      fetchNotes(value) {
+         const { limitNotes, offsetNotes } = this
+         fetch(`http://127.0.0.1:1337/api/guestbook?limit=${limitNotes}&offset=${value || offsetNotes}`)
             .then(response => response.json())
-            .then(data => this.comments = data)
+            .then(data => this.notes = data)
       },
 
-      async postUserComment() {
+      fetchComments(id) {
+         this.comments = []
+         fetch(`http://127.0.0.1:1337/api/guestbook/comments?id=${id}`)
+            .then(response => response.json())
+            .then(data => this.comments[id] = data)
+      },
+
+      async postUserNote() {
          const userId = this.$route.params.id
          const { userText, userTheme } = this
          const requestOptions = {
@@ -81,10 +117,36 @@ export default {
          }
          const fetchGuestbook = await fetch('http://127.0.0.1:1337/api/guestbook', requestOptions)
          if (fetchGuestbook.ok) {
-            this.fetchComments()
+            this.fetchNotes()
             this.userText = ''
             this.userTheme = ''
          }
+      },
+
+      async postUserComment(id) {
+         const { commentText } = this
+         const filteredCommentText = commentText.filter( element => element != null )
+
+         const requestOptions = {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id, filteredCommentText })
+         }
+         const fetchGuestbook = await fetch('http://127.0.0.1:1337/api/guestbook/comments', requestOptions)
+         if (fetchGuestbook.ok) {
+            this.fetchNotes()
+            this.commentText = []
+         }
+      }, 
+
+      prevPage() {
+         this.offsetNotes = this.offsetNotes - this.limitNotes
+      },
+
+      nextPage() {
+         this.offsetNotes = this.offsetNotes + this.limitNotes
       }
    }
 }

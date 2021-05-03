@@ -1,6 +1,6 @@
 <template>
    <div>
-      <h1>Profile</h1> 
+      <h1>Profile {{ this.$route.params.id }}</h1> 
 
          <p>Firstname:</p>{{ this.$route.params.firstname }}<hr><br>
 

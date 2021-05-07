@@ -1,39 +1,49 @@
 <template>
-   <div>
-      <h1>login</h1>
+   <div class="login-body">
+      <div class="login">
 
-      <form @submit.prevent="fetchUserData">
-         <label>e-mail<br>
-            <input 
-               v-model="email"
-               @blur="v$.email.$touch()"
-               type="email" 
-               name="email" 
-               placeholder="enter your email"
-            />
-         <p v-show="v$.email.$invalid && v$.email.$dirty && !this.errors">please enter your email</p>
-         </label><br><br>
+         <h1>login</h1>
 
-         <label>password<br>
-            <input 
-               v-model="password"
-               @blur="v$.password.$touch()"
-               type="password" 
-               placeholder="enter your password"
-            />
-         <p v-show="v$.password.$invalid && v$.password.$dirty && !this.errors">please enter your password</p>
-         </label><br><br>
+         <form @submit.prevent="fetchUserData">
+            <label>e-mail<br>
+               <input 
+                  class="email-input"
+                  v-model="email"
+                  @blur="v$.email.$touch()"
+                  type="email" 
+                  name="email" 
+                  placeholder="enter your email"
+               />
+            <p v-show="v$.email.$invalid && v$.email.$dirty && !this.errors">please enter your email</p>
+            </label><br><br>
 
-         <button type="submit" :disabled="v$.email.$invalid || v$.password.$invalid">
-            log in
-         </button>
+            <label>password<br>
+               <input 
+                  class="password-input"
+                  v-model="password"
+                  @blur="v$.password.$touch()"
+                  type="password" 
+                  placeholder="enter your password"
+               />
+            <p v-show="v$.password.$invalid && v$.password.$dirty && !this.errors">please enter your password</p>
+            </label><br><br>
 
-         <button @click.prevent="this.$router.push('register')">
-            registration
-         </button>
-      </form>
+            <button 
+               class="login-btn"
+               type="submit" 
+               :disabled="v$.email.$invalid || v$.password.$invalid"
+            >
+               login
+            </button>
 
-      <p v-show="errors">{{ errors }}</p>
+            <button class="register-btn" @click.prevent="this.$router.push('register')">
+               registration
+            </button>
+         </form>
+
+         <p v-show="errors">{{ errors }}</p>
+
+      </div>
    </div>
 </template>
 
@@ -98,3 +108,28 @@ export default {
    }
 }
 </script>
+
+<style>
+.login-body {
+   background-color: rgb(196, 194, 194);
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   overflow: auto;
+}
+
+.login {
+   text-align: center;
+   width: 250px;
+   height: 270px;
+   background-color: grey;
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   margin: auto;
+}
+</style>

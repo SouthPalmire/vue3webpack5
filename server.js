@@ -29,7 +29,7 @@ app.get("/", function (request, response) {
 
 app.get('/api/guestbook/comments', (req, res) => {
     id = req.query.id
-    connection.query("SELECT * FROM gb_comments WHERE `gb_comment_id` = ?", [ id ], function(err, data) {
+    connection.query("SELECT comment_id, gb_comment_id, gb_user_id, comment_text, firstname, lastname FROM gb_comments JOIN user ON `gb_user_id` = `id` WHERE `gb_comment_id` = ?", [ id ], function(err, data) {
         if (err) {
             res.status(520).json('something wrong, try again')
             console.log(err)
@@ -69,9 +69,9 @@ app.post('/api/guestbook', (req, res) => {
 })
 
 app.post('/api/guestbook/comments', (req, res) => {
-    const { id, filteredCommentText } = req.body
+    const { id, userId, filteredCommentText } = req.body
 
-    connection.query("INSERT INTO gb_comments (gb_comment_id, comment_date_time, comment_text) VALUES (?,now(),?)", [ id, filteredCommentText ], function(err, data) {
+    connection.query("INSERT INTO gb_comments (gb_comment_id, gb_user_id, comment_date_time, comment_text) VALUES (?,?,now(),?)", [ id, userId, filteredCommentText ], function(err, data) {
         if (err) {
             res.status(520).json('something wrong, try again')
             console.log(err)

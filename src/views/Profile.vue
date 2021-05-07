@@ -1,26 +1,33 @@
 <template>
-   <div>
-      <h1>Profile {{ this.$route.params.id }}</h1> 
+   <div class="profile-body">
+      <div class="profile">
+         <h1>Profile {{ this.$route.params.id }}</h1> 
 
-         <p>Firstname:</p>{{ this.$route.params.firstname }}<hr><br>
+         <div>Firstname:</div>{{ this.$route.params.firstname }}<hr><br>
 
-         <p>Lastname:</p>{{ this.$route.params.lastname }}<hr><br>
+         <div>Lastname:</div>{{ this.$route.params.lastname }}<hr><br>
 
-         <p>e-mail:</p>{{ this.$route.params.email }}<hr><br>
+         <div>e-mail:</div>{{ this.$route.params.email }}<hr><br>
 
-         <p>date of birth:</p>{{ this.$route.params.date_of_birth }}<hr><br>
+         <div>date of birth:</div>{{ moment(this.$route.params.date_of_birth).format('DD.MM.YYYY') }}<hr><br>
 
-         <button @click.prevent="guestbookRout">
+         <button @click.prevent="guestbookRoute">
             guestbook
          </button>
+      </div>
    </div>
 </template>
 
 <script>
+import moment from 'moment'
 export default {
    name: 'Profile',
+   created() {
+      this.moment = moment
+   },
+
    methods: {
-      guestbookRout() {
+      guestbookRoute() {
          const id = this.$route.params.id
          this.$router.push({ 
             name: 'guestbook', 
@@ -30,3 +37,7 @@ export default {
    }
 }
 </script>
+
+<style>
+
+</style>

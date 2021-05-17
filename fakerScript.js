@@ -84,6 +84,12 @@ for ( i = 0; i < posts.length; i++ ) {
     }
 }
 
+// const sortedComments = comments.sort((a, b) => {
+//     const dateA = new Date(a.date)
+//     const dateB = new Date(b.date)
+//     return dateA - dateB
+// })
+
 console.log(comments)
 
 // const startServer = () => {

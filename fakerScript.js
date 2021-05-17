@@ -16,7 +16,7 @@ const salt = 'abc'
 
 
 const users = []
-for ( let i = 0; i < 100; i++ ) {
+for ( let i = 0; i < 4; i++ ) {
     const firstName = faker.name.firstName()
     const lastName = faker.name.lastName()
     const password = faker.internet.password()
@@ -38,7 +38,7 @@ for ( let i = 0; i < 100; i++ ) {
 const posts = []
 for ( let i = 0; i < users.length; i++ ) {
     const user_id = i + 1
-    const randomNumber = faker.datatype.number( max = 10 ) + 1
+    const randomNumber = faker.datatype.number( max = 4 ) + 1
 
     for ( let i = 0; i < randomNumber; i++ ) {
         const theme = faker.lorem.sentence()
@@ -65,11 +65,11 @@ for ( let i = 0; i < users.length; i++ ) {
 const comments = []
 for ( i = 0; i < posts.length; i++ ) {
     const post_id = i + 1
-    const user_id = posts[i].user_id
     const date = posts[i].date.toISOString().slice(0, 10)
-    const randomNumber = faker.datatype.number( max = 2 ) + 1
+    const randomNumber = faker.datatype.number( max = 4 ) + 1
 
     for ( i = 0; i < randomNumber; i++ ) {
+        const user_id = faker.datatype.number( max = 4 ) + 1
         const text = faker.lorem.paragraph()
         const dateTime = faker.date.between(date, '2021-01-01')
 
@@ -83,6 +83,8 @@ for ( i = 0; i < posts.length; i++ ) {
         comments.push(comment)
     }
 }
+
+console.log(comments)
 
 // const startServer = () => {
 //    try {

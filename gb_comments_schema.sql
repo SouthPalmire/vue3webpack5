@@ -5,4 +5,4 @@ CREATE TABLE IF NOT EXISTS gb_comments (
     comment_date_time datetime NOT NULL,
     comment_text varchar(255) NOT NULL,
     PRIMARY KEY (comment_id)
-);
+); 

@@ -45,6 +45,8 @@
          </div>
       </div>
 
+      <Pagination :page="pageNumber" :pageMax="notesSum" />
+
       <button @click="prevPage" :disabled="pageNumber == 0">
          previous
       </button>
@@ -52,6 +54,7 @@
       <button @click="nextPage" :disabled="(pageNumber * 3) > notesSum">
          next
       </button><hr>
+
 
       <input type="text" v-model="userTheme" placeholder="theme"><br>
       <input type="text" v-model="userText" placeholder="text"><br>
@@ -63,9 +66,13 @@
 </template>
 
 <script>
+import Pagination from './Pagination'
 import moment from 'moment'
 export default {
    name: 'GuestBook',
+   components: {
+      Pagination
+   },
    data() {
       return {
          notes: [],

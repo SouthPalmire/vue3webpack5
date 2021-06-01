@@ -1,7 +1,8 @@
 <template>
     <span>
-        <button>{{ page + 1 }}</button>
+        <button @click="pageMax++">{{ page + 1 }}</button>
         <button>{{ pageMax }}</button>
+
     </span>
 </template>
 

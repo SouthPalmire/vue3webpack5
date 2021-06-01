@@ -77,7 +77,7 @@ try {
         const text = sortedPosts[i].text
         const date = sortedPosts[i].date
     
-        const postQueryString = `INSERT INTO gb 
+        const postQueryString = `INSERT INTO post 
                                 (user_id, theme, date_time, text) 
                                 VALUES (?,?,?,?)`
         const postReplacements = [ user_id, theme, date, text ]
@@ -121,8 +121,8 @@ try {
         const text = sortedComments[i].text
         const dateTime = sortedComments[i].dateTime
     
-        const commentQueryString = `INSERT INTO gb_comments 
-                                    (gb_comment_id, gb_user_id, comment_date_time, comment_text) 
+        const commentQueryString = `INSERT INTO comment 
+                                    (post_id, user_id, date_time, text) 
                                     VALUES (?,?,?,?)`
         const commentReplacements = [ post_id, user_id, dateTime, text ]
 

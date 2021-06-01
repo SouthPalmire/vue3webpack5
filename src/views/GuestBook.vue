@@ -16,7 +16,7 @@
          
          <a class="comment-inf"
             href="#" 
-            @click.prevent="fetchComments(note.id_gb)" 
+            @click.prevent="fetchComments(note.post_id)" 
             v-if="note.last_comment_time && note.number_of_comments"
          >
             {{ note.number_of_comments }} comments, last created {{ moment(note.last_comment_time).fromNow() }} 
@@ -25,13 +25,13 @@
             no comments yet
          </div><hr>
 
-         <div v-if="comments[note.id_gb]">
+         <div v-if="comments[note.id]">
             <div v-if="filteredComments.length">
                <div v-for="( comment, index ) in filteredComments" :key="index">
                   <div class="post-comment" v-for="( c, index ) in comment" :key="index">
-                     {{ moment(c.comment_date_time).fromNow() }}
+                     {{ moment(c.date_time).fromNow() }}
                      by {{ c.firstname }} {{ c.lastname }}: <br>
-                     {{ c.comment_text }}
+                     {{ c.text }}
                   </div>
                </div>
             </div>
@@ -41,15 +41,15 @@
 
          <div class="comment-input" v-show="showCommentMassive[index]">
             <input v-model="commentText[index]" type="text" placeholder="enter comment">
-            <button @click="postUserComment(note.id_gb)" v-if="commentText[index]">send</button>
+            <button @click="postUserComment(note.id)" v-if="commentText[index]">send</button>
          </div>
       </div>
 
-      <button @click="prevPage" :disabled="offsetNotes == 0">
+      <button @click="prevPage" :disabled="pageNumber == 0">
          previous
       </button>
 
-      <button @click="nextPage" :disabled="notes.length < 3">
+      <button @click="nextPage" :disabled="(pageNumber * 3) > notesSum">
          next
       </button><hr>
 
@@ -73,19 +73,20 @@ export default {
          userText: '',
          userTheme: '',
          commentText: [],
-         offsetNotes: 0,
-         limitNotes: 3,
+         pageNumber: 0,
+         notesSum: '',
          showCommentMassive: []
       }
    },
 
    created() {
+      this.fetchNotesSum()
       this.fetchNotes()
       this.moment = moment
    },
 
    watch: {
-      offsetNotes(value) {
+      pageNumber(value) {
          this.fetchNotes(value)
       }
    },
@@ -97,9 +98,15 @@ export default {
    },
 
    methods: {
+      fetchNotesSum() {
+         fetch(`http://127.0.0.1:1337/api/guestbook/posts`)
+            .then(response => response.json())
+            .then(([data]) => this.notesSum = data.number_of_posts)
+      },
+
       fetchNotes(value) {
-         const { limitNotes, offsetNotes } = this
-         fetch(`http://127.0.0.1:1337/api/guestbook?limit=${limitNotes}&offset=${value || offsetNotes}`)
+         const { pageNumber } = this
+         fetch(`http://127.0.0.1:1337/api/guestbook?offset=${value || pageNumber}`)
             .then(response => response.json())
             .then(data => this.notes = data)
       },
@@ -127,6 +134,7 @@ export default {
             this.userText = ''
             this.userTheme = ''
          }
+         this.fetchNotesSum()
       },
 
       async postUserComment(id) {
@@ -155,12 +163,12 @@ export default {
       },
 
       prevPage() {
-         this.offsetNotes = this.offsetNotes - this.limitNotes
+         this.pageNumber--
          this.showCommentMassive = []
       },
 
       nextPage() {
-         this.offsetNotes = this.offsetNotes + this.limitNotes
+         this.pageNumber++
          this.showCommentMassive = []
       }
    }

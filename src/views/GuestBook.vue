@@ -45,7 +45,11 @@
          </div>
       </div>
 
-      <Pagination :page="pageNumber" :pageMax="notesSum" />
+      <Pagination 
+         :page="pageNumber" 
+         :pageMax="notesSum" 
+         @paginationPageValue="changePage"
+      />
 
       <button @click="prevPage" :disabled="pageNumber == 0">
          previous
@@ -162,6 +166,11 @@ export default {
             this.fetchNotes()
             this.commentText = []
          }
+      },
+
+      changePage(value) {
+         this.fetchNotes(value)
+         console.log(value)
       },
 
       showComment(index) {

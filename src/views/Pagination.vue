@@ -1,12 +1,17 @@
 <template>
     <div>
-        <button class="btn_pagination" v-if="page >= 6">
+        <button class="btn_pagination" @click="paginationChangeEmit(page--)" :disabled="page === 0">
+            prev
+        </button>
+
+        <button class="btn_pagination" @click="paginationChangeEmit(1)" v-if="page >= 6">
             1...
         </button>
         
         <div class="div_btn_pagination" v-for="( p, idx ) in pageMax" :key="idx">
             <button 
-                class="btn_pagination" 
+                class="btn_pagination"
+                @click="paginationChangeEmit(p)"
                 :class="{ active: p == page + 1 }" 
                 v-if="p >= page - 4 && p <= page + 6"
             >
@@ -14,8 +19,12 @@
             </button>
         </div>
 
-        <button class="btn_pagination">
+        <button class="btn_pagination" @click="paginationChangeEmit(pageMax)" v-if="page <= 8">
             ...{{ pageMax }}
+        </button>
+
+        <button @click="paginationChangeEmit(page++)" :disabled="page === pageMax">
+            next
         </button>
     </div>
 </template>
@@ -23,13 +32,15 @@
 <script>
 export default {
     name: 'Pagination',
+
     props: {
         page: Number,
         pageMax: Number
     },
-    data() {
-        return {
 
+    methods: {
+        paginationChangeEmit(value) {
+            this.$emit('paginationPageValue', value)
         }
     }
 }
@@ -37,7 +48,6 @@ export default {
 
 <style>
 .btn_pagination {
-    background-color: grey;
     float: left;
 }
 

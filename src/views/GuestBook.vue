@@ -34,6 +34,12 @@
                      {{ c.text }}
                   </div>
                </div>
+
+               <Pagination 
+                  :page="pageNumber" 
+                  :pageMax="notesSum" 
+                  @paginationPageValue="changePage"
+               />
             </div>
          </div>
 
@@ -50,15 +56,6 @@
          :pageMax="notesSum" 
          @paginationPageValue="changePage"
       />
-
-      <button @click="prevPage" :disabled="pageNumber == 0">
-         previous
-      </button>
-
-      <button @click="nextPage" :disabled="(pageNumber * 3) > notesSum">
-         next
-      </button><hr>
-
 
       <input type="text" v-model="userTheme" placeholder="theme"><br>
       <input type="text" v-model="userText" placeholder="text"><br>
@@ -170,22 +167,13 @@ export default {
 
       changePage(value) {
          this.fetchNotes(value)
+         this.showCommentMassive = []
          console.log(value)
       },
 
       showComment(index) {
          this.showCommentMassive = []
          this.showCommentMassive[index] = true
-      },
-
-      prevPage() {
-         this.pageNumber--
-         this.showCommentMassive = []
-      },
-
-      nextPage() {
-         this.pageNumber++
-         this.showCommentMassive = []
       }
    }
 }

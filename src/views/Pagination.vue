@@ -19,11 +19,11 @@
             </button>
         </div>
 
-        <button class="btn_pagination" @click="countedPage = pageMax - 1" v-if="countedPage <= 8">
+        <button class="btn_pagination" @click="countedPage = pageMax - 1" v-if="countedPage >= pageMax - 4">
             ...{{ pageMax }}
         </button>
 
-        <button @click="countedPage++" :disabled="countedPage === pageMax">
+        <button @click="countedPage++" :disabled="countedPage === pageMax - 1">
             next
         </button>
     </div>

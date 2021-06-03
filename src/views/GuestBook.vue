@@ -37,7 +37,7 @@
 
                <Pagination 
                   :page="pageNumber" 
-                  :pageMax="notesSum" 
+                  :pageMax="notesNuber" 
                   @paginationPageValue="changePage"
                />
             </div>
@@ -53,7 +53,7 @@
 
       <Pagination 
          :page="pageNumber" 
-         :pageMax="notesSum" 
+         :pageMax="notesNuber" 
          @paginationPageValue="changePage"
       />
 
@@ -82,13 +82,13 @@ export default {
          userTheme: '',
          commentText: [],
          pageNumber: 0,
-         notesSum: '',
+         notesNuber: '',
          showCommentMassive: []
       }
    },
 
    created() {
-      this.fetchNotesSum()
+      this.fetchNotesMax()
       this.fetchNotes()
       this.moment = moment
    },
@@ -106,10 +106,10 @@ export default {
    },
 
    methods: {
-      fetchNotesSum() {
+      fetchNotesMax() {
          fetch(`http://127.0.0.1:1337/api/guestbook/posts`)
             .then(response => response.json())
-            .then(([data]) => this.notesSum = data.number_of_posts)
+            .then(([data]) => this.notesNuber = Math.floor(data.number_of_posts / 3))
       },
 
       fetchNotes(value) {
@@ -142,7 +142,7 @@ export default {
             this.userText = ''
             this.userTheme = ''
          }
-         this.fetchNotesSum()
+         this.fetchNotesMax()
       },
 
       async postUserComment(id) {

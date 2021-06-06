@@ -1,14 +1,26 @@
 <template>
     <div>
-        <button class="btn_pagination" @click="countedPage--" :disabled="countedPage === 0">
+        <button 
+            class="btn_pagination" 
+            @click="countedPage--" 
+            :disabled="countedPage === 0"
+        >
             prev
         </button>
 
-        <button class="btn_pagination" @click="countedPage=0" v-if="countedPage >= 6">
+        <button 
+            class="btn_pagination" 
+            @click="countedPage=0" 
+            v-if="countedPage >= 6"
+        >
             1...
         </button>
         
-        <div class="div_btn_pagination" v-for="( p, idx ) in pageMax" :key="idx">
+        <div 
+            class="div_btn_pagination" 
+            v-for="( p, idx ) in pageMax" 
+            :key="idx"
+        >
             <button 
                 class="btn_pagination"
                 @click="countedPage = p - 1"
@@ -19,11 +31,18 @@
             </button>
         </div>
 
-        <button class="btn_pagination" @click="countedPage = pageMax - 1" v-if="countedPage >= pageMax - 4">
+        <button 
+            class="btn_pagination" 
+            @click="countedPage = pageMax - 1"
+            v-if="countedPage + 1 <= pageMax - 6"
+        >
             ...{{ pageMax }}
         </button>
 
-        <button @click="countedPage++" :disabled="countedPage === pageMax - 1">
+        <button 
+            @click="countedPage++"
+            :disabled="countedPage === pageMax - 1"
+        >
             next
         </button>
     </div>
@@ -57,7 +76,7 @@ export default {
     float: left;
 }
 
-.active{
+.active {
     font-weight: bold;
     background-color:rgb(58, 55, 55);
 }

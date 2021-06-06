@@ -1,7 +1,7 @@
 // sudo sysctl -w fs.inotify.max_user_watches=100000
 const express = require('express');
 
-const PORT = 1337;
+const port = 1337;
 const mysql = require('mysql2');
 const crypto = require('crypto');
 
@@ -202,9 +202,10 @@ app.post('/api/register', (req, res) => {
     });
   console.timeEnd('registration');
 });
+
 (() => {
   try {
-    app.listen(PORT, () => console.log(`server started on port ${PORT}...`));
+    app.listen(port, () => console.log(`server start's on port ${port}`));
   } catch (err) {
     console.log(err);
   }

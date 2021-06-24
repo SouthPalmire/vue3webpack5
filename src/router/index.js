@@ -1,40 +1,40 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../views/Login.vue'
-import Register from '../views/Register.vue'
-import Profile from '../views/Profile.vue'
-import GuestBook from '../views/GuestBook.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import Login from '../views/Login.vue';
+import Register from '../views/Register.vue';
+import Profile from '../views/Profile.vue';
+import GuestBook from '../views/GuestBook.vue';
 
 const routes = [
-  { 
+  {
     name: 'home',
-    path: '/', 
-    component: Login 
+    path: '/',
+    component: Login,
   },
-  { 
+  {
     name: 'login',
-    path: '/login', 
-    component: Login 
+    path: '/login',
+    component: Login,
   },
   {
     name: 'register',
-    path: '/register', 
-    component: Register 
+    path: '/register',
+    component: Register,
   },
-  { 
+  {
     name: 'profile',
-    path: '/profile/:firstname?/:lastname?/:email?/:date_of_birth?', 
+    path: '/:lastname?/profile',
     component: Profile,
   },
-  { 
+  {
     name: 'guestbook',
-    path: '/guestbook/:id?', 
+    path: '/guestbook/:id?',
     component: GuestBook,
-  }
-]
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

@@ -110,21 +110,33 @@ export default {
 
   methods: {
     fetchNotesMax() {
-      fetch('http://127.0.0.1:1337/api/guestbook/posts')
+      const requestOptions = {
+        method: 'GET',
+        credentials: 'include',
+      };
+      fetch('http://127.0.0.1:1337/api/guestbook/posts', requestOptions)
         .then((response) => response.json())
         .then(([data]) => this.notesNuber = Math.floor(data.number_of_posts / 3));
     },
 
     fetchNotes(value) {
       const { pageNumber } = this;
-      fetch(`http://127.0.0.1:1337/api/guestbook?offset=${value || pageNumber}`)
+      const requestOptions = {
+        method: 'GET',
+        credentials: 'include',
+      };
+      fetch(`http://127.0.0.1:1337/api/guestbook?offset=${value || pageNumber}`, requestOptions)
         .then((response) => response.json())
         .then((data) => this.notes = data);
     },
 
     fetchComments(id) {
       this.comments = [];
-      fetch(`http://127.0.0.1:1337/api/guestbook/comments?id=${id}`)
+      const requestOptions = {
+        method: 'GET',
+        credentials: 'include',
+      };
+      fetch(`http://127.0.0.1:1337/api/guestbook/comments?id=${id}`, requestOptions)
         .then((response) => response.json())
         .then((data) => this.comments[id] = data);
     },
@@ -134,6 +146,7 @@ export default {
       const { userText, userTheme } = this;
       const requestOptions = {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -155,6 +168,7 @@ export default {
 
       const requestOptions = {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },

@@ -28,6 +28,7 @@ app.use(session({
   cookie: {
     secure: false,
     httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000,
   },
   resave: false,
   saveUninitialized: false,
@@ -43,22 +44,35 @@ app.use((req, res, next) => {
   next();
 });
 
+const checkUser = (req, res, next) => {
+  if (!req.session.userId) {
+    res.status(404).json('NULL');
+  } else {
+    next();
+  }
+};
+
 // app.get('/', (request, response) => {
 //   response.sendFile(__dirname + '/dist/index.html')
 // });
 
-app.post('/add', (req, res) => {
-  req.session.userId = req.body.id;
-  console.log(req.session, `post session id: ${req.session.id}`, req.session.userId);
-  res.status(200).json(req.session.userId);
+app.get('/api/profile', checkUser, (req, res) => {
+  const queryString = `SELECT id, firstname, lastname, email, date_of_birth  
+                   FROM user 
+                   WHERE id = ?`;
+
+  connection.query(queryString, [req.session.userId])
+    .then(([data]) => {
+      res.status(202).json(data);
+      console.log(`profile id ${req.session.userId}`);
+    })
+    .catch((err) => {
+      res.status(520).json('something wrong, try again');
+      console.log(err);
+    });
 });
 
-app.get('/add', (req, res) => {
-  console.log(`get session id: ${req.session.id}`, req.session.userId);
-  res.status(200).json(req.session.userId);
-});
-
-app.get('/api/guestbook/comments', (req, res) => {
+app.get('/api/guestbook/comments', checkUser, (req, res) => {
   const { id } = req.query;
 
   const queryString = `SELECT c.id, c.post_id, c.user_id, c.date_time, c.text, u.firstname, u.lastname 
@@ -79,7 +93,7 @@ app.get('/api/guestbook/comments', (req, res) => {
   console.timeEnd('uploading comments');
 });
 
-app.get('/api/guestbook/posts', (req, res) => {
+app.get('/api/guestbook/posts', checkUser, (req, res) => {
   connection.query('select COUNT(id) AS number_of_posts from post')
     .then(([data]) => {
       res.status(200).json(data);
@@ -91,7 +105,7 @@ app.get('/api/guestbook/posts', (req, res) => {
     });
 });
 
-app.get('/api/guestbook', (req, res) => {
+app.get('/api/guestbook', checkUser, (req, res) => {
   const reqLimit = 3;
   const reqOffset = req.query.offset * 3;
 
@@ -117,7 +131,7 @@ app.get('/api/guestbook', (req, res) => {
   console.timeEnd('uploading posts');
 });
 
-app.post('/api/guestbook', (req, res) => {
+app.post('/api/guestbook', checkUser, (req, res) => {
   const { userId, userTheme, userText } = req.body;
 
   const queryString = `INSERT INTO post 
@@ -137,7 +151,7 @@ app.post('/api/guestbook', (req, res) => {
   console.timeEnd('creating post');
 });
 
-app.post('/api/guestbook/comments', (req, res) => {
+app.post('/api/guestbook/comments', checkUser, (req, res) => {
   const { id, userId, filteredCommentText } = req.body;
 
   const queryString = `INSERT INTO comment 
@@ -169,6 +183,7 @@ app.post('/api/login', (req, res) => {
   connection.query(queryString, [email, checkPassword])
     .then(([data]) => {
       if (data.length) {
+        req.session.userId = data[0].id;
         res.status(202).json(data);
         console.log(`user whith email ${email} have been entered`);
       } else {

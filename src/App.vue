@@ -23,8 +23,8 @@ button:focus {
 }
 
 input {
-   padding-left: 5px;
-   height: 20px;
+  padding-left: 5px;
+  height: 20px;
 }
 
 button {

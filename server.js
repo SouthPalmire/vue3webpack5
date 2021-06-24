@@ -1,33 +1,62 @@
 // sudo sysctl -w fs.inotify.max_user_watches=100000
 const express = require('express');
-
-const port = 1337;
+const session = require('express-session');
+const SessionStore = require('express-mysql-session');
 const mysql = require('mysql2');
 const crypto = require('crypto');
 
+const port = 1337;
+const host = '127.0.0.1';
 const salt = 'abc';
-const app = express();
-
-const connection = mysql.createPool({
+const config = {
   host: 'localhost',
   user: 'someone',
   password: '53995399',
   database: 'users',
-}).promise();
+};
+
+const app = express();
+
+const connection = mysql.createPool(config).promise();
 
 app.use(express.json());
+
+app.use(session({
+  name: 'session_name',
+  secret: 'session_secret',
+  store: new SessionStore(config),
+  cookie: {
+    secure: false,
+    httpOnly: true,
+  },
+  resave: false,
+  saveUninitialized: false,
+}));
 
 // app.use(express.static(__dirname + '/dist'))
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8080');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Cookie, Set-Cookie');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Credentials', true);
   next();
 });
 
-// app.get("/", function (request, response) {
-//     response.sendFile(__dirname + '/dist/index.html')
+// app.get('/', (request, response) => {
+//   response.sendFile(__dirname + '/dist/index.html')
 // });
+
+app.post('/add', (req, res) => {
+  req.session.userId = req.body.id;
+  console.log(req.session, `post session id: ${req.session.id}`, req.session.userId);
+  res.status(200).json(req.session.userId);
+});
+
+app.get('/add', (req, res) => {
+  console.log(`get session id: ${req.session.id}`, req.session.userId);
+  res.status(200).json(req.session.userId);
+});
 
 app.get('/api/guestbook/comments', (req, res) => {
   const { id } = req.query;
@@ -205,7 +234,7 @@ app.post('/api/register', (req, res) => {
 
 (() => {
   try {
-    app.listen(port, () => console.log(`server start's on port ${port}`));
+    app.listen(port, host, () => console.log(`start's on http://${host}:${port}`));
   } catch (err) {
     console.log(err);
   }

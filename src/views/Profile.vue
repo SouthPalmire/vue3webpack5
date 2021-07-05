@@ -1,5 +1,8 @@
 <template>
   <div class="profile-body">
+
+    <Navbar/>
+
     <div class="profile">
       <h1>Profile</h1>
 
@@ -21,8 +24,12 @@
 
 <script>
 import moment from 'moment';
+import Navbar from '@/views/Navbar';
 
 export default {
+  components: {
+    Navbar,
+  },
   name: 'Profile',
   data() {
     return {
@@ -42,17 +49,16 @@ export default {
       });
     },
 
-    fetchUser() {
+    async fetchUser() {
       const requestOptions = {
         method: 'GET',
         credentials: 'include',
       };
-      fetch('http://127.0.0.1:1337/api/profile', requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-          const [{ firstname, lastname, email, date_of_birth }] = data;
-          this.userData = { firstname, lastname, email, date_of_birth };
-        });
+      const fetchUserAuth = await fetch('http://127.0.0.1:1337/api/profile', requestOptions);
+      if (fetchUserAuth.status === 202) {
+        const [{ firstname, lastname, email, date_of_birth }] = await fetchUserAuth.json();
+        this.userData = { firstname, lastname, email, date_of_birth };
+      }
     },
   },
 };

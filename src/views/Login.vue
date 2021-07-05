@@ -1,7 +1,6 @@
 <template>
   <div class="login-body">
     <div class="login">
-
       <h1>login</h1>
 
       <form @submit.prevent="fetchUserData">
@@ -40,7 +39,10 @@
           login
         </button>
 
-        <button class="register-btn" @click.prevent="this.$router.push('register')">
+        <button
+          class="register-btn"
+          @click.prevent="this.$router.push('register')"
+        >
           registration
         </button>
       </form>
@@ -91,18 +93,17 @@ export default {
       };
       const fetchLogin = await fetch('http://127.0.0.1:1337/api/login', requestOptions);
 
-      if (fetchLogin.ok) {
+      if (fetchLogin.status === 202) {
+        this.$store.commit('setAuth');
         const json = await fetchLogin.json();
-        this.$router.push({
-          name: 'profile',
-          params: {
-            id: json[0].id,
-            firstname: json[0].firstname,
-            lastname: json[0].lastname,
-            email: json[0].email,
-            date_of_birth: json[0].date_of_birth,
-          },
-        });
+        if (this.$store.state.lastRoute) {
+          this.$router.push(this.$store.state.lastRoute);
+        } else {
+          this.$router.push({
+            name: 'profile',
+            params: { lastname: json[0].lastname },
+          });
+        }
       } else {
         this.errors = await fetchLogin.json();
         this.email = '';

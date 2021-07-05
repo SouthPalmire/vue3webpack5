@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 
 const checkUser = (req, res, next) => {
   if (!req.session.userId) {
-    res.status(404).json('NULL');
+    res.sendStatus(401);
   } else {
     next();
   }

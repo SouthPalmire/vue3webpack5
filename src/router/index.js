@@ -3,17 +3,18 @@ import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Profile from '../views/Profile.vue';
 import GuestBook from '../views/GuestBook.vue';
+import store from '../store';
+
+// const Register = () => import('../views/Register.vue');
+// const Profile = () => import('../views/Profile.vue');
+// const GuestBook = () => import('../views/GuestBook.vue');
 
 const routes = [
-  {
-    name: 'home',
-    path: '/',
-    component: Login,
-  },
   {
     name: 'login',
     path: '/login',
     component: Login,
+    alias: '/',
   },
   {
     name: 'register',
@@ -35,6 +36,16 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.afterEach((to, from) => {
+  store.commit('setLastRoute', from.name);
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'register') next({ name: 'register' });
+  else if (to.name !== 'login' && !store.state.isAuth) next({ name: 'login' });
+  else next();
 });
 
 export default router;

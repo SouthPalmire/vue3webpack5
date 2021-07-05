@@ -3,14 +3,14 @@
     <div class="post" v-for="( note, index ) in notes" :key="index">
       <div class="post-body">
         <div>
-            {{ note.firstname }} {{ note.lastname }}
-            {{ moment(note.date_time).format('DD.MM.YYYY [&nbsp;] HH:mm') }}
+          {{ note.firstname }} {{ note.lastname }}
+          {{ moment(note.date_time).format('DD.MM.YYYY [&nbsp;] HH:mm') }}
         </div>
         <div>
-            Theme: {{ note.theme }}
+          Theme: {{ note.theme }}
         </div>
         <div>
-            {{ note.text }}
+          {{ note.text }}
         </div><hr>
       </div>
 
@@ -70,7 +70,7 @@
 
 <script>
 import moment from 'moment';
-import Pagination from './Pagination';
+import Pagination from './Pagination.vue';
 
 export default {
   name: 'GuestBook',
@@ -165,7 +165,6 @@ export default {
       const userId = this.$route.params.id;
       const { commentText } = this;
       const filteredCommentText = commentText.filter((element) => element != null);
-
       const requestOptions = {
         method: 'POST',
         credentials: 'include',
@@ -197,27 +196,27 @@ export default {
 
 <style>
 .post {
-    background-color: grey;
-    border: 2px solid;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
+  background-color: grey;
+  border: 2px solid;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
 }
 
 .post-comment {
-    background-color: lightgray;
-    border: 2px solid;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
+  background-color: lightgray;
+  border: 2px solid;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 .comment-show_input {
-    margin: 10px;
+  margin: 10px;
 }
 
 .comment-input {
-    margin: 10px;
+  margin: 10px;
 }
 </style>

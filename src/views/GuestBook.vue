@@ -70,7 +70,7 @@
 
 <script>
 import moment from 'moment';
-import Pagination from './Pagination.vue';
+import Pagination from '../components/Pagination.vue';
 
 export default {
   name: 'GuestBook',

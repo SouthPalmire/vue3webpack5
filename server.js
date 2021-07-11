@@ -10,7 +10,7 @@ const host = '127.0.0.1';
 const salt = 'abc';
 const config = {
   host: 'localhost',
-  user: 'someone',
+  user: 'root',
   password: '53995399',
   database: 'users',
 };

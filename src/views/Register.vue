@@ -140,7 +140,7 @@ export default {
           || this.v$.email.$invalid
           || this.v$.date_of_birth.$invalid;
     },
-  },
+  }, 
 
   methods: {
     async fetchUserData() {
@@ -149,6 +149,7 @@ export default {
       } = this;
       const requestOptions = {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },

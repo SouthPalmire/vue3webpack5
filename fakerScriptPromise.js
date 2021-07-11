@@ -5,7 +5,7 @@ const Database = require('./mySqlDB')
 
 const config = {
     host     : 'localhost',
-    user     : 'someone',
+    user     : 'root',
     password : '53995399',
     database : 'users'
 }

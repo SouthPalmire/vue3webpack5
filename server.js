@@ -1,4 +1,3 @@
-// sudo sysctl -w fs.inotify.max_user_watches=100000
 const express = require('express');
 const session = require('express-session');
 const SessionStore = require('express-mysql-session');
